@@ -14,8 +14,7 @@ const Sidebar = () => {
         <NavLink className={navLinkStyles} to='/about'>Kuhusu</NavLink>
         <NavLink className={navLinkStyles} to='/services'>Huduma</NavLink>
         <NavLink className={navLinkStyles} to='/agents'>Mawakala</NavLink>
-        <NavLink className={navLinkStyles} to='/teachings'>Mafunzo na Habari</NavLink>                        
-        <NavLink className={navLinkStyles} to='/qna'>Maswali na Majibu</NavLink>
+        <NavLink className={navLinkStyles} to='/teachings'>Mafunzo na Habari</NavLink>                  
         <NavLink className={navLinkStyles} to='/contact'>Mawasiliano</NavLink>
     </div>
   )
