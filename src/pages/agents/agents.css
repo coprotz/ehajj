@@ -1,0 +1,312 @@
+.agents_wrapper{
+    height: 100%;
+    width: calc(100vw - 50vw);
+    padding: 15px;
+    /* overflow-y: scroll; */
+}
+
+.agents_inner{
+    background-color: rgba(255,255,255,0.9);
+    height: 100%;
+    overflow-y: scroll;
+    padding: 20px 0;
+    /* border: 1px solid red; */
+    /* margin: 20px 0; */
+}
+
+.agent_body_wrapper{
+    /* padding: 30px; */
+    height: 100%;
+    margin: 20px 0;
+}
+
+.agent_body_inner{
+    display: flex;
+    gap: 30px;
+    
+    /* border: 1px solid red; */
+}
+
+.agent_img{
+    width: 350px;
+}
+
+.agent_img img{
+    width:100%;
+}
+
+.agent_body_1{
+    /* padding: 20px 50px; */
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-direction: column; */
+    gap: 15px;
+    text-align: left;
+    background-color: #3266a8;
+    padding: 20px;
+    /* font-weight: 700; */
+    color: #afcef7;
+    /* border: 1px solid #aaa; */
+    border-radius: 5px;
+    /* margin: 0 auto; */
+    /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+}
+
+.btn_agent{
+    background-color: black;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+.agents_lists{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 190px);
+    gap: 15px;
+    padding: 10px;
+    justify-content: center;
+    width: 100%;
+   
+}
+
+.agent_card{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: white;
+}
+
+.agent_name{
+    cursor: pointer;
+}
+
+.agent_name:hover{
+    text-decoration: underline;
+    color: #3266a8;
+}
+
+.view_agent{
+    background-color: #3266a8;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: 20px 0;
+}
+
+.view_agent_top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #afcef7;
+    padding: 10px;
+}
+
+/* .view_agent_top small{
+    padding: 15px;
+} */
+
+.btn_close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.agent_social{
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.agent_social svg{
+    color: #91bffc;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.agent_social svg:hover{
+    color: white;
+    font-size: 18px;
+}
+
+.view_body{
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    /* align-items: center; */
+}
+
+.view_agnet_2{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.agent_other{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-top: 1px solid #dbdbdb;
+    padding: 20px;
+    width: 100%;
+    
+    /* background-color: rgba(255,255,255,0.7); */
+    /* border: 1px solid red; */
+    /* text-align: left; */
+}
+
+.agent_other p{
+    text-align: left;
+    margin: 20px 0;
+    color: #afafaf;
+}
+
+.agent_view_exp{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.agent_view_exp_card{
+    background-color: white;
+    padding: 15px;
+    color: #3266a8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+.agent_view_exp_card small{
+    position: absolute;
+    top: 3px;
+    left: 5px;
+}
+
+.view_agent_name_inner{
+    display: flex;
+    flex-direction: column;
+    margin: 70px 15px;
+    text-align: left;
+    
+}
+
+.view_agent_name_inner small{
+    margin-top: 8px;
+    color: #519dff;
+}
+
+.view_agent_title{
+    font-size: 65px;
+    padding-left: 20px;
+    
+    border-left: 10px solid white;
+    
+}
+
+
+
+.agent_sheikh_photo{
+    width: 230px;
+}
+
+.agent_sheikh_photo img{
+    width: 100%;
+}
+
+.agent_view_middle{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 15px;
+    border-top: 1px solid #519dff;
+    margin-top: 30px;
+}
+
+.view_agent_location{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 250px);
+    gap: 15px;
+    padding: 30px 15px;
+    /* border: 1px solid #519dff; */
+    background-color: rgb(63, 63, 63);
+    height: 100%;
+    /* margin-top: 30px; */
+}
+
+.agent_view_location_card{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    /* width: 300px; */
+    background-color: rgb(63, 63, 63);
+    color: white;
+    height: 100%;
+    border-bottom: 1px solid white;
+}
+
+.agent_locations{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+    /* align-items: center; */
+}
+
+.new_back{
+    background-color: white;
+    color: #3266a8;
+    padding: 50px;
+}
+
+.form_contact_agent{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background: #dbdbdb;
+    width: 100%;
+    height: 100%;
+}
+
+.agent_inputs{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: left;
+}
+
+.agent_single_input{
+    padding: 7px;
+    font-size: 15px;
+    border: none;
+    background-color: white;
+}
+
+.view_agent_photo_garries{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 310px);
+    width: 100%;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.new_back1{
+    background-color: #dbdbdb;
+    color: black;
+}

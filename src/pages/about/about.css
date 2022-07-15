@@ -1,0 +1,117 @@
+.about{
+    /* background-color: rgba(255,255,255,0.7); */
+    height: 100%;
+    width: calc(100vw - 50vw);
+    padding: 15px;
+    /* margin: 20px; */
+}
+
+.about_wrapper{
+    background-color: rgba(255,255,255,0.7);
+    height: 100%;
+}
+
+.about_inner{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.page_title{
+    font-size: 30px;
+    text-align: right;
+    color: #3266a8;
+    
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* border: 1px solid red; */
+}
+
+.page_title svg{
+    height: 40px;
+    width: 40px;
+    background-color: #dee7f3;
+    /* font-size: 25px; */
+    padding: 10px;
+    cursor: pointer;
+}
+.page_next{
+    height: 40px;
+    width: 40px;
+    background-color: #dee7f3;
+    /* font-size: 25px; */
+    padding: 10px;
+    border: none;
+    font-size: 30px;
+    /* text-align: right; */
+    color: #3266a8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.about_title{
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1;
+    margin-top: 60px;
+    padding: 50px;
+    text-align: left;
+    
+}
+
+
+
+
+.page_title_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+  
+}
+
+.about_3{
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    gap: 50px;
+    align-items: center;
+
+}
+
+.about_3 p{
+    background-color: #3266a8;
+    color: #94b2da;
+    /* width: 50%; */
+    padding: 40px;
+    text-align: justify;
+}
+
+.about_3_inner{
+    color: #3266a8;
+    font-weight: 200;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+    text-align: left;
+    padding-left: 15px;
+    border-left: 6px solid #3266a8;
+}
+
+.view_tupo{
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #3266a8;
+}
+
+
+
