@@ -680,9 +680,9 @@ section{
         width: 100%;
         padding: 10px;
         text-align: center;
-        background-color: #7d25d7;
+        /* background-color: #7d25d7; */
         color: white;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .agents_inner_1{
@@ -696,7 +696,7 @@ section{
     }
 
     .agents_lists{
-        grid-template-columns: repeat(auto-fit, 90vw);
+        grid-template-columns: repeat(auto-fit, 320px);
     }
 
     .agent_img{
