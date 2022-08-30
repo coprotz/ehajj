@@ -1,0 +1,178 @@
+.acc_top_wrapper{
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    align-items: center;
+}
+
+.btn_nav_menu{
+    border: none;
+    background-color: transparent;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.acc_menu{
+    display: flex;
+    align-items: center;
+}
+
+.acc_menu a{
+    text-decoration: none;
+   
+}
+
+.nav_item{
+    color: #7d25d7;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 7px;
+}
+
+.active{
+    background-color: #7d25d7;
+    color: white;
+}
+
+.btn_show{
+    visibility: hidden;
+}
+
+.acc_left a{
+    text-decoration: none;
+}
+
+.acc_left{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.not_msg{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 7px;
+}
+
+.not_msg button{
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: rgb(121, 121, 121);
+}
+
+.not_msg span{
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.cuUser_items{
+    background-color: white;
+    padding: 20px;
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+
+
+
+
+@media screen and (max-width: 440px){
+
+    .acc_top_wrapper{
+    
+        height: 40px;
+        padding: 5px;
+   
+    }
+    .acc_menu_toggle{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 0px;
+        background-color: rgb(255, 255, 255);
+        width: 280px;
+        border: 1px solid rgb(219, 219, 219);
+        height: 100vh;
+        z-index: 10;
+        left: 0;
+        padding: 100px 5px;
+        align-items: flex-start;
+        
+        
+    }
+
+    .btn_nav_menu{
+        border: none;
+        background-color: #e8e8e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        cursor: pointer;
+        color: #555;
+    }
+
+    .acc_menu_toggle a{
+        text-decoration: none;
+    }
+
+    .acc_menu{
+        display: none;
+    }
+    .btn_navi{
+        display: none;
+    }
+
+    .nav_item{
+        width: 100%;
+        font-size: 19px;
+        padding: 10px;
+        display: flex;
+    }
+
+    .btn_show{
+        position: absolute;
+        right: 10px;
+        top: 0;
+        visibility: visible;
+        width: 100%;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        color: #aaa;
+        font-size: 19px;
+
+    }
+
+    .btn_show button{
+        border: none;
+        background-color: transparent;
+        font-size: 32px;
+        color: #aaa;
+    }
+
+    .acc_left{
+     
+        gap: 5px;
+       
+    }
+}

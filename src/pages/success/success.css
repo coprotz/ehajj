@@ -1,0 +1,11 @@
+.success_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: gainsboro;
+    font-size: 3vh;
+    padding: 50px;
+}

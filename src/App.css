@@ -1,0 +1,23 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+
+@media screen and (max-width: 440px){
+  .home{
+    flex-direction: column;
+    height: auto;
+    overflow-y: scroll;
+  }
+
+  .main_hide{
+    display: none;
+  }
+
+
+ 
+}
+

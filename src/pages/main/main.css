@@ -1,0 +1,236 @@
+
+
+  .home_logo{
+    width:3vw;
+  }
+
+  .home_logo img{
+    width: 100%;
+  }
+
+  .home_title_wrapper{
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /*  */
+  .home_title{
+    font-size: 12vh;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 25vw;
+    /* border: 1px solid red; */
+    text-align: right;
+    float: right;
+    line-height: 1;
+  
+  }
+
+  .home_menu{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    text-align: left;
+    padding: 3vh;
+    
+  }
+
+  .home_menu p{
+    color:  #b5d1f7;
+    font-size: 2vh;
+    margin: 2vh 0;
+    border-left: 5px solid #b5d1f7;
+    padding-left: 15px;
+  }
+  
+  
+  .home_left_top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8vh;
+    
+  }
+/*   
+  .home_logo{
+ 
+    background-color: #3266a8;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c2d9f8;
+    font-weight: 400;
+    font-size: 1.5vh;
+    padding: 1%;
+  } */
+  
+  .home_search{
+    color: white;
+    margin-right: 30px;
+    font-size: 1.5rem;
+  }
+  
+  .home_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1%;
+    color: #769ac9;
+    font-size: 1.5vh;
+  
+  }
+  
+  .btn_register{
+    
+    background-color: transparent;
+    font-size: 1.5vh;
+    color: #c2d9f8;
+    border: 1px solid #c2d9f8;
+    padding: 0.8vh 1vw;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  
+  }
+
+  .btn_register:hover{
+    background-color: white;
+    color: #3266a8;
+    border: 1px solid white;
+  }
+  
+  .home_login{
+    display: flex;
+    gap: 10px;     
+    /* border: 1px solid red; */
+  }
+  
+  
+  
+  
+ 
+  
+  .btn_home{
+    background-color: #3266a8;
+    color: white;
+    padding: 2% 3%;
+    border: none;
+    width: fit-content;
+    font-size: 2vh;
+    margin: 2px auto;
+    border-radius: 5px;
+  }
+  
+  
+  
+  .home_year{
+    /* border: 1px solid red; */
+    font-size: 18vh;
+    text-align: center;
+    /* font-weight: 800; */
+   
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #3266a8;
+ 
+  }
+
+  .btn_login{
+    padding: 1vh;
+    cursor: pointer;
+  }
+
+  .app_menu{
+    position: absolute;
+    height: 100vh;    
+    width: 50vw;
+    z-index: 10;
+   
+   
+
+  }
+
+  .btn_app_menu{
+    background-color: #022b61;
+    color: white;
+    border: none;
+    padding: 2vh;
+    display: none;
+  }
+
+  .app_menu_wrapper{
+    position: relative;
+    height: 100vh;
+    background-color: #3266a8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    z-index: 10;
+    gap: 2.5vh;
+  }
+
+  .app_menu span{
+    font-size: 3vh;
+    font-weight: 600;
+    color: #022b61;
+  }
+
+  .app_menu_close{
+    position: absolute;
+    right: 2vh;
+    top: 2vh;
+    
+    font-size: 3vh;
+  }
+
+  .app_menu_close svg{
+    color: white;
+  }
+
+  @media screen and (max-width: 440px){
+   
+    .btn_app_menu{
+      background-color: #022b61;
+      color: white;
+      border: none;
+      padding: 2vh;
+      display: block;
+    }
+
+    .home_left{
+      width: 100vw;
+      height: auto;
+      overflow-y: scroll;
+    }
+
+    .home_date{
+      font-size: 1.5vh !important;
+    }
+
+    .home_title{
+      width: 100vw;
+      font-size: 10vh;
+    }
+
+    .home_menu_items{
+      display: none;
+    }
+
+    .home_video{
+      width: 100vw;
+      height: 25vh;
+    }
+
+    .app_menu{
+      width: 100vw;
+    }
+
+    .home_logo{
+      width:10vw;
+    }
+  
+ 
+   
+}

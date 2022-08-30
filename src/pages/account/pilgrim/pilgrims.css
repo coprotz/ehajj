@@ -1,0 +1,358 @@
+.acc_wrapper{
+    width: 100vw;
+    min-height: 100vh;
+    /* border: 1px solid red; */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #dedede;
+}
+
+.page_heading_1{
+    padding-bottom: 10px !important;
+}
+
+
+
+
+
+
+.acc_body{
+    display: flex;
+    flex-direction: column;
+}
+
+.acc_body_middle{
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.acc_body_middle_left{
+    width: 100%;
+}
+
+.acc_body_card{
+    background-color: white;
+    padding: 25px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.acc_body_top{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 18.5vw);
+    justify-content: center;
+    gap: 15px;
+}
+
+.acc_inner_items{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 35vw);
+    gap: 55px;
+    margin-top: 20px;
+    padding: 5px 25px;
+   
+}
+
+.acc_sub_title{
+    border-left: 7px solid #3644d4;
+    color: #aaa;
+    padding-left: 10px;
+}
+
+.Inner_post_card{
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+    background: #d4d1fd;
+    border-radius: 5px;
+    /* border: 1px solid #3644d4; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    /* width: 400px; */
+}
+
+.btn_all{
+    background-color: #3644d4;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+}
+
+.view_all{
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+.post_index{
+    font-size: 3rem;
+    color: #b6b1fd;
+    font-weight: 800;
+}
+
+.btn_index{
+    background-color: black;
+    color: white;
+    padding: 7px 15px;
+    margin-top: 5px;
+}
+
+.acc_middle_right{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+
+.btn_nav{
+    padding: 12px 15px;
+    border: none;
+    background-color: #7d2ab8;
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.users_inner{
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.applicants_grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 350px);
+    gap: 20px;
+    width: 100%;
+    padding: 15px;
+    /* border: 1px solid red; */
+}
+
+.applicant_card{
+    display: flex;
+    /* width: 350px; */
+    height: 250px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+    /* border: 1px solid red; */
+    
+}
+
+.app_card_left{
+    width: 150px;
+    height: 100%;
+    border-radius:7px;
+    /* display: grid; */
+}
+
+.app_card_left img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.app_card_right{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: sp; */
+    background-color: white;
+    gap: 10px;
+    width: 100%;
+    padding: 15px;
+    border-radius:0 7px 7px 0;
+  
+}
+
+.app_card_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app_ibada_type{
+    background-color: #7d2ab8;
+    padding: 5px;
+    color: white;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.grid_hide, .hide_report{
+    display: none;
+}
+
+.show_report{
+    display: flex;
+}
+
+.app_ibada_status{
+    color: #7d2ab8;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid #7d2ab8;
+    padding: 5px;
+}
+
+.appli_report{
+    padding: 6px 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 17px;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+}
+
+
+
+.appli_layout{
+    display: flex;
+   justify-content: space-between;
+   align-items: center;
+    width: 100%;
+    margin: 10px 0;
+   
+}
+
+.appli_search{
+    width: 100%;
+    max-width: 400px;
+}
+
+.app_status{
+    display: flex;
+    justify-content: space-around;
+}
+
+.app_status_1{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #aaa;
+    align-items: center;
+}
+
+.app_status_1 small{
+    width: 100%;
+    background-color: rgb(127, 127, 127);
+    padding: 2px 10px;
+    font-size: 12px;
+    color: white;
+}
+
+.app_card_profile{
+    width: 60px;
+    height: 60px;
+}
+
+.app_card_profile img{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+    border-radius: 50%;
+}
+
+.app_status_1 span{
+    padding: 0 13px;
+    font-size: 14px;
+}
+
+.app_agent_n{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    color: #aaa;
+    font-size: 16px;
+    /* font-weight: 700; */
+}
+
+
+@media screen and (max-width: 440px){
+
+    .acc_wrapper{
+      
+        padding: 0px;
+        /* height: calc(100vh - 50px); */
+       
+    }
+    .acc_body_middle{
+        flex-direction: column;
+    }
+
+
+    .app_card_left{
+        display: none;
+        /* display: grid; */
+    }
+
+    .appli_layout{
+      
+        padding: 0 20px;
+    }
+
+    .applicant_card{
+        display: flex;
+        /* width: 350px; */
+        height: 250px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        /* padding: 10px; */
+        
+        /* border: 1px solid red; */
+        
+    }
+    
+
+ 
+
+    .acc_body_top{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 300px);
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .acc_inner_items{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-top: 20px;
+        padding: 5px 15px;
+       
+    }
+
+    .acc_middle_right{
+        width: 100%;
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    
+    .Inner_post_card{
+        display: flex;
+        gap: 10px;
+        padding: 20px;
+        
+        border-radius: 3px;
+    
+        /* width: 400px; */
+    }
+    .acc_body_card{
+        
+        padding: 10px;
+      
+    }
+
+    .applicants_grid{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
+        padding: 15px;
+        /* border: 1px solid red; */
+    }
+}

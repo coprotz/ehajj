@@ -1,0 +1,197 @@
+.navbar_container{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    align-items: center;
+    background-color: white;
+    /* color: white; */
+    /* width: 100vw; */
+    transition: all 0.5s ease;
+    /* height: 60px; */
+}
+
+.cont_menu{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.btn_login{
+    background-color: #36668d;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.cont_login{
+    position: absolute;
+    top: 38px;
+    right: 10px;
+    /* transform: translateX(-50%); */
+    padding: 10px;
+    background-color: #36668d;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    gap: 5px;
+    width: fit-content;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 3px;
+    /* transition: all 0.5s ease; */
+}
+
+.login_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.login_close{
+    position: absolute;
+    top: 2px;
+    right: 10px;
+}
+
+.cont_login input{
+    background-color: white;
+    padding: 5px;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    width: 150px;
+    transition: all 0.5s ease;
+}
+
+.cont_login button{
+    background-color: transparent;
+    color: white;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    transition: all 0.5s ease;
+}
+
+.bix{
+    font-size: 25px;
+    padding: 0;
+    background-color: red;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+.btn_menu{
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.btn_lang{
+    padding: 7px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 15px;
+    transition: all 0.5s ease;
+}
+
+.cuUser_wrapper{
+    position: relative;
+}
+
+.cuUser_item{
+    background-color: white;
+    padding: 20px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border: 1px solid rgb(214, 214, 214);
+}
+
+.lang_select{
+    position: absolute;
+    top: 35px;
+    background: white;
+    /* height: 150px; */
+    padding: 15px;
+    z-index: 10;
+    border: 1px solid rgb(214, 214, 214);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 17px;
+}
+
+.lang_code{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+}
+
+/* .btn_lang{
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    cursor: pointer;
+} */
+
+.btn_langz{
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    width: 120px;
+    text-align: left;
+}
+
+.btn_langz:hover{
+    background-color: rgb(226, 223, 223);
+}
+
+.login_in{
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+@media screen and (max-width: 440px){
+    .cont_login{
+      
+        flex-direction: column;
+       
+    }
+    
+    .cont_login input{
+       
+        width: 250px;
+       
+    }
+
+    .name_lan{
+        display: none;
+    }
+    
+}

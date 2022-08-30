@@ -1,0 +1,12 @@
+.topbar-container{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px ;
+}
+
+.topbar_middle{
+    display: flex;
+    gap: 20px;
+}

@@ -1,0 +1,392 @@
+/* .layout_container{
+      overflow: hidden;
+} */
+.container_body{
+    display: flex;
+    height: calc(100vh - 80px);
+    padding: 15px;
+  
+}
+
+.cont_body_left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+}
+
+.cont_title{
+    font-size: 7rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #7d25d7;
+}
+
+.cont_welcome{
+    color: #aaa;
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 35px 0;
+    font-weight: 400;
+}
+
+.btn_agents{
+    padding: 15px 25px;
+    background-color: #36668d;
+    border: none;
+    width: fit-content;
+    margin-top: 10px;
+    color: white;
+    /* border-radius: 5px; */
+    font-size: 17px;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    word-spacing: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.cont_video{
+    width: 50%;
+    height: 100%;
+    position: relative;
+}
+
+video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.register_main_container{
+    position: absolute;
+    right: 20px;
+    width: 500px;
+    /* height: 400px; */
+    bottom: 20px;
+    background-color: #7e25d7b1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* .cont_register{
+    
+    
+} */
+
+.cont_motion{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cont_register h4{
+    color: white;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cont_inputs{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cont_item{
+    padding: 7px;
+    font-size: 15px;
+    border: none;
+    background-color: white;
+
+    width: 100%;
+    outline: none;
+}
+
+.phone_wrapper{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    gap: 2px;
+    padding: 4px;
+    font-size: 15px;
+    flex: 1;
+}
+
+.con_flag{
+    width: 32px;
+}
+
+.phone_wrapper span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.con_flag img{
+    width: 100%;
+}
+
+.ext_input{
+    border: none;
+    outline: none;
+    padding-top: 3px;
+    font-size: 15px;
+    width: 220px;
+}
+
+.sq_input{
+    border: none;
+    outline: none;
+    padding-top: 3px;
+    font-size: 15px;
+    width: 143px;
+}
+
+.btn_submit{
+    padding: 10px;
+    background-color: #36668d;
+    color: white;
+    font-size: 17px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cont_radios{
+    margin: 10px 0;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    
+}
+
+.cont_radios label{
+    padding: 10px;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cont_radios input[type='radio']:checked + label{
+    background-color: black;
+    color: white;
+}
+
+button:disabled{
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.home_blog{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.home_blog_card{
+    display: flex;
+    gap: 20px;
+    background-color: #e2cdf8;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    border-radius: 4px;
+    border-left: 1vw solid #7d25d7;
+    align-items: center;
+}
+
+.home_blog_card h1{
+    color: white;
+    font-size: 5vh;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.blog_card_inner h3{
+    color: black;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.blog_card_inner p{
+    /* color: #769ac9; */
+    line-height: 1;
+    margin: 1vh 0;
+    font-size: 17px;
+}
+
+.blog_card_inner button{
+    padding: 0.8vh 1vw;
+    background-color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.home_video{
+    background-color: white;
+    height: 19vh;
+    width: 19vw;
+    background-image: url('/src/components/images/hajj.jpg');
+    background-size: cover;
+    position: relative;
+    /* border: 1px solid red; */
+  
+  
+  }
+
+  .cont_div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .social_media{
+    display: flex;
+    gap: 10px;
+    margin-right: 10px;
+  }
+
+  .social_media svg{
+    font-size: 22px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #aaa;
+    padding: 5px;
+    color: #f8f8f8;
+  }
+  
+  .video_format{
+    width: 100px;
+  }
+  
+  .video_format video{
+    width: 100%;
+  }
+  
+  .home_video_player{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(255,255,255,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+  
+  }
+
+  .motion_register{
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  @media screen and (max-width: 440px){
+    .container_body{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+       
+      
+    }
+    
+    .cont_body_left{
+        width: 100%;
+       padding: 5px;
+    }
+
+    .cont_title{
+        font-size: 5rem;
+        font-weight: 700;
+        /* line-height: 1;
+        color: #7d25d7; */
+    }
+
+    .cont_div{
+        flex-direction: column;
+      }
+
+      .btn_agents{     
+        margin-top: 0px;       
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .home_blog{
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .cont_video{
+        width: 100%;
+        /* height: 100%;
+        position: relative; */
+    }
+
+    .register_main_container{
+        position: static;
+        /* right: 20px; */
+        width: 100%;
+        /* height: 400px; */
+        bottom: 20px;
+        background-color: #7e25d7b1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cont_inputs{
+        /* display: flex;
+        align-items: center; */
+        flex-direction: column;
+        /* gap: 5px; */
+    }
+
+    .home_video{
+        background-color: white;
+        height: 19vh;
+        width: 100%;
+        background-image: url('/src/components/images/hajj.jpg');
+        background-size: cover;
+        position: relative;
+        /* border: 1px solid red; */
+      
+      
+      }
+
+      .ext_input{
+    
+        width: 100%;
+    }
+    
+    .sq_input{
+     
+        width: 100%;
+    }
+    
+    
+
+  }
+

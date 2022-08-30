@@ -1,0 +1,155 @@
+.main_body{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.main_top_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /* border: 1px solid red; */
+
+}
+
+.acc_body_card{
+    background-color: #7d25d7;
+    color: white;
+    border-radius: 5px;
+}
+
+.acc_main_top{
+    width: 100%;   
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 20px;
+}
+
+
+.acc_inner_agents_1{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 400px;
+    padding: 25px;
+    background-color: white;
+    margin-top: 10px;
+    /* border: 1px solid red; */
+}
+
+.Inner_agent_card{
+    display: flex;
+    gap: 10px;
+}
+
+
+
+.post_card_inner{
+    display: flex;
+    flex-direction: column;
+}
+
+.main_pilgrims_inner{
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 15px;
+}
+
+.acc_main_body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+
+.main_pilgrims_inner th, td{
+    padding: 10px 20px !important;
+    text-align: center;
+}
+
+/* .main_pilgrims_inner th{
+    color: #7d25d7;
+    border-bottom: 1px solid rgb(237, 236, 236);
+} */
+
+.main_pilgrims_inner td{
+    color: #000;
+    border-bottom: 1px solid rgb(237, 236, 236);
+}
+
+.acc_main_right{
+    width: 500px;
+    background-color: #eeddfe;
+    height: 100%;
+    padding: 10px;
+    color: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 7px;
+}
+
+.line_chat{
+    height: 200px;
+}
+
+
+@media screen and (max-width: 440px){
+
+    .main_top_wrapper{
+       
+        flex-direction: column;
+       
+        width: 100%;}
+
+        .acc_main_body{
+          
+            flex-direction: column-reverse;
+            align-items: stretch;
+           
+        }
+
+        .acc_inner_agents_1{
+           
+          
+            width: 100%;
+            padding: 25px;
+           
+            margin-top: 10px;
+            /* border: 1px solid red; */
+        }
+
+        .acc_sub_title{
+            margin-top: 15px;
+        }
+
+        .acc_main_right{
+            width: 100%;
+        
+            height: 100%;
+            padding: 10px;
+            
+            border-radius: 7px;
+        }
+
+        .acc_main_top{
+            width: 100%;   
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .main_pilgrims_inner{
+            width: 100%;
+        }
+
+        .acc_main_right{
+            width: 100% !important;
+        }
+        /* border: 1px solid red; */
+    
+}

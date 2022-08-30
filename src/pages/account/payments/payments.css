@@ -1,0 +1,125 @@
+.payment_wrapper{
+    width: 90%;
+    height: 90%;
+    margin:15px auto;
+    background-color: #aaa;
+    display: flex;
+
+}
+
+.payments_summary{
+    height: 100%;
+    width: 65%;
+    background-color: #f1f1f1;
+    padding: 15px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.transaction_history{
+    background-color: #e8e8e8;
+    width: 35%;
+    padding: 25px;
+}
+
+.transaction_history h3{
+    
+    margin-bottom: 7px;
+}
+
+.no_pays{
+    color: #aaa;
+}
+
+.summ_details{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    margin: auto;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.summ_details small{
+    color: #aaa;
+}
+
+.pay_mode_info{
+    width: 280px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #7d22d4;
+    border-radius: 7px;
+    color: #7d22d4;
+    margin: 10px 0;
+}
+
+.btn_pay{
+    padding: 8px 18px;
+    background-color: #363636;
+    color: white;
+    font-size: 15px;
+    margin: 7px 0;
+    border-radius: 3px;
+}
+
+.btn_invoice{
+    background-color: transparent;
+    border: none;
+    color: #7d22d4;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.acc_back{
+    display: none;
+}
+
+
+@media screen and (max-width: 440px){
+    .payment_wrapper{
+        width: 90%;
+        /* height: 90%; */
+        margin:15px auto;
+        background-color: #aaa;
+        display: flex;
+        flex-direction: column;
+    
+    }
+
+    .acc_back{
+        display: flex;
+        background-color: rgb(226, 222, 222);
+        padding-bottom: 7px;
+    }
+
+    .payments_summary{
+        height: 100%;
+        width: 100%;
+        background-color: #f1f1f1;
+        padding: 15px ;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .pay_mode_info{
+        width: 80px;
+        height: 50px;
+       font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    .transaction_history{
+        background-color: #e8e8e8;
+        width: 100%;
+        padding: 25px;
+    }
+    
+}
