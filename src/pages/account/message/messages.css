@@ -5,6 +5,7 @@
     margin-top: 10px;
     overflow: scroll;
     height: 67vh;
+    width: 20vw;
     /* background-color: white; */
 
 }
@@ -32,6 +33,11 @@
 .member_name{
     font-size: 1.2rem;
 }
+
+/* .msg_chat_menu{
+    display: none !important;
+} */
+
 
 
 
@@ -74,16 +80,23 @@
 }
 
 .message_heading{
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: space-between;
     padding: 5px;
     background-color: #36668d;
     color: white !important;
+    width: 100%;
+    /* border:1px solid red; */
 }
 
 .message_chat{
     margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+    height: 25px;
 }
 
 
@@ -284,6 +297,7 @@
     padding: 5px;
     min-height: 50px;
     position: relative;
+    background-color: #36668d;
     /* border: 1px solid red; */
 }
 
@@ -650,12 +664,13 @@ button:disabled{
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 4px 7px;
+    padding: 7px;
     margin: 5px auto;
     border: none;
-    background-color: #7d2dd7;
+    background-color: #36668d;
     color: white !important;
     border-radius: 3px;
+    font-size: 1.1rem;
 }
 
 .pil_inner_1 svg{
@@ -676,6 +691,17 @@ button:disabled{
     background-color: rgb(230, 246, 254);
     padding: 5px;
 }
+
+.exist_chats{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+
 
 .btn_sel_new svg{
     color: black;
@@ -849,12 +875,13 @@ button:disabled{
 
 .chats_detail{
  
-    width: 30vw;
+    /* width: 30vw; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #e8e8e8;
+    background-color: #cae5fc;
     overflow: hidden;
+    height: 100%;
    
 }
 
@@ -865,7 +892,35 @@ button:disabled{
     font-size: 1.5rem;
 }
 
+.exist_chats span{
+    font-size: 1.2rem;
+}
 
+/* .message_wrapper{
+    width: 55vw;
+} */
+
+.btn_create{
+    display: none;
+}
+
+.msg_chat_menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  
+}
+
+.chat_previous{
+    display: none;
+}
+
+.new_chat_contact{
+    /* display: none; */
+    width: 25vw;
+  
+}
 
 
 @media screen and (max-width: 720px){
@@ -876,11 +931,27 @@ button:disabled{
         margin-top: 10px;
     }
 
+    .message_heading{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        /* border: 1px solid red; */
+    }
+
+    .chat_previous{
+        display: flex;
+    }
+
+    .chat_list_history{
+        display: none;
+    }
+
     .chats_detail{
  
         width: 100%;
         display: flex;
-        height: 100%;
+        min-height: calc(100vh - 115px);
         background-color: rgb(230, 246, 254);
        
     }
@@ -893,6 +964,28 @@ button:disabled{
         
     }
 
+    .btn_create{
+        display: flex;
+        border: none;
+        background-color: #36668d;
+        color: white;
+        font-size: 1.1rem;
+        padding: 8px 14px;
+        border-radius: 4px;
+    }
+
+    .chat_lists{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        overflow: scroll;
+        height: 67vh;
+        width: 100%;
+        /* background-color: white; */
+    
+    }
+
     /* .chats_detail{
  
         display: none;
@@ -902,12 +995,13 @@ button:disabled{
     .account_wrapper{
         padding: 0px;
         margin: 0;
-        height: 100%;
-        background-color: rgb(230, 246, 254);
+        min-height: calc(100vh - 115px);
+      
     }
 
     .message_wrapper{
         flex-direction: column;
+        width: 100%;
         /* height: 85vh; */
         /* border: 1px solid red; */
     }
@@ -938,7 +1032,7 @@ button:disabled{
 
     .chat_room_top{
       
-        
+        background-color: #36668d;
         padding: 5px 7px;
         /* border-bottom: 1px solid #aaa; */
        
@@ -980,6 +1074,11 @@ button:disabled{
         display: flex;
         flex-direction: column;
         width: 100%;
+        padding: 0;
+    }
+
+    .new_chat_contact{
+        display: none;
     }
 
     .no_agent{
@@ -1043,5 +1142,8 @@ button:disabled{
         display: flex;
         gap: 5px;
         align-items: center;
+        /* border: 1px solid red; */
+        align-items: center;
+        justify-content: flex-end;
     }
 }

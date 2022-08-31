@@ -143,7 +143,7 @@ const Navbar = () => {
             </div>
             <Lang />
             <div className="cuUser_wrapper">
-              <span className='cuUser' onClick={()=> setItems(!items)}>{cuUser?.fname} {cuUser?.lname}{!items? <AiFillCaretDown/> : <AiFillCaretUp/>}</span>
+              <span className='cuUser' onClick={()=> setItems(!items)}>{cuUser?.fname} {cuUser?.lname[0]}{!items? <AiFillCaretDown/> : <AiFillCaretUp/>}</span>
               {items &&
               <div className="cuUser_items">
                 <span onClick={() => navigate('/')}>Home</span>
@@ -152,8 +152,8 @@ const Navbar = () => {
               </div>}
             </div>
             
-            {isPilgrim &&
-            <button className='btn_navi' onClick={addPilgrim}>Create Hijja</button>}
+            {/* {isPilgrim &&
+            <button className='btn_navi' onClick={addPilgrim}>Create Hijja</button>} */}
         </div>
     </div>
   )

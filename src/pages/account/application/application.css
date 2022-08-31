@@ -93,7 +93,10 @@
     width: 100%;
     padding: 10px;
     border: none;
-    background-color: white;
+    background-color: #b8d3e9;
+    font-size: 1.1rem;
+    border-radius: 3px;
+    border: 1px solid #36668d;
 }
 
 .input_inner{

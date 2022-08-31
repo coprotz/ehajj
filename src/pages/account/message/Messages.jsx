@@ -59,22 +59,6 @@ const Messages = () => {
 
   console.log('curr', currentRoom);
 
-  
-
-  // const agentUsers = users && users.filter(a =>a.typeOf === 'agent')?.filter(u => u.agentId === cuUser.agentId)
-
-  // console.log('agentusers', agentUsers)
-  
-
-  
-
- 
-
-  
-
-
-
-  // console.log('agentPilgrims', agentPilgrims)
   console.log('group', group)
 
 
@@ -89,10 +73,18 @@ const Messages = () => {
   const RenderChats = () => {
     if(isPilgrim){
       return (
-        <div className="chat_lists">  
-        {userChats && userChats.map(c => (                              
-          <ChatCard c={c} key={c.id} currentRoom={currentRoom} setCurrentRoom={setCurrentRoom}/>                          
-          ))}                        
+        <div className="chat_lists">
+          {userChats.length > 0 ? <>
+            {userChats && userChats.map(c => (                              
+            <ChatCard c={c} key={c.id} currentRoom={currentRoom} setCurrentRoom={setCurrentRoom}/>                          
+            ))} 
+          
+          </> : 
+          <div className='exist_chats'>
+            <span>No chats</span>
+            <button className='btn_create' onClick={() => navigate('/account/contacts')}>Creat new Chat</button>
+          </div>  }
+                              
 
       </div>
       )
@@ -143,26 +135,24 @@ const Messages = () => {
                     transition={{ ease: "easeOut", duration: 0.5 }}  
                     className= "message_contaoner"> 
                      <div className="message_heading">
-                        <h3 className='message_head'><BiArrowBack onClick={() =>navigate('/account/main')}/>Message</h3> 
-                        <div className="msg_chat_menu">
-                          <BsSearch className='message_chat'/>
-                          <ChatAction />
+                        <h3 className='message_head'><BiArrowBack onClick={() =>navigate('/account/main')}/>Messages</h3> 
+                        <div className="msg_chat_menu">                        
+                          <h4 className="chat_list_history">Chats</h4>                     
+                          <div className="chat_previous">
+                            <div className='message_chat'>
+                              <BsSearch />
+                            </div>
+                            
+                            <ChatAction />
+                          </div>
+                          
                         </div>
                       </div>
-                      
-                      {/* <div className="chat_search">
-                        <Search />
-                        <button className='btn_chat_new' onClick={() => setNewChat(true)}>New<BiRightArrowAlt/></button>
-                      </div>
-                      <div className="chats_status">
-                        <span className='exist_chats'>CHATS</span>
-                        <span className='chat_contacts' onClick={() => setNewChat(true)}>CONTACTS</span>
-                      </div>  */}
-                                
-                    <div className= {currentRoom ? 'chat_list_hide' : "chatRoom_wrapper"}>                                        
+                                                 
+                    <div className= "chatRoom_wrapper">                                        
                      {RenderChats()}
                     </div>
-                    </motion.div>
+                  </motion.div>
                     {currentRoom? 
                       <motion.div 
                         initial={{ x: '-100vw'}}
@@ -181,8 +171,10 @@ const Messages = () => {
                         Chagua chat kushoto kuendeleza chati au kulia kwa chati mpya!
                       </div>
                     }
-             
-                   {/* <ChatContacts /> */}
+                  <div className="new_chat_contact">
+                    <ChatContacts />
+                  </div>
+                   
                   {/* </div> */}
 
             </motion.div>

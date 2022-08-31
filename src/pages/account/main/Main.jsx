@@ -203,12 +203,16 @@ const Main = () => {
             </div>
             <div className="acc_middle_right">
               <h3 className='acc_sub_title'>Questions and Answers</h3>
-              <h4>Kufanya ibada ya hijja na ukapatwa na hedhi, hapo utafanayeje?</h4>
-              <h4>Kufanya ibada ya hijja na ukapatwa na hedhi, hapo utafanayeje?</h4>
-              <h4>Kufanya ibada ya hijja na ukapatwa na hedhi, hapo utafanayeje?</h4>
-              <h4>Kufanya ibada ya hijja na ukapatwa na hedhi, hapo utafanayeje?</h4>
-            
-              <button className='btn_all'>View all</button>
+              <div className="section_qna">
+                <h4>Kufanya ibada ya hijja na ukapatwa na hedhi, hapo utafanayeje?</h4>
+                <h4>Kufanya ibada ya hijja na ukapatwa na hedhi, hapo utafanayeje?</h4>
+                <h4>Kufanya ibada ya hijja na ukapatwa na hedhi, hapo utafanayeje?</h4>
+                <h4>Kufanya ibada ya hijja na ukapatwa na hedhi, hapo utafanayeje?</h4>
+
+              </div>
+              <div className="view_all">
+                 <button className='btn_all'>View All</button>
+              </div>
             </div>
             
           </div>

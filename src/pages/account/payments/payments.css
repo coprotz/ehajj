@@ -94,8 +94,9 @@
 
     .acc_back{
         display: flex;
-        background-color: rgb(226, 222, 222);
+        /* background-color: rgb(226, 222, 222); */
         padding-bottom: 7px;
+        font-size: 1.1rem;
     }
 
     .payments_summary{

@@ -7,6 +7,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { useState } from 'react';
 import {motion} from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
+import { BsSearch } from "react-icons/bs";
 
 
 
@@ -67,8 +68,8 @@ const ChatContacts = () => {
           const oldChat = allChats && allChats.find(c => c.members.includes(`${id}`))
 
           if(oldChat){
-            console.log('old', oldChat)
-            // setCurrentRoom(oldChat)        
+            // console.log('old', oldChat)
+           navigate(`/account/messages/${oldChat.id}`)       
           }
           else{
             const data = {
@@ -76,6 +77,9 @@ const ChatContacts = () => {
             }
         
             const chat = await addDoc (chatsRef, data)
+            if(chat){
+              navigate(`/account/messages/${chat.id}`) 
+            }
             // setCurrentRoom(chat)
           }     
           setSelected(null)
@@ -94,10 +98,16 @@ const ChatContacts = () => {
         if(isPilgrim){
           return (
             <div className='pil_inner_1'>
-                <button className='btn_sel_new'><BiArrowBack onClick={() => navigate(-1)}/>Select Contact</button>
+                {/* <button className='btn_sel_new'><BiArrowBack onClick={() => navigate(-1)}/>Select Contact</button> */}
+                <div className="message_heading">
+                    <h3 className='message_head'><BiArrowBack onClick={() =>navigate(-1)}/>Select Contact</h3> 
+                    <div className="msg_chat_menu">
+                        <BsSearch className='message_chat'/>                   
+                    </div>
+                </div>
                 {pilgrim?.agentName ? <>              
                 <span className='pil_inner_2'>{pilgrim?.agentName}</span>
-                <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>New Message<BiCaretDown/></button> </> 
+                <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>Select Member<BiCaretDown/></button> </> 
                 : <span style={{display: 'block', textAlign: 'center', marginTop: '15px'}}>No agent found</span>}
                 {newMsg && <>
                 
@@ -131,7 +141,7 @@ const ChatContacts = () => {
               <button  className='btn_sel_new'><BiArrowBack onClick={() => navigate(-1)}/>Select Contact</button>
               {agent.coName ? <>
               <span className='pil_inner_2'>{agent.coName}</span>
-              <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>New Message<BiCaretDown/></button> </> : 'No pilgrim found'}
+              <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>Select Member<BiCaretDown/></button> </> : 'No pilgrim found'}
               {newMsg && <>
               
               {!selected ?
@@ -164,7 +174,7 @@ const ChatContacts = () => {
               <button  className='btn_sel_new'><BiArrowBack onClick={() => navigate(-1)}/>Select Contact</button>
               {agents.length > 0 ? <>
                 <h3 className='mission_agents'>{agents?.length} Agents Found</h3>
-              <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>New Message<BiCaretDown/></button> </> : 'No agents found'}
+              <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>Select Member<BiCaretDown/></button> </> : 'No agents found'}
               {newMsg && <>
               
               {!selected ?
@@ -196,7 +206,7 @@ const ChatContacts = () => {
               <button  className='btn_sel_new'><BiArrowBack onClick={() => navigate(-1)}/>Select Contact</button>
               {agents.length > 0 ? <>
                 <h3 className='mission_agents'>{agents?.length} Agents Found</h3>
-              <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>New Message<BiCaretDown/></button> </> : 'No agents found'}
+              <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>Select Member<BiCaretDown/></button> </> : 'No agents found'}
               {newMsg && <>
               
               {!selected ?
@@ -240,7 +250,7 @@ const ChatContacts = () => {
     transition={{ ease: "easeOut", duration: 0.5 }} 
     className={newChat ? 'new_chat_active': "chats_detail"}>                  
     <div className="chats_body">               
-      {RenderChoice()}dadadad
+      {RenderChoice()}
     </div>
     <div className="chats_footer">
       {isMission || isAdmin? 'New Message to:' : 'Complaints'}

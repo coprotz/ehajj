@@ -15,7 +15,7 @@
 }
 
 .acc_body_card{
-    background-color: #7d25d7;
+    background-color: #36668d;
     color: white;
     border-radius: 5px;
 }
@@ -123,9 +123,9 @@
             /* border: 1px solid red; */
         }
 
-        .acc_sub_title{
-            margin-top: 15px;
-        }
+        /* .acc_sub_title{
+            margin-top: 1px;
+        } */
 
         .acc_main_right{
             width: 100%;

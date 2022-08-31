@@ -9,6 +9,14 @@ input{
   font-size: 1.1rem !important;
 }
 
+span{
+  font-size: 1.1rem;
+}
+
+small{
+  font-size: 0.9rem;
+}
+
 
 
 @media screen and (max-width: 440px){

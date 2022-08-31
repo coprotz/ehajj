@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #36668d;
+    background-color: rgb(230, 246, 254);
 }
 
 .page_heading_1{
@@ -56,14 +56,15 @@
 }
 
 .acc_sub_title{
-    border-left: 7px solid #3644d4;
-    color: #aaa;
-    padding-left: 10px;
+    border-left: 7px solid #36668d;
+    /* color: #36668d; */
+    padding: 10px;
+    background-color: rgb(230, 246, 254);
 }
 
 .Inner_post_card{
     display: flex;
-    gap: 30px;
+    gap: 50px;
     padding: 30px;
     background: #d4d1fd;
     border-radius: 5px;
@@ -86,19 +87,23 @@
 
 .post_index{
     font-size: 3rem;
-    color: #b6b1fd;
+    color: #9fbbd1;
     font-weight: 800;
+    height: fit-content;
 }
 
 .btn_index{
-    background-color: black;
-    color: white;
-    padding: 7px 15px;
+    background-color: transparent;
+    color: #36668d;
+    padding: 15px 0;
     margin-top: 5px;
+    font-size: 1.1rem;
+    border: none;
+    text-align: left;
 }
 
 .acc_middle_right{
-    width: 300px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -271,18 +276,38 @@
     /* font-weight: 700; */
 }
 
+.section_qna{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    gap: 15px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+}
+
 
 @media screen and (max-width: 440px){
 
     .acc_wrapper{
-      
+        justify-content:last baseline;
         padding: 0px;
-        height: calc(100vh - 50px);
+        /* height: calc(100vh - 50px); */
        
     }
     .acc_body_middle{
         flex-direction: column;
+        height: 100%;
+        margin: 0;
+        gap: 20px;
     }
+
+    
+    .acc_body_middle_left{
+        height: auto;
+    }
+   
+    
 
 
     .app_card_left{
@@ -311,23 +336,27 @@
 
     .acc_body_top{
         display: grid;
-        grid-template-columns: repeat(auto-fit, 300px);
+        grid-template-columns: 1fr;
         justify-content: center;
         gap: 15px;
+        background-color: rgb(230, 246, 254);
+        padding: 25px;
     }
     
     .acc_inner_items{
         display: grid;
         grid-template-columns: 1fr;
         gap: 25px;
-        margin-top: 20px;
-        padding: 5px 15px;
+        margin: 10px 0px;
+        padding:15px;
+        height: 100%;
+        background-color: rgb(230, 246, 254);
        
     }
 
     .acc_middle_right{
         width: 100%;
-        padding: 15px;
+        /* padding: 15px; */
         gap: 15px;
     }
     
@@ -336,8 +365,9 @@
         display: flex;
         gap: 10px;
         padding: 20px;
-        
+        background-color: white;
         border-radius: 3px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     
         /* width: 400px; */
     }
@@ -355,4 +385,12 @@
         padding: 15px;
         /* border: 1px solid red; */
     }
+
+    .section_qna{
+        width: 90%;
+        margin: 0 auto;
+       
+    }
+
+   
 }

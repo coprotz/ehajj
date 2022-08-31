@@ -9,6 +9,7 @@ import { updateCurrentUser } from 'firebase/auth';
 import { useNavigate, useParams } from 'react-router-dom';
 import { HiMenuAlt4 } from "react-icons/hi";
 import SendMessage from './SendMessage';
+import ChatAction from '../../../components/chatAction/ChatAction';
 
 const ChatRoom = ({ setCurrentRoom, setNewChat}) => {
     const { id } = useParams();
@@ -67,10 +68,10 @@ const ChatRoom = ({ setCurrentRoom, setNewChat}) => {
       <div className='chatroom'>
           <div className="chat_room_top">
             <div className="chat_name_info">
-              <HiOutlineArrowLeft onClick={() => navigate(-1)}/>
+              <HiOutlineArrowLeft onClick={() => navigate('/account/messages')}/>
               <h4>{member}</h4>
             </div>           
-            <button className='btn_action'><HiMenuAlt4/></button>           
+            <ChatAction/>          
           </div>
           <div className="messages_wrapper" ref={scrollRef}>
               {messages && messages.filter(m=> m.room === currentRoom.id).map((message) => (               
