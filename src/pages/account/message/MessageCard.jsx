@@ -16,8 +16,8 @@ const MessageCard = ({message}) => {
     layout
       className={`messages_inner ${bgClass}`}>
         <div className={`message_card ${messageClass}`}>
-            <h5>{name}</h5>
-            <p>{text}</p>
+            <h5 className='send_name'>{name}</h5>
+            <p className='sender_text'>{text}</p>
             <small className='last_time'>{moment(createdAt && createdAt.toDate()).fromNow(true)}</small> 
         </div>
     </motion.div>

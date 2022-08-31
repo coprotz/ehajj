@@ -3,8 +3,9 @@
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
-    overflow: hidden;
+    overflow: scroll;
     height: 67vh;
+    /* background-color: white; */
 
 }
 
@@ -22,10 +23,14 @@
 }
 .chatList{
     width: 18vw;   
-    border: 1px solid #dfdfdf;
+    border: 1px solid #36668d;
     height: 75vh;
    
     
+}
+
+.member_name{
+    font-size: 1.2rem;
 }
 
 
@@ -40,6 +45,45 @@
     font-size: 2.5vh;
     font-weight: 400;
     /* border: 1px solid red; */
+}
+
+.no_chat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+    color: #c1c2c3;
+    width: 100%;
+    border: 1px solid #dfdfdf;
+    background-color: #f1f1f1;
+}
+
+.chats_status{
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 15px;
+    align-items: center;
+    background-color: #36668d;
+}
+
+.chats_status span{
+    padding: 5px 12px;
+    border: 1px solid white;
+    color: white;
+    border-radius: 7px;
+}
+
+.message_heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: #36668d;
+    color: white !important;
+}
+
+.message_chat{
+    margin-right: 10px;
 }
 
 
@@ -103,15 +147,7 @@
     color: #3266a8;
 }
 
-.no_chat{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3vh;
-    color: #c1c2c3;
-    width: 100%;
-    border: 1px solid #dfdfdf;
-}
+
 
 .current_top{
     display: flex;
@@ -170,8 +206,8 @@
 .card_message{
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    padding: 7px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
 }
 
 .active_card_message{
@@ -184,10 +220,28 @@
 }
 
 .card_message small{
-    font-size: 12px;
+    font-size: 1rem;
 }
 
 .card_msg_details{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.member_icon{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #36668d;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.card_member_details{
     display: flex;
     flex-direction: column;
 }
@@ -199,8 +253,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: #36668d;
     font-size: 12px;
+    color: white;
 }
 
 .card_msg_time{
@@ -219,11 +274,6 @@
     /* margin-left: 5px; */
 }
 
-.no_chat{
-    width: 100%;
-    background-color: #f1f1f1;
-    /* z-index: 10; */
-}
 
 .form_container{
     width: 100%;
@@ -464,12 +514,21 @@ button:disabled{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #bccdfb;
+    /* background-color: #bccdfb; */
     padding: 16px;
-    border-bottom: 1px solid #aaa;
+    color: white;
+    font-size: 1.1rem;
+    /* border-bottom: 1px solid #aaa; */
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
 }
 
+.send_name{
+    font-size: 1.1rem;
+}
+
+.sender_text{
+    font-size: 1.1rem;
+}
 .chat_name_info{
     display: flex;
     align-items: center;
@@ -492,17 +551,31 @@ button:disabled{
     gap: 10px;
     height: calc(100vh - 270px);
     overflow-y: scroll;
+    background-color: rgb(230, 246, 254);
+}
+
+.btn_send_msg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: rgb(230, 246, 254);;
+    width: 45px;
 }
 
 .message_card{
-    padding: 10px;
-    background-color: white;
+    padding: 15px;
+    background-color: rgb(180, 227, 251);
     width: fit-content;
+    border-radius: 5px;
 }
 
 .last_time{
-    color: rgb(199, 196, 196);
+    color: rgb(170, 170, 170);
     margin-top: 5px;
+    font-size: 1rem;
 }
 
 .chat_id{
@@ -535,7 +608,7 @@ button:disabled{
 .sent{    
     flex-direction: row-reverse;   
     text-align: right;
-    background-color: #3266f8;
+    background-color: #36668d;
     color: white;
     align-items: flex-end;
    
@@ -600,6 +673,8 @@ button:disabled{
     font-size: 17px;
     font-weight: 700;
     z-index: 17;
+    background-color: rgb(230, 246, 254);
+    padding: 5px;
 }
 
 .btn_sel_new svg{
@@ -750,7 +825,7 @@ button:disabled{
     display: none;
     align-items: center;
     gap: 10px;
-    color: rgb(117, 117, 117);
+    /* color: rgb(117, 117, 117); */
 }
 
 /* .chats_body{
@@ -783,37 +858,57 @@ button:disabled{
    
 }
 
+.btn_action{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+}
 
-@media screen and (max-width: 440px){
+
+
+
+@media screen and (max-width: 720px){
     .chat_list_hide{
-        display: none;
+        /* display: none; */
         flex-direction: column;
         gap: 10px;
         margin-top: 10px;
     }
 
+    .chats_detail{
+ 
+        width: 100%;
+        display: flex;
+        height: 100%;
+        background-color: rgb(230, 246, 254);
+       
+    }
+
     .chatList{
         width: 100%;   
-      
-      
+        background-color: #36668d;
+        height: auto;
        
         
     }
 
-    .chats_detail{
+    /* .chats_detail{
  
         display: none;
        
-    }
+    } */
 
     .account_wrapper{
         padding: 0px;
         margin: 0;
+        height: 100%;
+        background-color: rgb(230, 246, 254);
     }
 
     .message_wrapper{
         flex-direction: column;
-        height: 85vh;
+        /* height: 85vh; */
         /* border: 1px solid red; */
     }
 
@@ -844,8 +939,8 @@ button:disabled{
     .chat_room_top{
       
         
-        padding: 3px 7px;
-        border-bottom: 1px solid #aaa;
+        padding: 5px 7px;
+        /* border-bottom: 1px solid #aaa; */
        
     }
 
@@ -912,7 +1007,7 @@ button:disabled{
         display: flex;
         align-items: center;
         gap: 10px;
-        color: rgb(117, 117, 117);
+        /* color: rgb(117, 117, 117); */
     }
 
     .agents_mbs{
@@ -936,7 +1031,17 @@ button:disabled{
 
     .messages_wrapper{
         
-        height: calc(100vh - 200px);
+        height: calc(100vh - 215px);
        
+    }
+
+    .chat_search{
+        display: none;
+    }
+
+    .msg_chat_menu{
+        display: flex;
+        gap: 5px;
+        align-items: center;
     }
 }

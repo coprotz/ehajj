@@ -99,15 +99,7 @@
     transition: all 0.5s ease;
 }
 
-.btn_lang{
-    padding: 7px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 15px;
-    transition: all 0.5s ease;
-}
+
 
 .cuUser_wrapper{
     position: relative;

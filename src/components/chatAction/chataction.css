@@ -1,0 +1,22 @@
+.chat_rec_action{
+    position: relative;
+}
+
+.chat_action_menu{
+    background-color: white;
+    font-size: 1.1rem;
+    padding: 20px;
+    position: absolute;
+    top: 30px;
+    left: -130px;
+    /* transform: translateX(-23%); */
+    z-index: 15;
+    color: black;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    right: 10px;
+    border-radius: 3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}

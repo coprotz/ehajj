@@ -92,6 +92,7 @@ video{
     display: flex;
     align-items: center;
     gap: 20px;
+    font-size: 25px;
 }
 
 .cont_inputs{
@@ -101,8 +102,8 @@ video{
 }
 
 .cont_item{
-    padding: 7px;
-    font-size: 15px;
+    padding: 10px;
+    font-size: 22px;
     border: none;
     background-color: white;
 
@@ -121,14 +122,15 @@ video{
 }
 
 .con_flag{
-    width: 32px;
+    width: 42px;
 }
 
 .phone_wrapper span{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 22px;
+    /* padding-bottom: 5px; */
 }
 
 .con_flag img{
@@ -138,16 +140,16 @@ video{
 .ext_input{
     border: none;
     outline: none;
-    padding-top: 3px;
-    font-size: 15px;
+    padding-top: 5px;
+    font-size: 22px;
     width: 220px;
 }
 
 .sq_input{
     border: none;
     outline: none;
-    padding-top: 3px;
-    font-size: 15px;
+    padding-top: 5px;
+    font-size: 22px;
     width: 143px;
 }
 

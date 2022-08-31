@@ -25,7 +25,8 @@ import Pilgrims from './pages/account/pilgrim/Pilgrims';
 import Team from './pages/account/agent/Team';
 import Blogs from './pages/account/blogs/Blogs'
 import Reports from './pages/account/reports/Reports';
-
+import ChatRoom from './pages/account/message/ChatRoom'
+import ChatContacts from './pages/account/message/ChatContacts';
 
 
 
@@ -62,6 +63,7 @@ function App() {
               </RequireAuth>}>
               <Route path='main' element={<Main/>}></Route>
               <Route path='messages' element={<Messages/>}></Route>
+              <Route path='messages/:id' element={<ChatRoom/>}></Route>
               <Route path='ticket' element={<Ticket/>}></Route>
               <Route path='visa' element={<Viza/>}></Route>
               <Route path='application' element={<Application/>}></Route>
@@ -71,12 +73,13 @@ function App() {
               <Route path='agents' element={<Team/>}></Route>
               <Route path='blogs' element={<Blogs/>}></Route>
               <Route path='reports' element={<Reports/>}></Route>
+              <Route path='contacts' element={<ChatContacts/>}></Route>
             </Route>
-            <Route path='messages' element={
+            {/* <Route path='messages' element={
               <RequireAuth>
                 <Messages                  
                 />
-            </RequireAuth>}/>
+            </RequireAuth>}/> */}
          </Routes>
     </BrowserRouter>
 

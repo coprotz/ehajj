@@ -1,16 +1,17 @@
 .search{
     display: flex;
     background-color: white;
-    padding: 1vh;
-    border-radius: 25px;
+    padding: 7px;
+    border-radius: 20px;
     width: 100%;
-    align-items: center;font-size: 1.8vh;
+    align-items: center;
+    
     gap: 0.2vw;
 }
 
 .search svg{
     color: #afafaf;
-    font-size: 2.5vh;
+    font-size: 1.5rem;
 }
 
 .search_input{
@@ -18,5 +19,6 @@
     background-color: transparent;
     width: 100%;
     outline: none;
+    font-size: 17px;
     
 }

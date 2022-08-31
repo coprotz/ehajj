@@ -3,6 +3,7 @@
     justify-content: space-between;
     height: 80px;
     align-items: center;
+    transition: all 0.5s ease-in-out;
 }
 
 .btn_nav_menu{
@@ -13,6 +14,14 @@
     justify-content: center;
     font-size: 25px;
     cursor: pointer;
+}
+
+.acc_logo{
+    width: 30px;
+}
+
+.acc_logo img{
+    width: 100%;
 }
 
 .acc_menu{
@@ -62,7 +71,7 @@
     border: none;
     background-color: transparent;
     font-size: 20px;
-    color: rgb(121, 121, 121);
+    color:white;
 }
 
 .not_msg span{
@@ -97,8 +106,9 @@
 
     .acc_top_wrapper{
     
-        height: 40px;
-        padding: 5px;
+        height: auto;
+        padding: 10px 5px;
+        background-color: #36668d;
    
     }
     .acc_menu_toggle{
@@ -120,13 +130,13 @@
 
     .btn_nav_menu{
         border: none;
-        background-color: #e8e8e8;
+        background-color: transparent;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 30px;
         cursor: pointer;
-        color: #555;
+        color: white;
     }
 
     .acc_menu_toggle a{

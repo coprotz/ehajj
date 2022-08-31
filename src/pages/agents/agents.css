@@ -671,7 +671,7 @@ section{
     color: black;
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width: 920px){
     .agent_body_inner{
         flex-direction: column;
     }
@@ -682,7 +682,8 @@ section{
         text-align: center;
         /* background-color: #7d25d7; */
         color: white;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
+        font-weight: 200 !important;
     }
 
     .agents_inner_1{
@@ -696,7 +697,9 @@ section{
     }
 
     .agents_lists{
-        grid-template-columns: repeat(auto-fit, 320px);
+        grid-template-columns: 1fr;
+        padding: 0px 20px;
+        min-height: 65vh;
     }
 
     .agent_img{
@@ -871,5 +874,37 @@ section{
         padding: 50px;
         
     }
+
+    .agents_inner_2{
+       
+        background-color: #cadeee;
+    }
+
+    .agent_card{
+       
+        padding: 20px;
+        background-color: #cadeee;     
+        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    }
+
+    .agent_logo{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        background-color: #36668d;
+        display: flex;
+        justify-content: center;
+        color: white;
+        align-items: center;
+        font-size: 1.3rem;
+       
+    }
+    
+    .agent_name{
+        cursor: pointer;
+        font-size: 1.3rem;
+        color: #36668d;
+    }
+    
     
 }

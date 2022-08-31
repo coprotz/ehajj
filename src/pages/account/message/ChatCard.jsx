@@ -2,11 +2,13 @@ import React from 'react'
 import { useAuth } from '../../../hooks/useAuth'
 import useData from '../../../hooks/useData';
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom';
 
 const ChatCard = ({c, setCurrentRoom, currentRoom}) => {
 
     const {user} = useAuth();
     const {groups, messages, agents, users} = useData();
+    const navigate = useNavigate();
     
     const cuUser = users && users.find(u => u.id === user.uid)
 
@@ -39,14 +41,17 @@ const ChatCard = ({c, setCurrentRoom, currentRoom}) => {
 
     
   return (
-    <div className={currentRoom === c ? 'active_card_message' : 'card_message'} onClick={() => setCurrentRoom(c)}>
+    <div className={currentRoom === c ? 'active_card_message' : 'card_message'} onClick={() => navigate(`/account/messages/${c.id}`)}>
         <div className="card_msg_details">
-            <h4>{member}</h4>
-            <div className="chat_id">
-              {/* <h6>{lastMsg && lastMsg.name}</h6> */}
+          <span className="member_icon">
+            {member[0]}
+          </span>
+          <div className="card_member_details">          
+            <h4 className='member_name'>{member}</h4>
+            <div className="chat_id">           
               <small className='chat_text'>{lastMsg && lastMsg.text}</small>
             </div>
-            
+          </div>
         </div>
         <div className="card_msg_time">
           <small className='card_time'>{moment(lastMsg && lastMsg.createdAt?.toDate()).fromNow(true)}</small> 

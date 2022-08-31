@@ -6,12 +6,19 @@ import MessageCard from './MessageCard';
 import { BiRightArrowAlt } from "react-icons/bi";
 import {motion} from 'framer-motion'
 import { updateCurrentUser } from 'firebase/auth';
+import { useNavigate, useParams } from 'react-router-dom';
+import { HiMenuAlt4 } from "react-icons/hi";
+import SendMessage from './SendMessage';
 
-const ChatRoom = ({currentRoom, setCurrentRoom, setNewChat}) => {
-
-
+const ChatRoom = ({ setCurrentRoom, setNewChat}) => {
+    const { id } = useParams();
     const {user} = useAuth();
-    const {groups, messages, agents, users} = useData();
+    const {groups, messages, agents, users, chats} = useData();
+    const navigate = useNavigate();
+
+    const currentRoom = chats && chats.find(c => c.id === id)
+
+    
     const cuUser = users && users.find(u => u.id === user.uid)
     const isPilgrim = users && users.find(u => u.id === user.uid)?.typeOf === 'pilgrim'
     const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
@@ -60,11 +67,10 @@ const ChatRoom = ({currentRoom, setCurrentRoom, setNewChat}) => {
       <div className='chatroom'>
           <div className="chat_room_top">
             <div className="chat_name_info">
-              <HiOutlineArrowLeft onClick={() => setCurrentRoom(null)}/>
+              <HiOutlineArrowLeft onClick={() => navigate(-1)}/>
               <h4>{member}</h4>
             </div>           
-            <button className='btn_chat_new' onClick={() => setNewChat(true)}>New<BiRightArrowAlt/></button>
-           
+            <button className='btn_action'><HiMenuAlt4/></button>           
           </div>
           <div className="messages_wrapper" ref={scrollRef}>
               {messages && messages.filter(m=> m.room === currentRoom.id).map((message) => (               
@@ -73,6 +79,7 @@ const ChatRoom = ({currentRoom, setCurrentRoom, setNewChat}) => {
               
           </div>
       </div> 
+      <SendMessage currentRoom={currentRoom}/>
     </motion.div>
   )
 }

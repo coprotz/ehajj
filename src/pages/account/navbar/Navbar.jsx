@@ -8,6 +8,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import './navbar.css'
 import Lang from '../../../components/lang/Lang';
+import logo from '../../../components/images/logo1.png'
 
 const Navbar = () => {
 
@@ -99,7 +100,7 @@ const Navbar = () => {
     <div className="acc_top_wrapper">
         <div className="acc_left">
             <button className='btn_nav_menu' onClick={() => setShowMenu(true)}><BiDotsVerticalRounded/></button>
-            <div className="acc_logo" onClick={() => navigate('/')}>Talbiya</div>
+            <div className="acc_logo" onClick={() => navigate('/')}><img src={logo} alt=''/></div>
             <div className={showMenu ? 'acc_menu_toggle' : 'acc_menu'}>
                 <NavLink to='main' className='nav_item' onClick={() =>setShowMenu(null)}> Dashboard</NavLink> 
                 {isPilgrim && <>

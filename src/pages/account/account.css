@@ -1527,8 +1527,8 @@ gap: 10px;
     display: flex;
     align-items: center;
     padding: 5px;
-    background-color: #7d24d4;
-    color: white;
+    background-color: white;
+    color: #36668d;
     border-radius: 3px;
 }
 
