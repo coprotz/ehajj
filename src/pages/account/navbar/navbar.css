@@ -1,11 +1,11 @@
 .acc_top_wrapper{
     display: flex;
     justify-content: space-between;
-    height: 80px;
+    /* height: 80px; */
     align-items: center;
     transition: all 0.5s ease-in-out;
     background-color: #36668d;
-    padding: 0 15px;
+    padding: 3px 15px;
 }
 
 .btn_nav_menu{
@@ -38,14 +38,15 @@
 
 .nav_item{
     color: white;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
-    padding: 7px;
+    padding: 4px;
+    border-radius: 3px;
 }
 
 .active{
     background-color: white;
-    color: #36888d;
+    color: black;
 }
 
 .btn_show{

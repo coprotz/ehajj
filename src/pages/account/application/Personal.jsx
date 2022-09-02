@@ -14,9 +14,8 @@ const Personal = ({props}) => {
   // const [pob, setPob] = useState(pilgrim.pob)
   const [region, setRegion] = useState(pilgrim.region)
   const [district, setDistrict] = useState(pilgrim.district)
-  const [gender, setGender] = useState(pilgrim.gender)
   const [marital, setMarital] = useState(pilgrim.marital)
-  const [phone, setPhone] = useState(pilgrim.phone)
+  // const [phone, setPhone] = useState(pilgrim.phone)
   const [file, setFile] = useState(null)
   // const { progress, url } = useStorage(file)
   const [error, setError] = useState('')
@@ -38,12 +37,12 @@ const Personal = ({props}) => {
         setPhones(deleteVal)
     }
 
-    const handleChange = (data, index) => {
-        const inputs = [...phones]
-        inputs[index] = data.target.value;
-        setPhones(inputs)
-        setForm({...form, phones: inputs})
-    }
+    // const handleChange = (data, index) => {
+    //     const inputs = [...phones]
+    //     inputs[index] = data.target.value;
+    //     setPhones(inputs)
+    //     setForm({...form, phones: inputs})
+    // }
 
     const types = ['image/png', 'image/jpeg']
     const handleSelect = (e) => {
@@ -65,8 +64,8 @@ const Personal = ({props}) => {
 
       try {
         await updateDoc(pilgrimRef, {
-         phone,
-         gender,
+        //  phone,
+        //  gender,
          marital,
          dob,     
          region,
@@ -117,14 +116,14 @@ const Personal = ({props}) => {
                 </select>
               </div>
             </div>
-            <div className="input_inner">
+            {/* <div className="input_inner">
               <small>Gender</small>
               <select name="gender" className='appli_input' onChange={e => setGender(e.target.value)}>
                 <option value="">{gender !== ''? gender : '--Select Gender--'}</option>
                 <option value='Male'>Male</option>
                 <option value='Female'>Female</option>         
               </select>
-            </div>
+            </div> */}
             <div className="input_inner">
               <small>Marital Status</small>
               <select name="marital" id="" className='appli_input' onChange={e => setMarital(e.target.value)}>
@@ -135,7 +134,7 @@ const Personal = ({props}) => {
                 <option value='Separated'>Separated</option>         
               </select>
             </div>
-            <div className="input_inner">
+            {/* <div className="input_inner">
               <small>Mobile Number</small>
               <input 
                 type="tel" 
@@ -145,19 +144,8 @@ const Personal = ({props}) => {
                 value={phone} 
                 onChange={e => setPhone(e.target.value)}
                 />
-              {/* {phones.map((data, index) => (
-                <div className="add_phone"  key={index}>            
-                    <input 
-                        type='tel' 
-                        name='mobile' 
-                        className='appli_input'                    
-                        value={data.name}
-                        onChange={e => handleChange(e, index)}                    />
-                    <button onClick={() => handleAdd()}><AiOutlinePlus/></button>
-                    <button onClick={() => handleDelete(index)}><AiOutlineMinus/></button>
-                </div>
-              ))}        */}
-            </div>
+           
+            </div> */}
           </div>
           <div className="photo_inner">
                 {/* {file && 

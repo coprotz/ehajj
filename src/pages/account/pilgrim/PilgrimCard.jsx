@@ -1,8 +1,18 @@
 import React from 'react'
 import profile from '../../../components/images/profile.png'
 import hija from '../../../components/images/hijja2.jpg'
+import { useAuth } from '../../../hooks/useAuth'
+import useData from '../../../hooks/useData'
+
+import NewChat from '../message/NewChat'
 
 const PilgrimCard = ({s}) => {
+
+  const { user } = useAuth();
+  const { users } = useData()
+
+  const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
+  
   return (
     <div className="applicant_card" key={s.id}>
                 <div className="app_card_left">
@@ -11,7 +21,9 @@ const PilgrimCard = ({s}) => {
                 <div className="app_card_right"> 
                   <div className="app_card_top">
                     <span className='app_ibada_type'>{s.ibada? s.ibada : 'Not selected'}</span>
-                    <h5 className='app_ibada_status'>{s.isCompleted? 'Yes Done' : 'Not Done'}</h5>
+                    {isAgent?                    
+                      <NewChat s={s.id} name={s.fname}/>                 
+                    : <div className='app_ibada_status'> {s.isCompleted ? 'Yes Done' : 'Not Done'}</div>}
                   </div> 
                   <div className="app_card_profile">
                     <img src={profile} alt="" />
@@ -32,7 +44,8 @@ const PilgrimCard = ({s}) => {
                         <span>{s.marital}</span>
                       </div>                   
                     </div>
-                    <small className='app_agent_n'>{s.agentName? s.agentName : 'Not Selected'}</small>
+                    {!isAgent &&
+                    <small className='app_agent_n'>{s.agentName? s.agentName : 'Not Selected'}</small>}
                   </div>
                 </div>
       

@@ -10,6 +10,7 @@ import useData from '../../hooks/useData';
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import Lang from '../lang/Lang';
+import logo from '../images/logo1.png'
 
 
 const Navbar = () => {
@@ -45,7 +46,7 @@ const Navbar = () => {
 
   return (
     <div className='navbar_container'>
-      <div className="cont_logo" onClick={() => navigate('/')}>{t('app_title')}</div>
+      <div className="acc_logo" onClick={() => navigate('/')}><img src={logo} alt=''/></div>
       <div className="cont_menu">    
       <Lang />     
          {user ?         

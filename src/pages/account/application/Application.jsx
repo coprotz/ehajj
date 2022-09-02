@@ -167,8 +167,10 @@ const Application = () => {
               onClick={() => setPage(4)}>
                 Passport
                 {pilgrim?.passNo !== '' &&<AiOutlineCheck className='checked_svg'/>}
-                </span>
-            <span 
+            </span>
+            {pilgrim.gender !=='Male' &&
+            <>
+              <span 
               className={page === 5? 'appli_active': 'appli_item'} 
               onClick={() => setPage(5)}>
                 Maharim
@@ -179,7 +181,8 @@ const Application = () => {
               onClick={() => setPage(6)}>
                 Maharim's Passport
                 {pilgrim?.maPassNo !== '' &&<AiOutlineCheck className='checked_svg'/>}
-                </span>            
+              </span> 
+            </>}           
             <span 
               className={page === 7? 'appli_active': 'appli_item'} 
               onClick={() => setPage(7)}>

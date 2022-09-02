@@ -26,7 +26,7 @@ const ViewAgent = () => {
     const { id } = useParams();
     const agent = agents?.find((a) => a.id === id)
 
-    console.log('id', id)
+    // console.log('id', id)
 
     // console.log('agents', agent?.region[0])
 
@@ -49,10 +49,11 @@ const ViewAgent = () => {
             <div className="view_landing_top">
                 <button onClick={() => navigate(-1)} className='btn_agent_view'><FaArrowLeft/></button>
                 <div className="view_landing_menu">
-                    <a href='#home'>Home</a>
+                    {/* <a href='#home'>Home</a>
                     <a href='#about'>About</a>
                     <a href='#packages'>Packages</a>                  
-                    <a href='#contacts'>Contacts</a>
+                    <a href='#contacts'>Contacts</a> */}
+                    <h4 className='view_land_menu'>{agent?.coName}</h4>
                 </div>
                 <div></div>
             </div>

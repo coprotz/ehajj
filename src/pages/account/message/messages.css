@@ -3,9 +3,9 @@
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
-    overflow: scroll;
-    height: 67vh;
-    width: 20vw;
+    /* overflow: scroll; */
+    /* height: ; */
+    width: 100%;
     /* background-color: white; */
 
 }
@@ -31,7 +31,7 @@
 }
 
 .member_name{
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 /* .msg_chat_menu{
@@ -60,6 +60,7 @@
     font-size: 3vh;
     color: #c1c2c3;
     width: 100%;
+    height: 82vh;
     border: 1px solid #dfdfdf;
     background-color: #f1f1f1;
 }
@@ -243,8 +244,8 @@
 }
 
 .member_icon{
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background-color: #36668d;
     font-size: 1rem;
@@ -252,6 +253,7 @@
     align-items: center;
     justify-content: center;
     color: white;
+    aspect-ratio: 1;
 }
 
 .card_member_details{
@@ -528,8 +530,9 @@ button:disabled{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: #bccdfb; */
-    padding: 16px;
+    background-color: #3266a8;
+    padding: 10px 16px;
+    height: 40px;
     color: white;
     font-size: 1.1rem;
     /* border-bottom: 1px solid #aaa; */
@@ -563,7 +566,7 @@ button:disabled{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: calc(100vh - 270px);
+    height: calc(100vh - 222px);
     overflow-y: scroll;
     background-color: rgb(230, 246, 254);
 }
@@ -779,8 +782,15 @@ button:disabled{
     background-color: transparent;
 }
 
+/* .chatroom{
+    background-color: red !important;
+    display: flex !important;
+    height: 50vh;
+} */
+
 .chatRoom_wrapper{
     position: relative;
+    width: 100%;
 }
 
 .loading{
@@ -822,6 +832,7 @@ button:disabled{
 .message_wrapper{
     display: flex;
     position: relative;
+    height: 100%;
 }
 
 
@@ -922,6 +933,85 @@ button:disabled{
   
 }
 
+
+
+.pop_new_chat{
+    position: absolute;
+    width: 270px;
+    right: 0px;
+    background-color: white;
+    padding: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    top: -70px;
+    z-index: 15;
+}
+
+.group_btns{
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.group_btns button{
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: #3266a8;
+}
+
+.chatroom_container{
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    height: 100%;
+    margin-top: 5px;
+}
+
+.chatroom_left{
+    width: 30vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #d7e4fa;
+    
+}
+
+.chat_left_title{
+    width: 100%;
+    padding: 10px;
+    background-color: #3266a8;
+    color: white;
+    text-align: center;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chatroom_right{
+    width: 30vw;
+    height: 100%;
+    display: flex;
+    background-color: #d7e4fa;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    /* padding: 10px; */
+    align-items: center;
+}
+
+.chat_r_top{
+    background-color: #3266a8;
+    color: white;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 @media screen and (max-width: 720px){
     .chat_list_hide{
@@ -1039,6 +1129,16 @@ button:disabled{
     }
 
     .no_chat{
+        display: none;
+    }
+
+    .chatroom_left{
+      
+        display: none;
+    }
+    
+    .chatroom_right{
+      
         display: none;
     }
 

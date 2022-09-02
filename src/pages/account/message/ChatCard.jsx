@@ -35,7 +35,7 @@ const ChatCard = ({c, setCurrentRoom, currentRoom}) => {
 
     // const membe = groups && groups.find(g => g.id === groupId)
 
-    console.log('groups', groups)
+    console.log('c', c)
 
     // const {name, createdAt, text} = lastMsg && lastMsg
 

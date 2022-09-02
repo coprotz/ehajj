@@ -8,6 +8,7 @@ import { useState } from 'react';
 import {motion} from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
 import { BsSearch } from "react-icons/bs";
+import NewChat from './NewChat';
 
 
 
@@ -68,12 +69,12 @@ const ChatContacts = () => {
           const oldChat = allChats && allChats.find(c => c.members.includes(`${id}`))
 
           if(oldChat){
-            // console.log('old', oldChat)
+            console.log('id', id)
            navigate(`/account/messages/${oldChat.id}`)       
           }
           else{
             const data = {
-              members : [`${cuUser?.groupId? cuUser?.groupId : user.uid}`, `${id}`]
+              members : [`${user.uid}`, `${selected}`]
             }
         
             const chat = await addDoc (chatsRef, data)
@@ -93,6 +94,8 @@ const ChatContacts = () => {
     
 
     const { register,  watch, formState: { isValid } } = useForm({mode: 'all'});
+
+    console.log('selcetd', selected)
 
     const RenderChoice = () => {
         if(isPilgrim){
@@ -258,7 +261,8 @@ const ChatContacts = () => {
         {groups && groups.filter(g => g.id !== group?.id).map(g => (
           <div className="footer_inner_con" key={g.id}>
             <h4 >{g.name}</h4>
-          <BiEnvelope onClick={(e) => handleNew(g.id, e)}/> 
+            <NewChat s={g.id} name={g.name}/>
+            {/* <BiEnvelope onClick={(e) => handleNew(g.id, e)}/>  */}
           </div>
         ))}
         
