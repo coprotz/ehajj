@@ -109,6 +109,11 @@
 
 @media screen and (max-width: 440px){
 
+    .main_body{
+       
+        padding: 15px;
+    }
+
     .main_top_wrapper{
        
         flex-direction: column;
@@ -152,8 +157,15 @@
             gap: 20px;
         }
 
+        .acc_main_top_2{
+            width: 100%;
+            margin-top: 10px;
+        }
+
         .main_pilgrims_inner{
             width: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .acc_main_right{

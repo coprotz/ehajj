@@ -132,7 +132,7 @@ const Main = () => {
               </div>
               <div className="acc_body_card">
                 <small>Agent</small>
-                <h2>{agent? agent.coName : 'No application'}</h2>
+                <h2>{pilgrim? pilgrim.agentName : 'No application'}</h2>
               </div>
               <div className="acc_body_card">
                 <small>Application Status</small>

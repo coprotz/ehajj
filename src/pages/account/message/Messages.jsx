@@ -89,7 +89,7 @@ const Messages = () => {
                     transition={{ ease: "easeOut", duration: 0.5 }}  
                     className= "message_contaoner"> 
                      <div className="message_heading">
-                        <h3 className='message_head'><BiArrowBack onClick={() =>navigate(-1)}/>Messages</h3> 
+                        <h3 className='message_head'><BiArrowBack onClick={() =>navigate('/account/main')}/>Messages</h3> 
                         <div className="msg_chat_menu">                        
                           <h4 className="chat_list_history">Chats</h4>                     
                           <div className="chat_previous">

@@ -33,11 +33,20 @@ import ChatContacts from './pages/account/message/ChatContacts';
 
 function App() {
 
-  const { user, db } = useAuth()
+  const { user, db, messaging } = useAuth()
 
   const RequireAuth = ({children}) => {
     return user ? (children) : <Navigate to="/"/>
   }
+
+  // useEffect(() => {
+  //   const msg = messaging();
+  //   msg.requestPermission().then(() => {
+  //     return msg.getToken();
+  //   }).then((data) =>{
+  //     console.warn('token', data)
+  //   })
+  // },[])
 
 
   return (
