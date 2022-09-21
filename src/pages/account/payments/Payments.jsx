@@ -18,7 +18,7 @@ const Payments = () => {
     initial={{ x: '-100vw'}}
     animate={{x:0}} 
     transition={{ ease: "easeOut", duration: 0.5 }} 
-      className='payment_wrapper'>
+      className='agent_body'>
         <div className="acc_back">
           <BiArrowBack onClick={() => navigate('/account/main')} className='page_back'/>
           <h3>Payments</h3>

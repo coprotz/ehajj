@@ -3,8 +3,8 @@ import { useContext, useState, useEffect, createContext } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getDatabase } from "firebase/database";
-import { getMessaging } from 'firebase/messaging'
+// import { getDatabase } from "firebase/database";
+import {  getMessaging, getToken, onMessage } from 'firebase/messaging'
 import { 
     onAuthStateChanged, 
     signOut, 
@@ -38,6 +38,32 @@ const AuthContext = createContext()
 export function useAuth(){
     return useContext(AuthContext)
 }
+
+// export function onMessage
+
+export const onMessageHandler = () =>
+  new Promise((resolve) => {
+    onMessage(messaging, (payload) => {
+      resolve(payload);
+    });
+});
+
+// export const getToken = (setTokenFound) => {
+//     return getToken(messaging, {vapidKey: 'GENERATED_MESSAGING_KEY'}).then((currentToken) => {
+//       if (currentToken) {
+//         console.log('current token for client: ', currentToken);
+//         setTokenFound(true);
+       
+//       } else {
+//         console.log('No registration token available. Request permission to generate one.');
+//         setTokenFound(false);
+  
+//       }
+//     }).catch((err) => {
+//       console.log('An error occurred while retrieving token. ', err);
+  
+//     });
+//   }
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null)

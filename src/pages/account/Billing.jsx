@@ -61,7 +61,7 @@ const Billing = ({setMessage}) => {
       }
   }
   return (
-    <div className='account_wrapper'>
+    <div className='agent_body'>
         <div className="account_top">
             <h2 className='account_title'>Bili na Malipo</h2>
             <div className="message_type">

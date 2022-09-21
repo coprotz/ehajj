@@ -8,13 +8,24 @@ import ReactPlayer from 'react-player'
 import { useTranslation } from "react-i18next";
 import { AiOutlineMenu, AiOutlineTwitter, AiFillInstagram, AiOutlineYoutube, AiFillFacebook } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom'
+import MainMenu from '../../components/menu/MainMenu'
+import { useState } from 'react'
+import { teachings } from '../../hooks/data'
+import { useAuth } from '../../hooks/useAuth'
+import useData from '../../hooks/useData'
 
-const Layout = () => {
+
+const Layout = ({showMenu, setShowMenu}) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { users } = useData();
+  const { user } = useAuth();
+  const cuUser = users && users?.find(u => u.id === user?.uid)
+
   return (
     <div className='layout_container'>
-      <Navbar/>
+     
+      <Navbar showMenu={showMenu} setShowMenu={setShowMenu}/>
       <div className="container_body">
         <div className="cont_body_left">
             <h1 className='cont_title'>{t('Welcome')}</h1>            
@@ -29,14 +40,17 @@ const Layout = () => {
                </div>
             </div>
             <div className="home_blog">
-                <div className="home_blog_card">
-                    <h1>{t('blog_no')}</h1>
+              {teachings && teachings.slice(0,1).map((item, index) => (
+                <div className="home_blog_card" key={index}>
+                    <h1>1</h1>
                     <div className="blog_card_inner">
-                        <h3>{t('blog_head')}</h3>
-                            <p>{t('blog_body')}</p>
-                            <button>{t('read_more')}</button>
+                        <h3>{item.title}</h3>
+                            <p className='teach_card_pg'>{item.body}</p>
+                            <button onClick={() =>navigate(`/blogs/${item.id}`)}>{t('read_more')}</button>
                     </div>
                 </div>
+              ))}
+              
                 <div className="home_video">
                       <div className="home_video_player">
                         <ReactPlayer
@@ -51,7 +65,13 @@ const Layout = () => {
         </div>
         <div className="cont_video">
             <video src={videoBg} autoPlay loop muted/>
-            <Register/>
+            {user? 
+              <div className='user_login'>
+                <small>You are logged in as</small>
+                {cuUser?.fname} {cuUser?.lname}
+                <button className='btn_agents' onClick={() => navigate('/account/main')}>My Account</button>
+              </div> 
+            : <Register/>}            
         </div>
       </div>
     </div>

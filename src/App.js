@@ -20,13 +20,20 @@ import Application from './pages/account/application/Application';
 import Payments from './pages/account/payments/Payments';
 import Layout from './pages/home/Layout';
 import Users from './pages/account/users/Users';
-import Blog from './pages/blog/Blog';
+import Blogs from './pages/blogs/Blogs';
 import Pilgrims from './pages/account/pilgrim/Pilgrims';
 import Team from './pages/account/agent/Team';
-import Blogs from './pages/account/blogs/Blogs'
+
 import Reports from './pages/account/reports/Reports';
 import ChatRoom from './pages/account/message/ChatRoom'
 import ChatContacts from './pages/account/message/ChatContacts';
+import MainMenu from './components/menu/MainMenu';
+import ViewBlog from './pages/blogs/ViewBlog';
+import CreateAgent from './pages/create/CreateAgent';
+import Help from './pages/help/Help';
+import Terms from './pages/terms/Terms';
+import Privacy from './pages/privacy/Privacy';
+
 
 
 
@@ -34,10 +41,15 @@ import ChatContacts from './pages/account/message/ChatContacts';
 function App() {
 
   const { user, db, messaging } = useAuth()
+  const [isTokenFound, setTokenFound] = useState(false);
+
 
   const RequireAuth = ({children}) => {
     return user ? (children) : <Navigate to="/"/>
   }
+
+  
+ 
 
   // useEffect(() => {
   //   const msg = messaging();
@@ -51,21 +63,32 @@ function App() {
 
   return (
     <div className='app'>
+   
       <BrowserRouter>    
         <Routes>
-            <Route path='/' element={<Layout/>}/>
+            <Route path='/' element={<Layout />}/>
             {/* <Route path='/register' element={
               <Register />}/> */}
             {/* <Route path='login' element={
               <Login />}/> */}
-            <Route path='about' element={<About/>}/>
-            <Route path='services' element={<Services/>}/>
-            <Route path='agents' element={<Agents/>}/>
-            <Route path='agents/:id' element={<ViewAgent/>}/>
-            <Route path='teachings' element={<Teachings/>}/>       
-            <Route path='contact' element={<Contact/>}/>
-            <Route path='blog' element={<Blog/>}/>
-            <Route path='success' element={<Success/>}/>
+            <Route path='about' element={<About />}/>
+            <Route path='services' element={<Services />}/>
+            <Route path='agents' element={<Agents />}/>
+            <Route path='privacy' element={<Privacy />}/>
+            <Route path='terms' element={<Terms />}/>
+            <Route path='agents/:id' element={<ViewAgent />}/>
+            <Route path='teachings' element={<Teachings />}/>   
+            <Route path='createAgent' element={
+              <RequireAuth>
+                <CreateAgent />
+              </RequireAuth>
+              
+              }/>      
+            <Route path='contact' element={<Contact />}/>
+            <Route path='help' element={<Help />}/>
+            <Route path='blogs' element={<Blogs />}/>
+            <Route path='blogs/:id' element={<ViewBlog />}/>
+            <Route path='success' element={<Success />}/>
             <Route path='account' element={
               <RequireAuth>
                 <Account />

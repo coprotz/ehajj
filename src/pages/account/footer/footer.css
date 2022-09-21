@@ -8,7 +8,7 @@
     /* border-top: 1px solid white; */
     /* font-size: 14px; */
     color: #96bedf;
-    background-color: #36668d;
+    background-color: #0d4184;
     margin-top: 5px;
 }
 
@@ -16,6 +16,12 @@
     display: flex;
     gap: 20px;
     
+}
+
+.acc_footer_right small:hover{
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 440px){
@@ -31,11 +37,12 @@
          display: static;
          /* border: 1px solid red; */
          width: 100%;
-         grid-template-columns: repeat(auto-fit, 50px);
+         grid-template-columns: repeat(auto-fit, 40px);
          justify-content: center;
-         gap: 10px;
+         gap: 5px;
          /* margin-top: 10px; */
          text-align: center;
+         font-size: 0.5rem;
          
      }
 

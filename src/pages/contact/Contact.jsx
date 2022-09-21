@@ -6,6 +6,9 @@ import Main from '../main/Main';
 import {motion} from 'framer-motion'
 import {  AiOutlineTwitter, AiFillInstagram, AiOutlineYoutube, AiFillFacebook } from "react-icons/ai";
 import UserTopbar from '../../components/userTopbar/UserTopbar';
+import Navbar from '../../components/navbar/Navbar';
+import Footer from '../account/footer/Footer';
+// import Navbar from '../account/navbar/Navbar';
 
 
 const Contact = () => {
@@ -29,7 +32,7 @@ const Contact = () => {
                 {/* <button className='page_next' onClick={() => navigate('/')}><FaArrowRight /></button> */}
               {/* </div> */}
               <div className="incase_menu">
-                <UserTopbar/>
+                <Navbar/>
               </div>
               
               <div className="about_top_1">
@@ -60,7 +63,7 @@ const Contact = () => {
                   <button className='btn_contact'>Tuma Ujumbe</button>
                 </div>
               </div>
-             
+             <Footer/>
             </div>
           </div>
         </motion.div>

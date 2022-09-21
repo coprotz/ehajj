@@ -11,6 +11,7 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import Lang from '../lang/Lang';
 import logo from '../images/logo1.png'
+import MainMenu from '../menu/MainMenu';
 
 
 const Navbar = () => {
@@ -29,6 +30,7 @@ const Navbar = () => {
 
 
   const cuUser = users && users?.find(u => u.id === user?.uid)
+  const [showMenu, setShowMenu] = useState(null)
 
   const handleLogin = async(e) => {
     e.preventDefault()
@@ -46,6 +48,8 @@ const Navbar = () => {
 
   return (
     <div className='navbar_container'>
+      {showMenu && 
+        <MainMenu showMenu={showMenu} setShowMenu={setShowMenu}/>}
       <div className="acc_logo" onClick={() => navigate('/')}><img src={logo} alt=''/></div>
       <div className="cont_menu">    
       <Lang />     
@@ -71,7 +75,7 @@ const Navbar = () => {
           {err && 
           <span className='error'>
             {err}
-            <button onClick={() => setErr('')} className='login_close'>x</button>
+            <button onClick={() => setErr('')} className='login_close'><BiX/></button>
           </span>}
           <div className="login_wrapper">
             <input 
@@ -93,7 +97,8 @@ const Navbar = () => {
         }
         </>
       }
-        <button className='btn_menu'><BiMenu/></button>
+        <button className='btn_menu' onClick={() =>setShowMenu(!showMenu)}>{showMenu? <BiX/> : <BiMenu/>}</button>
+        
       </div>
     </div>
   )

@@ -1,14 +1,11 @@
 import React from 'react'
-import { useNavigate, Route, Routes, Outlet } from 'react-router-dom'
-// import { useAuth } from '../../../hooks/useAuth'
-// import useData from '../../../hooks/useData'
-// import Account from '../Account'
+import { useNavigate, Outlet } from 'react-router-dom'
 import Footer from '../footer/Footer'
-// import Home from '../Main'
-// import Messages from '../Messages'
 import Navbar from '../navbar/Navbar'
-// import Ticket from '../Ticket'
+import AgentSidebar from '../sidebar/AgentSidebar'
+import { HiArrowNarrowLeft } from "react-icons/hi";
 import './pilgrims.css'
+
 
 const Pilgrim = () => {
 
@@ -17,10 +14,15 @@ const Pilgrim = () => {
 
   const navigate = useNavigate()
   return (
-    <div className='acc_wrapper'>
-      <Navbar/>     
-      <Outlet/>      
-      <Footer/>
+    <div className='agent_wrapper'>
+        <button className='btn_back_home' onClick={() =>navigate('/')}><HiArrowNarrowLeft/></button>
+        <Navbar/>
+        <div className="agent_container">
+          <AgentSidebar/>
+          <Outlet/>
+        </div>
+        <Footer/>
+     
     </div>
   )
 }

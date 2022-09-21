@@ -41,6 +41,7 @@
 
     width: 100%;
     background-color: #3266a8;
+    padding: 50px;
 }
 
 .agents_lists{
@@ -73,7 +74,7 @@
 
 .agent_cost{
     padding: 5px 10px;
-    background-color: #5700a8;
+    background-color: #053f8b;
     color: #aaa;
     font-size: 16px;
     margin-top: 10px;
@@ -331,14 +332,15 @@ section{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #519dff;
+    background: white;
     width: 100%;
     justify-content: center;
 }
 
 .contact_view_title{
     font-size: 5rem;
-    color: white;
+    color: #3266a8;
+    /* color: white; */
 }
 
 .contact_items_media{
@@ -445,17 +447,25 @@ section{
 }
 
 
-.agent_logo{
-    height: 35px;
-    width: 35px;
+.agent_logo1{
+    height: 85px;
+    width: 85px;
+    aspect-ratio: 1;
+    object-fit: cover;
     border-radius: 50%;
-    background-color: #5700a8;
+    background-color: #3266a8;
     display: flex;
     justify-content: center;
     color: white;
     align-items: center;
     font-size: 1.1rem;
     font-weight: 700;
+}
+
+.agent_logo1 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .agent_name{

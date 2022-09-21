@@ -12,7 +12,7 @@ const Agent = ({props}) => {
     const [loading, setLoading] = useState(null)
     const [agent, setAgent] = useState(pilgrim.agent)
     const {agents } = useData();
-    const agentName = agents && agents.find(a => a.id === agent)?.coName
+    const agentName = agents && agents.find(a => a.id === agent)?.coName || agents && agents.find(a => a.id === agent)?.name
     const agentCost = agents && agents.find(a => a.id === agent)?.cost
 
     const navigate = useNavigate();
@@ -61,7 +61,7 @@ const Agent = ({props}) => {
                 >
               <option value="">{agentName ? agentName : '--Select Agent--'}</option>
               {agents && agents.map(a => (
-                <option value={a.id} key={a.id}>{a.coName}</option>
+                <option value={a.id} key={a.id}>{a.coName || a.name}</option>
               ))}
             </select>            
         </div>

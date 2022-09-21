@@ -15,6 +15,7 @@ import Personal from './Personal'
 import { AiOutlineCheck } from "react-icons/ai";
 import Complete from './Complete'
 import { serverTimestamp } from 'firebase/database'
+import AgentSidebar from '../sidebar/AgentSidebar'
 
 
 const Application = () => {
@@ -139,8 +140,8 @@ const Application = () => {
 
  
   return (
-    <div className='application_wrapper'>
-      
+    <div className='agent_body'>
+      {/* <AgentSidebar/> */}
       {pilgrim &&
         <div className="appli_inner_left">
           

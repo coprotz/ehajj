@@ -19,6 +19,7 @@ import { HiMenuAlt4 } from "react-icons/hi";
 import ChatAction from '../../../components/chatAction/ChatAction';
 import ChatContacts from './ChatContacts';
 import ChatLists from './ChatLists';
+import AgentSidebar from '../sidebar/AgentSidebar';
 
 
 
@@ -77,6 +78,7 @@ const Messages = () => {
  
   return (
     <div className='account_wrapper'>
+        {/* <AgentSidebar/> */}
         <div className="account_top">          
             <motion.div 
               initial={{ opacity: 0}}

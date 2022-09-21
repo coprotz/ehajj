@@ -1,9 +1,11 @@
 import React from 'react'
 import {motion} from 'framer-motion'
+import AgentSidebar from './sidebar/AgentSidebar'
 
 const Ticket = () => {
   return (
-    <div className='account_wrapper'>
+    <div className='agent_body'>
+      {/* <AgentSidebar/> */}
     <div className="account_top">
         {/* <h2 className='account_title'>Tiketi</h2>            */}
         <motion.div 

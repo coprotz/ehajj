@@ -335,6 +335,21 @@
     
 }
 
+.photo_hide{
+    display: none;
+}
+
+.photo_attach1{
+    position: relative;
+}
+
+.photo_attach1 img{
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    
+}
+
 @media screen and (max-width: 440px){
     .appli_inner_left{
         display: none;
@@ -448,7 +463,8 @@
         top: 0;
         left: 0;
         color: #aaa;
-        display: block;
+        /* display: block; */
+        display: none;
     }
     
 }

@@ -1,0 +1,94 @@
+.pilgrim_wrapper{
+    display: flex;
+    width: 90vw;
+    margin: 0 auto;
+    gap: 15px;
+   
+}
+
+.acc_body{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+.acc_body_middle{
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.acc_body_middle_left{
+    width: 100%;
+}
+
+.active{
+    background-color: #3266a8;
+    color: white !important;
+}
+
+.active a{
+    color: white;
+}
+
+.agent_menu a{
+    text-decoration: none;
+    color: #3266a8;
+}
+
+.active svg{
+    color: white;
+}
+
+.acc_body_card{
+    background-color: #3266a8;
+    color: white;
+    padding: 25px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.acc_body_top{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 25vw);
+    justify-content: center;
+    gap: 15px;
+}
+
+.acc_inner_items{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 27vw);
+    gap: 30px;
+    /* margin-top: 20px; */
+    padding: 5px 20px;
+   
+}
+
+.pil_card_pg{
+    width: 20ch;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width: 440px){
+    .acc_body_top{
+        display: grid;        
+        grid-template-columns: 1fr;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .acc_inner_items{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        /* margin-top: 20px; */
+        padding: 5px 20px;
+       
+    }
+    
+
+
+
+}

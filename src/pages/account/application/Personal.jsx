@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { AiOutlinePlus,AiOutlineMinus } from "react-icons/ai";
 import {motion} from 'framer-motion'
 import { BiArrowBack } from "react-icons/bi";
+import {  FaTimes } from "react-icons/fa";
+import useStorage from '../../../hooks/useStorage';
 // import useStorage from '../../../components/useStorage';
 
 
@@ -18,6 +20,7 @@ const Personal = ({props}) => {
   // const [phone, setPhone] = useState(pilgrim.phone)
   const [file, setFile] = useState(null)
   // const { progress, url } = useStorage(file)
+  const { perc, url } = useStorage(file)
   const [error, setError] = useState('')
 
     
@@ -69,7 +72,8 @@ const Personal = ({props}) => {
          marital,
          dob,     
          region,
-         district,       
+         district,  
+         photo: url,     
        })
        setPage(4)
        setLoading(null)
@@ -148,13 +152,14 @@ const Personal = ({props}) => {
             </div> */}
           </div>
           <div className="photo_inner">
-                {/* {file && 
-                <div className='photo_attach'>
+                {file && 
+                <div className='photo_attach1'>
                   <img src={URL.createObjectURL(file)} alt="" />
-                  <button onClick={() => setFile(null)}>X</button>
+                  <div className="progress-bar"  style={{width: perc + '%'}}></div>
+                  <button onClick={() => setFile(null)} className="btn_file"><FaTimes/></button>
                 </div>
-                } */}
-                <label htmlFor="image" className='photo_attach'>
+                }
+                <label htmlFor="image" className={file? 'photo_hide': 'photo_attach'}>
                     <input 
                       type="file" 
                       id='image' 

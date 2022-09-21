@@ -1,0 +1,50 @@
+.main_outer{
+    width: 100vw;
+    height: 200vh;
+    position: fixed;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+   justify-content: flex-end;
+    z-index: 10;
+}
+
+.menu_wrapper{
+    background-color: #36688a;
+    color: white;
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+    padding: 15px;
+    width: 300px;
+    height: 100%;
+    justify-content: center;
+}
+
+.menu_barcode{
+    width: 150px;
+    height: 150px;
+    margin-top: 95vh;
+}
+
+.menu_barcode img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu_inner{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 1.2rem;
+    align-items: center;
+    margin: 100px 0;
+}
+
+.menu_inner_item{
+    cursor: pointer;
+}
+
+.menu_inner_item:hover{
+    text-decoration: underline;
+}

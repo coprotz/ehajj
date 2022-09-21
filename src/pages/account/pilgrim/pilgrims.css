@@ -2,11 +2,11 @@
     width: 100vw;
     min-height: 100vh;
     /* border: 1px solid red; */
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #F8F9F9 ;
+    background-color: #e5effd;
 }
 
 .page_heading_1{
@@ -18,42 +18,7 @@
 
 
 
-.acc_body{
-    display: flex;
-    flex-direction: column;
-}
 
-.acc_body_middle{
-    display: flex;
-    gap: 10px;
-    margin: 15px 0;
-}
-
-.acc_body_middle_left{
-    width: 100%;
-}
-
-.acc_body_card{
-    background-color: white;
-    padding: 25px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
-
-.acc_body_top{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 18.5vw);
-    justify-content: center;
-    gap: 15px;
-}
-
-.acc_inner_items{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 33vw);
-    gap: 55px;
-    margin-top: 20px;
-    padding: 5px 25px;
-   
-}
 
 .new_chat_app{
     position: relative;
@@ -88,10 +53,20 @@
 }
 
 .btn_all{
-    background-color: #3644d4;
-    color: white;
+    background-color: white;
+    color: #3266a8;
     padding: 8px 15px;
-    border: none;
+    border: 1px solid #3266a8;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 7px;
+}
+
+.btn_all:hover{
+    background-color: #3266a8;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #3266a8;
 }
 
 .view_all{

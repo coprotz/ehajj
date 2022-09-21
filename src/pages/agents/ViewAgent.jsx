@@ -69,7 +69,7 @@ const ViewAgent = () => {
                         animate={{x: 1}} 
                         transition={{ ease: "easeOut", duration: 0.5 }}
                     className="view_agent_top">
-                    <h1 className='view_agent_title'>{agent?.coName}</h1>
+                    <h1 className='view_agent_title'>{agent?.coName || agent?.name}</h1>
                 </motion.div>
             </section>
             <section className='view_about' id='about'>

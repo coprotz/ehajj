@@ -29,6 +29,7 @@
 .acc_menu{
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .acc_menu a{

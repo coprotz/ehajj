@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from 'react';
 import axios from 'axios';
 
+
 const Register = () => {
 
     const { t } = useTranslation();
@@ -82,18 +83,49 @@ const Register = () => {
 
     const [page, setPage] = useState(1)
 
+    const handleCreate = async(e) => {
+        e.preventDefault();
+
+        const data = {
+            fname,
+            lname,
+            agentId: agentId || '',
+            typeOf: 'agent',
+            isOnline: true,
+            isApproved: false,
+            phone:code + phone,
+            country,
+            createdAt: serverTimestamp(),
+
+        }
+
+        try {
+            const newUser = await signUp(email, password)            
+            await setDoc(doc(db, 'users', `${newUser.user.uid}`), {
+                ...data,
+                createdAt: serverTimestamp(),
+            }) 
+            navigate('/createAgent')
+            // console.log('user', newUser.user)
+        } catch (error) {
+            setErr(error.message)
+        }
+    }
+
     const handleRegister = async(e) => {
         e.preventDefault()
 
         const data = {
             fname,
             lname,
+            photo:'',
             agentId: agentId || '',
             groupId: typeOf === 'mission'? 'pWNapKqmAA0TzSpoF4hD' : '',
             email,
             typeOf,
             office: office || '',
             isOnline: true,
+            isAdmin: false,
             isApproved: false,
             phone:code + phone,
             country,
@@ -251,8 +283,8 @@ const Register = () => {
                             <select className='cont_item' name='agent' {...register("agent", { required: true })}>
                                 <option value="">--{t('select_agent')}--</option>
                                 {agents && agents.map(agent => (
-                                <option value={agent.id} key={agent.id}>{agent.coName}</option> 
-                                ))}                    
+                                <option value={agent.id} key={agent.id}>{agent?.coName || agent?.name}</option> 
+                                ))}                                               
                             </select>                    
                         </div>
                         <div className="cont_inputs">
@@ -260,9 +292,14 @@ const Register = () => {
                                 <option value="">--{t('select_office')}--</option>
                                 {selectedAgent && selectedAgent?.office?.map((district, index) => (
                                     <option value="Wazo Agent" key={index}>{district}</option>
-                                ))}                        
+                                ))} 
+                                <option value="For now">For Now</option>                       
                             </select>                    
-                        </div>                     
+                        </div> 
+                        <div className="create_agent">
+                            <span>Cant you find your agent?</span>
+                            <button onClick={handleCreate} className='btn_create_agent'>Create New Agent</button>
+                        </div>                    
                         <button 
                             className='btn_submit' 
                             onClick={handleRegister} 

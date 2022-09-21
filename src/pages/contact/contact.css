@@ -76,6 +76,7 @@
 @media screen and (max-width: 440px){
     .contact_body{
         flex-direction: column;
+        padding: 2px;
     }
 
     .contact_form{

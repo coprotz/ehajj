@@ -88,26 +88,96 @@
 
 }
 
-.about_3 p{
+.about_p{
     background-color: #3266a8;
     color: #94b2da;
-    /* width: 50%; */
+    width: 50%;
     padding: 5vh;
     text-align: justify;
-    font-size: 2vh;
+    font-size: 1.5rem;
 }
 
 .about_3_inner{
     color: #3266a8;
     font-weight: 200;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 2.2vh;
+    font-size: 1.8rem;
+    width: 40%;
     line-height: 1.5;
     text-align: left;
     padding-left: 0.8vw;
     border-left: 6px solid #3266a8;
 }
 
+.page_back{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    /* color: #aaa; */
+}
+
+.btn_btn_back{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 30px;
+    height: 30px;
+    aspect-ratio: 1;
+    /* color: #aaa; */
+    border-radius: 50%;
+    background-color: #dee7f3;
+    font-size: 1.2rem;
+}
+
+.btn_btn_back:hover{
+    cursor: pointer;
+    background-color: #3266a8;
+    color: white;
+}
+
+.about_beneficial{
+    width: 70%;
+    margin: 0 auto;
+    padding: 70px;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #99c1f6;
+    color: #3266a8;
+    margin-top: 50px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 20px;
+    
+}
+
+.btn_about{
+    padding: 25px 35px;
+    font-size: 1.3rem;
+    margin-top: 30px;
+    background-color: #3266a8;
+    border: none;
+    color: white;
+    border-radius: 10px;
+
+}
+
+.about_beneficial h2{
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.help_container{
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #94b2da;
+    flex-direction: column;
+    justify-content: space-between;
+}
 @media screen and (max-width: 440px){
    
     .about{
@@ -137,15 +207,55 @@
     }
 
     .about_title{
-        font-size: 6vh;
-        padding: 30px;
+        font-size: 3rem;
+        padding: 20px;
         /* margin: 20px; */
         /* border: 1px solid red; */
     }
 
     .about_3{
         flex-direction: column;
+        padding: 20px;
     }
+
+    .about_3_inner{
+        color: #3266a8;
+        font-weight: 200;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 1.8rem;
+        width: 100%;
+        line-height: 1.5;
+        text-align: left;
+        padding-left: 0.8vw;
+        border-left: 6px solid #3266a8;
+    }
+
+    .about_p{
+        background-color: #3266a8;
+        color: #94b2da;
+        width: 100%;
+        padding: 20px;
+        text-align: justify;
+        font-size: 1.5rem;
+    }
+
+    .about_beneficial{
+        width: 90%;
+        margin: 10px auto;
+        padding: 20px;
+        font-size: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #99c1f6;
+        color: #3266a8;
+        /* margin: 10px 0; */
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        border-radius: 10px;
+        
+    }
+    
 
   
   
