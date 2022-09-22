@@ -1,5 +1,11 @@
+.llive_chat{
+    width: 100%;
+    z-index: 100;
+}
 .live_wrpper{
     position: relative;
+    width: 100%;
+    z-index: 100;
 }
 .btn_live{
     border: none;
@@ -81,9 +87,9 @@
     /* border: 1px solid red; */
     gap: 5px;
     align-items: center;
-    padding: 5px;
+    /* padding: 5px; */
     height: 100%;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
 
 .btn_live_chat{
@@ -91,15 +97,16 @@
 }
 
 .live_register{
-    display: flex;
-    width: 80%;
-    font-size: 1.3rem;
-    justify-content: center;
+    display: flex;  
+    flex-direction: column;
+    /* font-size: 1.3rem; */
+    justify-content: space-between;
     align-items: center;
-    color: #3266a8;
+    z-index: 10;
     height: 100%;
-    font-weight: 800;
+    /* font-weight: 800; */
     text-align: justify;
+    width: 100%;
 
 }
 
@@ -130,6 +137,80 @@
     border-radius: 50%;
     color: white;
     border: none;
+}
+
+.live_reg_top{
+    background-color: #3266a8;
+    height: 200px;
+    width: 100%;
+    position: relative;
+    border-radius: 10px 10px 0 0;
+}
+
+.live_reg_top img{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 90px;
+    border: 4px solid #3266a8;
+}
+
+.live_chat_body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.live_inputs{
+    padding: 15px 0;
+    
+}
+
+.live_inputs_group{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 10px;
+    width: 80%;
+}
+
+.live_inputs_group input{
+    padding: 5px 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 1rem !important;
+    outline: none;
+}
+
+.chat_terms{
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 0px 30px;
+    /* border: 1px solid red; */
+}
+
+button:disabled{
+    background-color: #c9c9c9;
+}
+
+.chat_terms input{
+    margin-top: 5px;
+}
+
+.btn_btn_live{
+    width: 100%;
+    padding: 10px;
+    background-color: #3266a8;
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    border-radius: 0 0 10px 10px;
 }
 
 @media screen and (max-width: 920px){

@@ -47,6 +47,7 @@ const ViewAgent = () => {
 
   return (
         <div className='view_agent'>
+            <LiveChat id={id}/>
             <Navbar/>
             <div className="view_landing_top">
                 <button onClick={() => navigate(-1)} className='btn_agent_view'><FaArrowLeft/></button>
@@ -60,7 +61,7 @@ const ViewAgent = () => {
                 <div></div>
             </div>
             <div className="sections_container">
-                <LiveChat id={id}/>
+                
 
             
             <section className="view_home" id='home'>
@@ -71,8 +72,12 @@ const ViewAgent = () => {
                         initial={{ x: '100vw'}}
                         animate={{x: 1}} 
                         transition={{ ease: "easeOut", duration: 0.5 }}
-                    className="view_agent_top">
-                    <h1 className='view_agent_title'>{agent?.coName || agent?.name}</h1>
+                        className="view_agent_top">
+                        <div className="agent_logo_view">
+                            <img src={agent?.logo} alt="" />
+                        </div>
+                            
+                        <h1 className='view_agent_title'>{agent?.coName || agent?.name}</h1>
                 </motion.div>
             </section>
             <section className='view_about' id='about'>

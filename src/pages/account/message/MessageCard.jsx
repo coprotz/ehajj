@@ -9,8 +9,8 @@ const MessageCard = ({message}) => {
     const { user } = useAuth();
 
     const { uid, text, name, createdAt } = message
-    const messageClass = uid === user.uid ? 'sent' : 'received';
-    const bgClass = uid === user.uid ? 'right' : 'left';
+    const messageClass = uid === user?.uid ? 'sent' : 'received';
+    const bgClass = uid === user?.uid ? 'right' : 'left';
   return (
     <motion.div 
     layout
