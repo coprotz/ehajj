@@ -12,14 +12,21 @@ import ChatLists from './ChatLists';
 const ChatRoom = () => {
     const { id } = useParams();
     const {user} = useAuth();
+    
     const {groups, messages, agents, users, chats} = useData();
+    const cuUser = users && users.find(u => u.id === user.uid)
     const navigate = useNavigate();
 
+    const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
+
     const currentRoom = chats && chats.find(c => c.id === id) 
-    const memberId = currentRoom && currentRoom.members.find(m => m !== user.uid) 
+    // const memberId = currentRoom && currentRoom.members.find(m => m !== user.uid) 
+
+    const memberId = isAgent? currentRoom && currentRoom.members.find(m => m !== cuUser?.agentId) 
+    || currentRoom && currentRoom.members.find(m => m !== cuUser?.groupId) : currentRoom && currentRoom.members.find(m => m !== cuUser?.id)
 
     const member = groups && groups.find(g => g.id === memberId)?.name 
-    || agents && agents.find(a => a.id === memberId)?.coName
+    || agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name
     || users && users.find(a => a.id === memberId)?.fname +" "+users?.find(a => a.id === memberId)?.lname
 
 

@@ -10,7 +10,7 @@
 .payments_summary{
     height: 100%;
     width: 65%;
-    background-color: #f1f1f1;
+    background-color: #bdd6f7;
     padding: 15px 35px;
     display: flex;
     justify-content: center;
@@ -19,7 +19,7 @@
 }
 
 .transaction_history{
-    background-color: #e8e8e8;
+    background-color: #9ec8fe;
     width: 35%;
     padding: 25px;
 }
@@ -53,9 +53,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #7d22d4;
+    border: 1px solid #3266a8;
     border-radius: 7px;
-    color: #7d22d4;
+    color: #3266a8;
     margin: 10px 0;
 }
 
@@ -71,7 +71,7 @@
 .btn_invoice{
     background-color: transparent;
     border: none;
-    color: #7d22d4;
+    color: #3266a8;
     font-size: 16px;
     margin-top: 10px;
 }

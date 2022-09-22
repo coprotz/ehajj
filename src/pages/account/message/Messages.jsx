@@ -79,7 +79,7 @@ const Messages = () => {
   return (
     <div className='account_wrapper'>
         {/* <AgentSidebar/> */}
-        <div className="account_top">          
+        {/* <div className="account_top">           */}
             <motion.div 
               initial={{ opacity: 0}}
               animate={{opacity: 1}} 
@@ -105,12 +105,12 @@ const Messages = () => {
                         </div>
                       </div>
                                                  
-                    <div className= "chatRoom_wrapper">                                        
-                     <ChatLists/>
+                    <div className= "chatlist_wrapper">                                        
+                      <ChatLists/>
                     </div>
                   </motion.div>
-                    {currentRoom? 
-                      <motion.div 
+                  {currentRoom? 
+                  <motion.div 
                         initial={{ x: '-100vw'}}
                         animate={{x:0}} 
                         transition={{ ease: "easeOut", duration: 0.5 }} 
@@ -121,11 +121,11 @@ const Messages = () => {
                           // setNewChat={setNewChat}
                           />
                         <SendMessage currentRoom={currentRoom}/>
-                      </motion.div>
+                  </motion.div>
                     :          
-                      <div className='no_chat'>
-                        Chagua chat kushoto kuendeleza chati au kulia kwa chati mpya!
-                      </div>
+                  <div className='no_chat'>
+                    Chagua chat kushoto kuendeleza chati au kulia kwa chati mpya!
+                  </div>
                     }
                   <div className="new_chat_contact">
                     <ChatContacts />
@@ -135,7 +135,7 @@ const Messages = () => {
 
             </motion.div>
          
-        </div>
+        {/* </div> */}
     </div>
   )
 }

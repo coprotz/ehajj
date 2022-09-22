@@ -4,7 +4,7 @@ import useData from '../../../hooks/useData';
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom';
 
-const ChatCard = ({c, setCurrentRoom, currentRoom}) => {
+const ChatCard = ({chat, setCurrentRoom, currentRoom}) => {
 
     const {user} = useAuth();
     const {groups, messages, agents, users} = useData();
@@ -19,29 +19,32 @@ const ChatCard = ({c, setCurrentRoom, currentRoom}) => {
 
     // const memberId = c.members.find(m => m !== user.uid)
 
-    const memberId = isPilgrim || isAgent? c && c.members.find(m => m !== user.uid) : c && c.members.find(m => m !== cuUser?.groupId)
+    // const memberId = isPilgrim || isAgent? c && c.members.find(m => m !== user.uid) : c && c.members.find(m => m !== cuUser?.groupId)
+
+    const memberId = isAgent? chat && chat.members.find(m => m !== cuUser?.agentId) 
+    || chat && chat.members.find(m => m !== cuUser?.groupId) : chat && chat.members.find(m => m !== cuUser?.id)
 
     // const memberId = cuUser && cuUser.groupId
     // console.log('groupId', groupId)
 
     const member = groups && groups.find(g => g.id === memberId)?.name 
-      || agents && agents.find(a => a.id === memberId)?.coName
+      || agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name
       || users && users.find(a => a.id === memberId)?.fname +" "+users?.find(a => a.id === memberId)?.lname
 
 
 
-    const cuMsgs = messages && messages.filter(m => m.room === c.id)
-    const lastMsg = messages && messages.findLast((m) => m.room === c.id)
+    const cuMsgs = messages && messages.filter(m => m.room === chat.id)
+    const lastMsg = messages && messages.findLast((m) => m.room === chat.id)
 
     // const membe = groups && groups.find(g => g.id === groupId)
 
-    console.log('c', c)
+    console.log('c', chat)
 
     // const {name, createdAt, text} = lastMsg && lastMsg
 
     
   return (
-    <div className={currentRoom === c ? 'active_card_message' : 'card_message'} onClick={() => navigate(`/account/messages/${c.id}`)}>
+    <div className={currentRoom === chat ? 'active_card_message' : 'card_message'} onClick={() => navigate(`/account/messages/${chat.id}`)}>
         <div className="card_msg_details">
           <span className="member_icon">
             {member[0]}

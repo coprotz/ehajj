@@ -15,6 +15,8 @@ import { TiTick } from "react-icons/ti";
 import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { BsGlobe } from "react-icons/bs";
+import LiveChat from './livechat/LiveChat';
+
 
 
 
@@ -58,6 +60,7 @@ const ViewAgent = () => {
                 <div></div>
             </div>
             <div className="sections_container">
+                <LiveChat id={id}/>
 
             
             <section className="view_home" id='home'>

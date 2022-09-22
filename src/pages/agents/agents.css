@@ -157,8 +157,9 @@ section{
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #afcef7;
-    padding: 50px;
-    width: 50vw;
+    z-index: -1;
+    /* padding: 50px;
+    width: 50vw; */
    
 }
 
@@ -684,6 +685,12 @@ section{
 .view_land_menu{
     font-size: 1.2rem;
     color: #3266a8;
+}
+
+.live_chat{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
 }
 
 @media screen and (max-width: 920px){

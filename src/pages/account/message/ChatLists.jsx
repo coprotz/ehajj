@@ -44,8 +44,8 @@ const ChatLists = () => {
   return (
     <div className="chat_lists">
         {tchats.length > 0 ? <>
-            {tchats && tchats.map(c => (                              
-            <ChatCard c={c} key={c.id} />                          
+            {tchats && tchats.map(chat => (                              
+            <ChatCard chat={chat} key={chat.id} />                          
         ))} 
         
         </> : 
