@@ -13,8 +13,8 @@ const Agent = () => {
   const { user, logOut } = useAuth()
   const { users, agents, pilgrims } = useData()
   const cuUser = users && users.find(u => u.id === user.uid)
-  const agent = agents && agents.find(a => a.id === cuUser.agentId)  
-  const agentPilgrims = pilgrims && pilgrims.filter(u => u.agent === agent.id) 
+  const agent = agents && agents.find(a => a.id === cuUser?.agentId)  
+  // const agentPilgrims = pilgrims && pilgrims.filter(u => u.agent === agent?.id) 
   const navigate = useNavigate()
 
 

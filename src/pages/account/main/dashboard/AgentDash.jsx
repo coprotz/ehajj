@@ -17,14 +17,14 @@ const AgentDash = () => {
     const cuUser = users && users.find(u => u.id === user.uid)
     const ageId = cuUser?.agentId
     const agent = agents && agents.find(p => p.id === ageId)
-    const agentUsers = users && users.filter(u => u.agentId === agent.id)
+    const agentUsers = users && users.filter(u => u.agentId === agent?.id)
     // const agentPils = pilgrims && pilgrims.filter(a => a.agent === ageId)
-    const agentPilgrims = pilgrims && pilgrims.filter(u => u.agent === agent.id)
+    const agentPilgrims = pilgrims && pilgrims.filter(u => u.agent === agent?.id)
     const adminId = agent?.createdBy
     const admin = users && users.find(u => u.id === adminId)
     // const agentUsers = users && users.filter(u => u.typeOf === 'agent')?.filter(a => a.agentId === ageId)
 
-    console.log('agentUser', agentUsers)
+    console.log('agent', agent)
 
   return (
     <div className="agent_body">  

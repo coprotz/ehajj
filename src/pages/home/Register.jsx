@@ -89,11 +89,13 @@ const Register = () => {
         const data = {
             fname,
             lname,
+            email,
             agentId: agentId || '',
             typeOf: 'agent',
             isOnline: true,
             isApproved: false,
             phone:code + phone,
+            isAdmin: false,
             country,
             createdAt: serverTimestamp(),
 
@@ -179,7 +181,13 @@ const Register = () => {
                             <input type="text" placeholder={`${t('lname')}`} className='cont_item' name='lname' {...register("lname", { required: true })}/>
                         </div>
                         <div className="cont_inputs">
-                            <input type="email" placeholder={`${t('email')}`} className='cont_item' name='email' {...register("email", { required: true })}/>   
+                            <input 
+                                type="email" 
+                                placeholder={`${t('email')}`} 
+                                className='cont_item' 
+                                name='email' 
+                                {...register("email", { required: true })}
+                                />   
                             <select name="gender" id="" {...register("gender", { required: true })} className='cont_item'>
                                 <option value="" >--Select gender--</option>
                                 <option value="Male">Male</option>

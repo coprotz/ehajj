@@ -16,7 +16,7 @@ import useStorage from '../../hooks/useStorage'
 import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
  
 const CreateAgent = () => {
-    const { user } = useAuth()
+    const { user, logOut } = useAuth()
     const { users } = useData()
     const navigate = useNavigate()
     const cuUser = users && users.find(u => u.id === user.uid)
@@ -109,7 +109,9 @@ const CreateAgent = () => {
     }
 
      const agentRef = collection(db, 'agents')
-     const userRef = collection(db, 'users')
+    //  const userRef = collection(db, 'users')
+
+     const userRef = doc(db, 'users', `${user.uid}`)
 
 
     const handleCreate = async (e) => {
@@ -134,12 +136,12 @@ const CreateAgent = () => {
 
         try {
             const newAgent = await addDoc(agentRef, data)
-            setSending(false)
-            navigate('/account/main')
-
             await updateDoc(userRef, {
                 agentId : newAgent.id
             })
+            setSending(false) 
+            console.log('newagent', newAgent.id)
+            navigate('/account/main')
         } catch (error) {
             console.log(error.message)
         }
@@ -173,7 +175,7 @@ const CreateAgent = () => {
             </div>          
             <div className={createPage? 'page_none': "create_actions"}>
                 <button className='btn_proceed' onClick={() => setCreatePage(!createPage)}>Proceed</button>
-                <button className='btn_cancel'>CANCEL</button>
+                <button className='btn_cancel' onClick={() =>logOut()}>CANCEL</button>
             </div>
             </div>
             <div className="create_footer">

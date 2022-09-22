@@ -9,9 +9,9 @@ import Spinner from '../../components/spinner/Spinner'
 import useData from '../../hooks/useData'
 import Pilgrim from './pilgrim/Pilgrim'
 import Mission from './mission/Mission'
-import Lottie from "lottie-react";
-import data from '../../hooks/data.json'
+
 import Admin from './admin/Admin'
+import NoWhere from './no_where/NoWhere'
 // import NewUser from './newUser/NewUser'
 
 const Account = () => {
@@ -84,15 +84,7 @@ const Account = () => {
             )
         }else{
             return (
-                <div className='no_where'>
-                    <Lottie animationData={data} loop={true} height={300} width={200}/>
-                    <h3>You are not belonged here...</h3>
-                    <div className="no_where_select">
-                        <h4>Please select your role</h4>
-
-                    </div>
-                    <button onClick={() => logOut()} className='btn_no_where'>Home</button>
-                </div>
+               <NoWhere/>
             )
         }
     }
