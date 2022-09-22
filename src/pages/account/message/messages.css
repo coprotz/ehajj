@@ -626,7 +626,7 @@ button:disabled{
 .sent{    
     flex-direction: row-reverse;   
     text-align: right;
-    background-color: #36668d;
+    background-color: #3266a8;
     color: white;
     align-items: flex-end;
    
