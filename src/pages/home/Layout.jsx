@@ -13,6 +13,7 @@ import { useState } from 'react'
 import { teachings } from '../../hooks/data'
 import { useAuth } from '../../hooks/useAuth'
 import useData from '../../hooks/useData'
+import Footer from '../account/footer/Footer'
 
 
 const Layout = ({showMenu, setShowMenu}) => {
@@ -74,6 +75,7 @@ const Layout = ({showMenu, setShowMenu}) => {
             : <Register/>}            
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }

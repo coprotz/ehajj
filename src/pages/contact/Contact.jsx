@@ -15,11 +15,8 @@ const Contact = () => {
   const navigate = useNavigate()
 
   return (
-    <div className='home'>
-     {/* <div className="main_hide">
-        <Main/>
-      </div> */}
-      <div className="home_right">
+    
+      <div className="contact">
       <motion.div 
              initial={{ x: '100vw'}}
              animate={{x:0}} 
@@ -63,12 +60,13 @@ const Contact = () => {
                   <button className='btn_contact'>Tuma Ujumbe</button>
                 </div>
               </div>
-             <Footer/>
+             
             </div>
           </div>
         </motion.div>
+        <Footer/>
       </div>
-    </div>
+    
   )
 }
 
