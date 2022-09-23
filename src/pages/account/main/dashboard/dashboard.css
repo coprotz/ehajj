@@ -70,6 +70,31 @@
     overflow: hidden;
 }
 
+.actions_btns{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn_action_btn{
+    position: relative;
+}
+
+.div_span{
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 3px 5px;
+    border: 1px solid #aaa;
+    font-size: 0.8rem;
+    background-color: white;
+    width: fit-content;
+
+}
+
 
 @media screen and (max-width: 440px){
     .acc_body_top{

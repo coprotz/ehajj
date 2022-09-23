@@ -139,10 +139,17 @@
 .btn_appli{
     border: none;
     padding: 12px 25px;
-    background-color: #7d2ad5;
+    background-color: #3266a8;
     color: white;
     font-size: 16px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: fit-content;
+    border-radius: 5px;
+    min-width: 150px;
+    /* height: fit-content; */
 }
 
 .passport_inner{

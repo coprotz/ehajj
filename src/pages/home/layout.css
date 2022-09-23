@@ -76,9 +76,7 @@ video{
     object-fit: cover;
 }
 
-.register_main_container{
-    position: absolute;
-    right: 20px;
+.register_main_container{  
     width: 500px;
     /* height: 400px; */
     bottom: 20px;
@@ -86,6 +84,16 @@ video{
     padding: 20px;
     display: flex;
     flex-direction: column;
+}
+
+.reg_abso{
+    position: absolute;
+    right: 20px;
+    width: 500px;  
+    bottom: 20px;
+    background-color: #3265a89a;
+   
+ 
 }
 
 /* .cont_register{
@@ -193,8 +201,8 @@ video{
 }
 
 .btn_submit{
-    padding: 10px;
-    background-color: #36668d;
+    padding: 13px;
+    background-color: #032f67;
     color: white;
     font-size: 17px;
     border: none;
@@ -203,6 +211,7 @@ video{
     gap: 15px;
     justify-content: center;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .cont_radios{
@@ -218,6 +227,8 @@ video{
     background-color: white;
     font-size: 16px;
     cursor: pointer;
+    color: black;
+    border-radius: 3px;
 }
 
 .cont_radios input[type='radio']:checked + label{

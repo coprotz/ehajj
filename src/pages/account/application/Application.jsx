@@ -165,11 +165,11 @@ const Application = () => {
                 </span>
             <span 
               className={page === 4? 'appli_active': 'appli_item'} 
-              onClick={() => setPage(4)}>
+              onClick={() => setPage(pilgrim?.gender ==='Male'? '7' : '5')}>
                 Passport
                 {pilgrim?.passNo !== '' &&<AiOutlineCheck className='checked_svg'/>}
             </span>
-            {pilgrim.gender !=='Male' &&
+            {pilgrim.gender ==='Female' &&
             <>
               <span 
               className={page === 5? 'appli_active': 'appli_item'} 

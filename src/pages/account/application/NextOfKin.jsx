@@ -2,6 +2,7 @@ import { updateDoc } from 'firebase/firestore'
 import React, {useState} from 'react'
 import {motion} from 'framer-motion'
 import { BiArrowBack } from "react-icons/bi";
+import Loading from '../../../components/loading/Loading';
 
 const NextOfKin = ({props}) => {
 
@@ -36,6 +37,8 @@ const NextOfKin = ({props}) => {
      }
     }
 
+  
+
   return (
     <motion.form 
     initial={{ x: '-100vw'}}
@@ -44,7 +47,7 @@ const NextOfKin = ({props}) => {
       className='appli_items' onSubmit={handleMaPass}>
    
         <div className="acc_back">
-          <BiArrowBack onClick={() => setPage(4)} className='page_back'/>
+          <BiArrowBack onClick={() => setPage(pilgrim?.gender ==='Male'? '4' : '6')} className='page_back'/>
           <span className='appli_title'>Next Of Kin Info</span>
         </div>       
         <div className="input_inner">
@@ -115,7 +118,7 @@ const NextOfKin = ({props}) => {
                 />
             </div>
         </div>
-        <button className='btn_appli' type='submit'>{loading ? 'Saving...' : 'Continue'}</button>
+        <button className='btn_appli' type='submit'>{loading ? <Loading/> : 'Continue'}</button>
     </motion.form>
   )
 }

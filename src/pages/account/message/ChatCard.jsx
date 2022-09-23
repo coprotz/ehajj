@@ -29,7 +29,7 @@ const ChatCard = ({chat, setCurrentRoom, currentRoom}) => {
 
     const member = groups && groups.find(g => g.id === memberId)?.name 
       || agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name
-      || users && users.find(a => a.id === memberId)?.fname +" "+users?.find(a => a.id === memberId)?.lname
+      || users && users.find(a => a.id === memberId)?.fname +" "+users?.find(a => a.id === memberId)?.lname || 'Guest'
 
 
 
@@ -50,7 +50,7 @@ const ChatCard = ({chat, setCurrentRoom, currentRoom}) => {
             {member[0]}
           </span>
           <div className="card_member_details">          
-            <h4 className='member_name'>{member}</h4>
+            <h4 className='member_name'>{undefined + undefined ? 'Guest' : member}</h4>
             <div className="chat_id">           
               <small className='chat_text'>{lastMsg && lastMsg.text}</small>
             </div>

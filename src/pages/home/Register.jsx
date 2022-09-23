@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { useEffect } from 'react';
 import axios from 'axios';
+import Loading from '../../components/loading/Loading'
 
 
 const Register = () => {
@@ -26,6 +27,7 @@ const Register = () => {
     const password = watch('password')
     const fname = watch('fname')
     const lname = watch('lname')
+    const gender = watch('gender')
     const cPassword = watch('cPassword')
     const typeOf = watch('typeOf')
     const agentId = watch('agent')
@@ -37,6 +39,7 @@ const Register = () => {
 
     const navigate = useNavigate()
     const [err, setErr] = useState('')
+    const [loading, setLoading] = useState(null)
 
     const [countryState, setCountryState] = useState({
         loading: false,
@@ -71,7 +74,7 @@ const Register = () => {
         fetchData();
     },[]);
 
-    const { loading, errMessage, countries } = countryState
+    const { errMessage, countries } = countryState
 
     console.log('countries', countries)
     const flag = countries && countries.find(d => d.name.common === country)?.flags.png 
@@ -86,10 +89,13 @@ const Register = () => {
     const handleCreate = async(e) => {
         e.preventDefault();
 
+        setLoading(true)
+
         const data = {
             fname,
             lname,
             email,
+            gender,
             agentId: agentId || '',
             typeOf: 'agent',
             isOnline: true,
@@ -107,6 +113,7 @@ const Register = () => {
                 ...data,
                 createdAt: serverTimestamp(),
             }) 
+            setLoading(null)
             navigate('/createAgent')
             // console.log('user', newUser.user)
         } catch (error) {
@@ -116,6 +123,8 @@ const Register = () => {
 
     const handleRegister = async(e) => {
         e.preventDefault()
+
+        setLoading(true)
 
         const data = {
             fname,
@@ -141,6 +150,7 @@ const Register = () => {
                 ...data,
                 createdAt: serverTimestamp(),
             }) 
+            setLoading(null)
             navigate('/account/main')
             // console.log('user', newUser.user)
         } catch (error) {
@@ -154,7 +164,12 @@ const Register = () => {
     const RenderButton = () => {
         if(typeOf === 'agent'){
             return (
-                <button className='btn_submit' type='button' onClick={() => setPage(3)} disabled={!isValid}>{t('continue')}<BiRightArrowAlt/></button>
+                <button 
+                    className='btn_submit' 
+                    type='button' 
+                    onClick={() => setPage(3)} 
+                    disabled={!isValid}>{t('continue')}<BiRightArrowAlt/>
+                    </button>
             )
         }else{
             return(
@@ -162,7 +177,7 @@ const Register = () => {
                     className='btn_submit' 
                     onClick={handleRegister} 
                     disabled={!isValid}>
-                    {t('submit')}<BiRightArrowAlt/></button>
+                    {loading? <Loading/> : <span>{t('submit')}<BiRightArrowAlt/></span>}</button>
             )
         }
     }
@@ -327,7 +342,7 @@ const Register = () => {
         initial={{ x: -100}}
         animate={{x: 1}} 
         transition={{ ease: "easeOut", duration: 0.5 }}
-        className='register_main_container'> 
+        > 
         {err && <span className='error'>{err}</span>}               
         {RenderPage()}        
     </motion.div>

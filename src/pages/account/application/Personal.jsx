@@ -5,6 +5,7 @@ import {motion} from 'framer-motion'
 import { BiArrowBack } from "react-icons/bi";
 import {  FaTimes } from "react-icons/fa";
 import useStorage from '../../../hooks/useStorage';
+import Loading from '../../../components/loading/Loading';
 // import useStorage from '../../../components/useStorage';
 
 
@@ -171,7 +172,7 @@ const Personal = ({props}) => {
                
             </div>
         </div>
-        <button className='btn_appli' type='submit'>{loading ? 'Saving...' : 'Continue'}</button>
+        <button className='btn_appli' type='submit'>{loading ? <Loading/> : 'Continue'}</button>
     </motion.form>
   )
 }

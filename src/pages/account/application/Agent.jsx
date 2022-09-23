@@ -5,6 +5,7 @@ import useData from '../../../hooks/useData'
 import {motion} from 'framer-motion'
 import { BiArrowBack } from "react-icons/bi";
 import {  useNavigate } from 'react-router-dom';
+import Loading from '../../../components/loading/Loading';
 
 const Agent = ({props}) => {
 
@@ -65,7 +66,7 @@ const Agent = ({props}) => {
               ))}
             </select>            
         </div>
-      <button className='btn_appli' type='submit'>{loading ? 'Saving...' : 'Continue'}</button>
+      <button className='btn_appli' type='submit'>{loading ? <Loading/> : 'Continue'}</button>
     </motion.form>
   )
 }

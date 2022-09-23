@@ -17,7 +17,7 @@
     "register_head": "REGISTER TO GET STARTED",
     "fname": "Firstname",
     "lname": "Lastname",
-    "phone": "Phone",
+    "phone": "Phone",  
     "email": "Email",
     "password": "Password",
     "cPassword": "Confirm Password",

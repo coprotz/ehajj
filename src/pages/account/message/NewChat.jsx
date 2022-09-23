@@ -5,6 +5,8 @@ import { db, useAuth } from '../../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import useData from '../../../hooks/useData';
 import { addDoc, collection } from 'firebase/firestore';
+import Loading from '../../../components/loading/Loading';
+import {  BsChatLeftText, BsEye, BsPencil } from "react-icons/bs";
 
 const NewChat = ({s, name}) => {
     const { user } = useAuth();
@@ -27,6 +29,7 @@ const NewChat = ({s, name}) => {
 
     console.log('agentChats', agentChats)
     const chatsRef = collection(db, 'chats')
+    const [action, setAction] = useState(null)
 
     console.log('s', s)
     
@@ -68,13 +71,15 @@ const NewChat = ({s, name}) => {
 
   return (
     
-    <div className='new_chat_app'>
-        <HiOutlineChatAlt className='appli_new_chat' onClick={() =>setOpen(s)}/>
+    <div className='new_chat_app' onMouseEnter={() =>setAction(true)} onMouseLeave={() =>setAction(null)}>
+        {/* <HiOutlineChatAlt className='appli_new_chat' onClick={() =>setOpen(s)}/> */}
+        <button className='btn' onClick={() =>setOpen(s)}><BsChatLeftText/></button>
+        {action && <span className='div_span'>Messeji</span>}
         {open &&
         <div className="pop_new_chat">
             <span>Send message to <strong>{name}</strong>?</span>
             <div className="group_btns">
-                <button onClick={(e) => handleNew(s, e)}>{sending? 'Sending...': 'OK'}</button>
+                <button onClick={(e) => handleNew(s, e)}>{sending? <Loading/>: 'OK'}</button>
                 <button onClick={() => setOpen(null)}>CANCEL</button>
             </div>
         </div>

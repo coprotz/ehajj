@@ -3,7 +3,9 @@ import {motion} from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
 import { BiArrowBack} from "react-icons/bi";
 import useData from '../../../hooks/useData';
+import moment from 'moment'
 import { useAuth } from '../../../hooks/useAuth';
+import {  BsChatLeftText, BsEye, BsPencil } from "react-icons/bs";
 import './pilgrims.css'
 
 
@@ -14,6 +16,9 @@ import { useState } from 'react';
 // import Reports from '../reports/Reports';
 import { GrClose } from "react-icons/gr";
 import PilgrimCard from './PilgrimCard';
+import ChangeStatus from '../../../components/changeStatus/ChangeStatus';
+import NewChat from '../message/NewChat';
+import ViewProfile from '../../../components/viewProfile/ViewProfile';
 
 const Pilgrims = () => {
     const { t } = useTranslation();
@@ -27,6 +32,7 @@ const Pilgrims = () => {
 
 
     const [report, setReport] = useState(null)
+    const [action, setAction] = useState(null)
 
     const RenderRole = () => {
       if(isAgent){
@@ -34,39 +40,43 @@ const Pilgrims = () => {
           <div className="users_inner">
           <span className='page_heading_1'>List of Pilgrims applied with this Firm</span>
           <table className='table'>
-                <thead>
-                <th >SN</th>
-                <th >Firstname</th>
-                <th >Lastname</th> 
-                <th >Gender</th>
-                <th >Marital Status</th> 
-                <th >Ibada</th>      
-                <th >Phone</th>
-                <th >Email</th>
-                <th >Completed?</th>
-                <th >Paid?</th>
-                <th >Status</th>
-                <th >Action</th>
-                </thead>
-                <tbody className='total'>
-                {agentPilgrims?.map((s, index) => (
-                    <tr key={s.id}>
-                    <td data-label='SN'>{index+1}</td>     
-                    <td data-label='Firstname'>{s.fname}</td>    
-                    <td data-label='Lastname'>{s.lname}</td>   
-                    <td data-label='Gender'>{s.gender}</td> 
-                    <td data-label='Marital'>{s.marital}</td>
-                    <td data-label='Ibada'>{s.ibada}</td>            
-                    <td data-label='Phone'>{s.phone}</td>
-                    <td data-label='Email'>{s.email}</td>
-                    <td data-label='Completed?'>{s.isCompleted}</td>
-                    <td data-label='Paid?'>{s.isPaid}</td>
-                    <td data-label='Paid?'>{s.isPaid}</td>
-                    <td data-label='Action'>Action</td>
-                    </tr>
+            <thead>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Sex</th>
+              <th>Age</th>
+              <th>Ana Passpoti?</th>
+              <th>Hali ya Ndoa</th>
+              <th>Kajiunga</th>
+              <th>Ameshalipa?</th>
+              <th>Hatua Iliyofikia</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              {agentPilgrims && agentPilgrims.map(pil => (
+                 <tr>
+                  <td data-label='Picha'><img src={pil?.photo} alt="" /></td>
+                  <td data-label='Jina'>{pil?.fname} {pil?.lname}</td>
+                  <td data-label='Jinsia'>{pil?.gender}</td>
+                  <td data-label='Umri'>{pil?.dob}</td>
+                  <td data-label='Ana Pasipoti?'>{pil?.passNo !== ''? 'Ndio' : 'Hapana'}</td>
+                  <td data-label='Hali ya Ndoa'>{pil?.marital}</td>
+                  <td data-label='Kajiunga'>{moment(pil?.createdAt?.toDate()).fromNow(true)}</td>
+                  <td data-label='Ameshalipa?'>{pil?.isPaid? 'Ndio' : 'Hapana'}</td>
+                  <td data-label='Hatua Iliyofikia'>{pil?.status}</td>
+                  <td data-label='Chukua Hatua'>
+                    <div className="actions_btns">
+                      <ChangeStatus id={pil?.id}/>
+                      <ViewProfile id={pil?.id}/>
+                      <NewChat s={pil?.userId} name={pil?.fname+" "+pil?.lname}/>                
+                    </div>
+                  </td>
+                  
+                </tr>
                 ))}
-                </tbody>
-            </table>
+            
+            </tbody>
+          </table>
         </div>
         )
       }else{

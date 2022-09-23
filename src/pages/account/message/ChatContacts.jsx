@@ -110,32 +110,19 @@ const ChatContacts = () => {
                 </div>
                 {pilgrim?.agentName ? <>              
                 <span className='pil_inner_2'>{pilgrim?.agentName}</span>
-                <button className='btn_send' onClick={() => setNewMsg(!newMsg)}><BiEnvelope/>Select Member<BiCaretDown/></button> </> 
+                <button className='btn_send' onClick={() => setSelected(pilgrim?.agent)}><BiEnvelope/></button> </> 
                 : <span style={{display: 'block', textAlign: 'center', marginTop: '15px'}}>No agent found</span>}
-                {newMsg && <>
+                {/* {newMsg && <> */}
                 
-                {!selected ?
-                <div className="agents_mbs">
-                  <div className="selected_new">
-                    <span>Select Member</span>
-                    <button onClick={() => setNewMsg(null)}><BiX/></button>
-                  </div>
-                  <span onClick={() => setSelected(pilgrim?.agent)}>All Staff</span>
-                  {activeAgentUsers.length > 0 ?<>
-                  {activeAgentUsers && activeAgentUsers.map(member => (
-                    <span onClick={() => setSelected(member.id)} key={member.id}>{member.fname} {member.lname} ({ member.office })</span>
-                  ))}
-                </> : "No Staff"}
-                </div>
-                :
+                {selected &&
                 <div className='selected'>
-                    <span>Would you like to chat with <strong>{selected?.fname} {selected?.lname}</strong>?</span>
+                    <span>Would you like to chat with <strong>{pilgrim?.agentName}</strong>?</span>
                     <div className="selected_btns">
                       <button style={{color: '#7d28d4'}} onClick={(e) => handleNew(selected, e)}>OK</button>
                       <button style={{color: '#aaaaaa'}} onClick={() => setSelected(null)}>CANCEL</button>
                     </div>
                 </div>}
-                </>}
+                {/* </>} */}
             </div>
           )
         }else if(isAgent){
@@ -188,13 +175,13 @@ const ChatContacts = () => {
                 </div>           
                 {agents.length > 0 ?<>
                 {agents && agents.map(member => (
-                  <span onClick={() => setSelected(member)} key={member.id}>{member.coName} </span>
+                  <span onClick={() => setSelected(member)} key={member.id}>{member.coName || member.name} </span>
                 ))}
               </> : "No Agent"}
             </div>
             :
             <div className='selected'>
-                <span>Would you like to chat with <strong>{selected?.coName}</strong>?</span>
+                <span>Would you like to chat with <strong>{selected?.coName || selected?.name}</strong>?</span>
                 <div className="selected_btns">
                   <button style={{color: '#7d28d4'}} onClick={(e) => handleNew(selected.id, e)}>OK</button>
                   <button style={{color: '#aaaaaa'}} onClick={() => setSelected(null)}>CANCEL</button>

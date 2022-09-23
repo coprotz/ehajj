@@ -23,7 +23,7 @@ const Navbar = () => {
     const agent = agents && agents.find(a => a.id === cuUser.agentId)
     const pilgrim = pilgrims && pilgrims.find(a => a.userId === user.uid)
 
-    console.log('pilgrim', pilgrim)
+    // console.log('pilgrim', pilgrim)
 
     // const pilgrimsRef = collection(db, 'pilgrims')
     // const [loading, setLoading] = useState(null)

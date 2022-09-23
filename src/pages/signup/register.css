@@ -1,0 +1,50 @@
+.register{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.register_left{
+    width: 60vw;
+    background-color: #3266a8;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.reg_reg_details{
+    padding: 0 100px;
+}
+
+.reg_welcome{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.reg_logo img{
+    width: 50px;
+    cursor: pointer;
+}
+
+.reg_footer_info{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+   
+}
+
+.reg_footer_info span{
+   
+    font-size: 1rem !important;
+    color: #bdd6f7;
+}
+
+.reg_footer_info span:hover{
+   
+    cursor: pointer;
+    color: white;
+    text-decoration: underline;
+}

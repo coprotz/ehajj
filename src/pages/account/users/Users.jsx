@@ -7,6 +7,11 @@ import { BiArrowBack} from "react-icons/bi";
 import useData from '../../../hooks/useData';
 import { useAuth } from '../../../hooks/useAuth';
 import './users.css'
+import NewChat from '../message/NewChat';
+import ChangeStatus from '../../../components/changeStatus/ChangeStatus';
+
+import ViewProfile from '../../../components/viewProfile/ViewProfile';
+
 
 
 const Users = () => {
@@ -21,6 +26,7 @@ const Users = () => {
 
   const agent = agents && agents.find(a => a.id === cuUser.agentId)
   const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
+  
 
   return (
     <motion.div 
@@ -43,7 +49,7 @@ const Users = () => {
           <th >Action</th>
         </thead>
         <tbody className='total'>
-          {agentUsers?.map((s, index) => (
+          {agentUsers?.filter(a => a.id !==cuUser.id).map((s, index) => (
             <tr key={s.id}>
               <td data-label='SN'>{index+1}</td>     
               <td data-label='Firstname'>{s.fname}</td>    
@@ -52,7 +58,14 @@ const Users = () => {
               <td data-label='Phone'>{s.phone}</td>
               <td data-label='Email'>{s.email}</td>
               <td data-label='Status'>{s.isApproved? 'Approved': 'Not Approved'}</td>
-              <td data-label='Action'>Action</td>
+              <td data-label='Action'>
+                <div className="actions_btns">
+                  <ChangeStatus id={s?.id}/>
+                  <ViewProfile id={s?.id}/>
+                  <NewChat s={s?.id} name={s?.fname+" "+s?.lname}/>                
+                </div>
+                Action
+              </td>
             </tr>
            ))}
         </tbody>

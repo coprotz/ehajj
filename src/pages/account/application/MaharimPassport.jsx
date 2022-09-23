@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import { AiOutlinePlus,AiOutlineMinus } from "react-icons/ai";
 import {motion} from 'framer-motion'
 import { BiArrowBack } from "react-icons/bi";
+import Loading from '../../../components/loading/Loading';
 
 const MaharimPassport = ({props}) => {
 
@@ -88,7 +89,7 @@ const MaharimPassport = ({props}) => {
             </div>
         </div>
        
-        <button className='btn_appli' type='submit'>{loading ? 'Saving...' : 'Continue'}</button>
+        <button className='btn_appli' type='submit'>{loading ? <Loading/> : 'Continue'}</button>
     </motion.form>
   )
 }

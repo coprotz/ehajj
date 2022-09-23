@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import Lang from '../lang/Lang';
 import logo from '../images/logo1.png'
 import MainMenu from '../menu/MainMenu';
+import Loading from '../loading/Loading';
 
 
 const Navbar = () => {
@@ -39,6 +40,7 @@ const Navbar = () => {
     try {
       await signIn(email, password)
       navigate('/account/main')
+      setLoading(false)
     } catch (error) {
       setErr(error.message);
     }
@@ -65,6 +67,7 @@ const Navbar = () => {
         </div>
         :
         <>
+        <button style={{border:'none'}}  onClick={() => navigate('/register')} className='btn_register'>{t('Register')}</button>
         <button style={{border:'none'}}  onClick={() => setLogin(!login)}>{login? <BiX className='bix'/>: <button className='btn_login'>{t('login')}</button>}</button>
         {login &&
         <motion.form 
@@ -91,8 +94,10 @@ const Navbar = () => {
             <button
               disabled={!isValid}
               type='submit'
-              ><span className='login_in'>Login</span><BiRightArrowAlt/></button>  
-          </div>     
+              className='login_in'
+              >{loading? <Loading/> : <span >Login<BiRightArrowAlt/></span>}</button>  
+          </div> 
+           
         </motion.form>
         }
         </>

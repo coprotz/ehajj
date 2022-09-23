@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import {motion} from 'framer-motion'
 import { BiArrowBack } from "react-icons/bi";
+import Loading from '../../../components/loading/Loading';
 
 const Ibada = ({props}) => {
 
@@ -49,7 +50,8 @@ const Ibada = ({props}) => {
               <option value='Umrah'>Umrah</option>         
           </select>            
         </div>
-        <button className='btn_appli' type='submit'>{loading ? 'Saving...' : 'Continue'}</button>
+        {/* <button className='btn_appli' type='submit'><Loading/></button> */}
+        <button className='btn_appli' type='submit'>{loading ? <Loading/> : 'Continue'}</button>
     </motion.form>
   )
 }

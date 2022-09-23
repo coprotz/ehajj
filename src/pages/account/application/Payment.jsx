@@ -11,6 +11,7 @@ import useData from '../../../hooks/useData'
 import { updateDoc } from 'firebase/firestore'
 import {motion} from 'framer-motion'
 import { BiArrowBack } from "react-icons/bi";
+import Loading from '../../../components/loading/Loading'
 
 const modes = [
     {id: 0, name: 'MASTERCARD', url:master},
@@ -173,7 +174,7 @@ const Payment = ({props}) => {
             </div>}
         </div>
          }
-         <button className='btn_appli' type='submit'>{loading ? 'Saving...' : 'Continue'}</button>
+         <button className='btn_appli' type='submit'>{loading ? <Loading/> : 'Continue'}</button>
     </motion.form>
   )
 }

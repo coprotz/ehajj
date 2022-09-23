@@ -34,13 +34,25 @@
     transition: all 0.5s ease;
 }
 
+.btn_register{
+    background-color: transparent;
+    border: 1px solid white !important;
+    text-transform: uppercase;
+    color: white;
+    font-size: 0.9rem !important;
+    /* font-weight: 700; */
+    /* border-radius: 3px; */
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
 .cont_login{
     position: absolute;
     top: 38px;
     right: 10px;
     /* transform: translateX(-50%); */
     padding: 10px;
-    background-color: #36668d;
+    background-color: white;
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -55,6 +67,8 @@
 .login_wrapper{
     display: flex;
     flex-direction: column;
+    background-color: white;
+    padding: 7px;
     gap: 5px;
 }
 
@@ -65,13 +79,15 @@
 }
 
 .cont_login input{
-    background-color: white;
-    padding: 5px;
+    background-color: #bdd6f7;
+    padding: 10px;
     outline: none;
     border: none;
+    /* border-bottom: 1px solid black; */
     font-size: 15px;
-    width: 150px;
+    width: 200px;
     transition: all 0.5s ease;
+    border-radius: 2px;
 }
 
 .cont_login button{
@@ -172,8 +188,18 @@
 }
 
 .login_in{
-    font-size: 14px;
-    padding-left: 5px;
+    font-size: 1rem;
+    padding: 10px;
+    
+    background-color: #3266a8 !important;
+    width: 100%;
+    text-align: center;
+}
+
+.login_in span{
+    display: flex;
+    align-items: center;
+    gap: 7px;
 }
 
 @media screen and (max-width: 440px){

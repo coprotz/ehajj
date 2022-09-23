@@ -72,7 +72,7 @@ const Layout = ({showMenu, setShowMenu}) => {
                 {cuUser?.fname} {cuUser?.lname}
                 <button className='btn_agents' onClick={() => navigate('/account/main')}>My Account</button>
               </div> 
-            : <Register/>}            
+            : <div className='register_main_container reg_abso'><Register /></div>}            
         </div>
       </div>
       <Footer/>

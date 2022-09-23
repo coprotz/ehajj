@@ -33,6 +33,8 @@ import CreateAgent from './pages/create/CreateAgent';
 import Help from './pages/help/Help';
 import Terms from './pages/terms/Terms';
 import Privacy from './pages/privacy/Privacy';
+import Register from './pages/signup/Signup';
+import Signup from './pages/signup/Signup';
 
 
 
@@ -87,6 +89,7 @@ function App() {
             <Route path='contact' element={<Contact />}/>
             <Route path='help' element={<Help />}/>
             <Route path='blogs' element={<Blogs />}/>
+            <Route path='register' element={<Signup />}/>
             <Route path='blogs/:id' element={<ViewBlog />}/>
             <Route path='success' element={<Success />}/>
             <Route path='account' element={

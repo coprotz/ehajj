@@ -2,13 +2,12 @@ import React from 'react'
 import { useAuth } from '../../../../hooks/useAuth';
 import useData from '../../../../hooks/useData'
 import moment from 'moment'
-import { 
-  BsChatLeftText, 
- 
-  } from "react-icons/bs";
-
-
+import {  BsChatLeftText, BsEye, BsPencil } from "react-icons/bs";
 import AgentSidebar from '../../sidebar/AgentSidebar';
+import { useState } from 'react';
+import ChangeStatus from '../../../../components/changeStatus/ChangeStatus';
+import NewChat from '../../message/NewChat';
+import ViewProfile from '../../../../components/viewProfile/ViewProfile';
 
 const AgentDash = () => {
 
@@ -25,6 +24,8 @@ const AgentDash = () => {
     // const agentUsers = users && users.filter(u => u.typeOf === 'agent')?.filter(a => a.agentId === ageId)
 
     console.log('agent', agent)
+
+    const [action, setAction] = useState(null)
 
   return (
     <div className="agent_body">  
@@ -88,7 +89,7 @@ const AgentDash = () => {
               <span className='user_span'>{a?.fname[0]}</span>
               <div className="agent_user_details">
                 <h3>{a?.fname} {a?.lname}</h3>
-                <small>Joined {moment(a?.createdAt.toDate()).fromNow()}</small>
+                <small>Joined {moment(a?.createdAt?.toDate()).fromNow()}</small>
                 <h4>{a.isApproved? 'Approved' : 'Not Approved'}</h4>
               </div>
               
@@ -112,6 +113,7 @@ const AgentDash = () => {
               <th>Hali ya Ndoa</th>
               <th>Kajiunga</th>
               <th>Ameshalipa?</th>
+              <th>Hatua Iliyofikia</th>
               <th>Action</th>
             </thead>
             <tbody>
@@ -125,7 +127,15 @@ const AgentDash = () => {
                   <td data-label='Hali ya Ndoa'>{pil?.marital}</td>
                   <td data-label='Kajiunga'>{moment(pil?.createdAt?.toDate()).fromNow(true)}</td>
                   <td data-label='Ameshalipa?'>{pil?.isPaid? 'Ndio' : 'Hapana'}</td>
-                  <td>Actions</td>
+                  <td data-label='Hatua Iliyofikia'>{pil?.status}</td>
+                  <td data-label='Chukua Hatua'>
+                    <div className="actions_btns">
+                      <ChangeStatus id={pil?.id}/>
+                      <ViewProfile id={pil?.id}/>
+                      <NewChat s={pil?.id} name={pil?.fname+" "+pil?.lname}/>                  
+                    </div>
+                  </td>
+                  
                 </tr>
                 ))}
             
@@ -141,7 +151,8 @@ const AgentDash = () => {
             <span className='admin_agent'>{admin?.fname[0]}</span>
             <h4>{admin?.fname} {admin?.lname}</h4>
             {cuUser?.id !== admin?.id &&
-            <button className='btn'><BsChatLeftText/></button>}
+            <NewChat s={admin?.id} name={admin?.fname+" "+admin?.lname}/>
+            }
         </div>
         
       </div>
