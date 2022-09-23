@@ -307,7 +307,7 @@ const Register = () => {
                         <div className="cont_inputs">
                             <select className='cont_item' name='agent' {...register("agent", { required: true })}>
                                 <option value="">--{t('select_agent')}--</option>
-                                {agents && agents.map(agent => (
+                                {agents && agents.filter(a => a.status==='Approved').map(agent => (
                                 <option value={agent.id} key={agent.id}>{agent?.coName || agent?.name}</option> 
                                 ))}                                               
                             </select>                    

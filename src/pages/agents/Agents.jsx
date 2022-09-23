@@ -44,7 +44,7 @@ const Agents = () => {
               </div>
               <div className="agents_lists">
                 
-                {agents && agents?.map((item) => (
+                {agents && agents.filter(a => a.status === 'Approved').map((item) => (
                   <div className="agent_card" key={item.id}>
                     <div className="agent_logo1">
                         {item?.logo? <img src={item.logo} alt=''/> : <span>Logo</span>}

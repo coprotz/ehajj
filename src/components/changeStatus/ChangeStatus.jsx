@@ -13,13 +13,15 @@ const ChangeStatus = ({id}) => {
     const [update, setUpdate] = useState('')
     const [err, setErr] = useState('')
 
-    const { pilgrims, users } = useData()
+    const { pilgrims, users, agents } = useData()
 
     const pilgrim = pilgrims && pilgrims.find(p =>p?.id === id)
+    const agent = agents && agents.find(a => a?.id === id)
     const user = users && users.find(u =>u?.id === id)
 
     const pilRef = doc(db, 'pilgrims', `${id}`)
     const userRef = doc(db, 'users', `${id}`)
+    const agentRef = doc(db, 'agents', `${id}`)
 
     const updateStatus = async (e) => {
         e.preventDefault();
@@ -37,7 +39,11 @@ const ChangeStatus = ({id}) => {
                 await updateDoc(userRef, {
                     status: update
                 })
-            }else{
+            }else if(agent){
+                await updateDoc(agentRef, {
+                    status: update
+                })
+            }{
                 setErr('Account is not found')
             }
            
