@@ -62,6 +62,10 @@ const Main = () => {
         return (
           <MissionDash/>
         )
+      }else{
+        return (
+          <h1>Error 404</h1>
+        )
       }
     }
   
