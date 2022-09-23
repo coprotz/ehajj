@@ -63,7 +63,9 @@ const Users = () => {
               <td data-label='Status'>{s?.status}</td>
               <td data-label='Action'>
                 <div className="actions_btns">
-                  {/* <ChangeStatus id={s?.id}/> */}
+                  {agent &&
+                    <ChangeStatus id={s?.id}/>
+                  }                  
                   <ViewProfile id={s?.id}/>
                   <NewChat s={s?.id} name={s?.fname+" "+s?.lname}/>                
                 </div>
