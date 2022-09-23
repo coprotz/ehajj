@@ -17,7 +17,7 @@ import { db, useAuth } from '../../../hooks/useAuth';
 
 const SendMessage = ({currentRoom}) => {
 
-  const { users} = useData();
+  const { users, mission} = useData();
   const { user } = useAuth();
   const [attached, setAttached] = useState(null)
   const { uid } = user
@@ -29,39 +29,25 @@ const SendMessage = ({currentRoom}) => {
   const [document, setDocument] = useState(null)
   const [image, setImage] = useState(null)
   const [error, setError] = useState('')
+  const isMission = mission && mission.find(m => m.userId === user.uid)
 
   // console.log('user', cuUser)
 
-  const name = cuUser?.fname +" "+ cuUser?.lname
+  const name =isMission? isMission?.fname+" "+isMission?.lname : cuUser?.fname +" "+ cuUser?.lname
 
   const types = ['image/png', 'image/jpeg']
 
-//   const handleSelect = (e) => {
-//       let selected = e.target.files[0];
 
-//       if (selected && types.includes(selected.type)){
-//           setImage(selected)
-//           setError('')
-//       }else {
-//           setImage(null)
-//           setError('Please select an image file (png or jpeg)')
-//       }
-//   }
-
-
-  
   const handleSubmit = async(e) => {
     e.preventDefault()
     setLoding(true)
     const data = {
             uid,
-            name: name,
-            // photoURL,
+            name: name,        
             createdAt: serverTimestamp(),
             text: message,
             room: currentRoom.id,
-            // memberId: room ? memberId : 'all',
-            // displayName: doctor ? doctor.name : displayName
+           
     }
 
     try {
@@ -72,28 +58,12 @@ const SendMessage = ({currentRoom}) => {
     } catch (error) {
         console.log(error.message)
     }
-    // scrollRef.current.scrollIntoView({ behavior: 'smooth' })
 
-    // console.log('data', data)
   
 };
   return (
 
-        <div className='form_container' >
-          
-          {/* {document &&
-            <SendDcoument setDocument={setDocument} document={document} currentRoom={currentRoom} setAttached={setAttached}/>
-          } 
-          { image && 
-            <SendImage 
-              setImage={setImage} 
-              image={image} 
-              setAttached={setAttached} 
-              currentRoom={currentRoom}
-              user={user}
-              doctor={doctor}
-              />
-          } */}
+        <div className='form_container' >      
           <form onSubmit={handleSubmit} className='form_inner_wrapper'>   
             {attached &&
             <div className="attach_wrapper">
@@ -105,8 +75,7 @@ const SendMessage = ({currentRoom}) => {
                   <input 
                     type="file" 
                     style={{display: 'none'}} 
-                    id='file'
-                    // onChange={handleSelect}
+                    id='file'              
                     />
                 </label>
                 <label htmlFor='image' className="attach_item">

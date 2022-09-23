@@ -74,7 +74,7 @@
     width: 100px;
     gap: 7px;
     /* border: 1px solid red; */
-    height: calc(100vh - 80px);
+    height: 75vh;
     position: sticky;
     top: 80px;
 }

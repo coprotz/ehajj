@@ -92,6 +92,7 @@
     font-size: 0.8rem;
     background-color: white;
     width: fit-content;
+    z-index: 10;
 
 }
 
