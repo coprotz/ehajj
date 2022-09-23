@@ -158,7 +158,7 @@ const AgentDash = () => {
       </div>
       <div className="agent_ri_ac_card">
         Approval Status
-        <h2>{agent?.isApproved? 'Approved': 'Not Approved'}</h2>
+        <h2>{agent?.status}</h2>
         <button className='btn_send'>Make a Reminder</button>
       </div>
       <div className="agent_ri_ac_card">

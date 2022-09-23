@@ -14,9 +14,9 @@ const UserCard = ({user, index}) => {
         <td data-label='Name'>{user?.fname+" "+user?.lname}</td>    
         <td data-label='Firm'>{agent?.name || agent?.coName}</td>   
         <td data-label='Office'>{agent?.office}</td>             
-        <td data-label='Phone'>{agent?.phone}</td>
-        <td data-label='Email'>{agent?.email}</td>
-        <td data-label='Status'>{agent?.status}</td>
+        <td data-label='Phone'>{user?.phone}</td>
+        <td data-label='Email'>{user?.email}</td>
+        <td data-label='Status'>{user?.status}</td>
         <td data-label='Action'>
         <div className="actions_btns">
             {/* <ChangeStatus id={agent?.id}/> */}
