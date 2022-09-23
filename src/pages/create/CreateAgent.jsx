@@ -81,14 +81,8 @@ const CreateAgent = () => {
         const dists = regions.find(r=>r.name === region)?.districts
         setDistricts(dists)
     },[region])
-
-    // const region = offices.find(m=>m.region)?.region
-
-    
-    
-    // const dists = offices[index].region
-    // console.log('ref',reg )
-    console.log('services', a_services)
+   
+    // console.log('services', a_services)
 
     
     const [error, setError] = useState('')
@@ -123,6 +117,7 @@ const CreateAgent = () => {
             phone,            
             isApproved: false,
             email,
+            status:'Not Approved',
             website,
             services: a_services,
             offices,

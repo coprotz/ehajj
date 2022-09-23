@@ -97,7 +97,7 @@ const Register = () => {
             missionId:'',
             email,
             gender,
-            status: 'Not Approved',
+            status: 'Approved',
             agentId: agentId || '',
             typeOf: 'agent',
             isOnline: true,
@@ -325,7 +325,7 @@ const Register = () => {
                         </div> 
                         <div className="create_agent">
                             <span>Cant you find your agent?</span>
-                            <button onClick={handleCreate} className='btn_create_agent'>Create New Agent</button>
+                            <button onClick={handleCreate} className='btn_create_agent'>{loading? <Loading/> : 'Create New Agent'}</button>
                         </div>                    
                         <button 
                             className='btn_submit' 

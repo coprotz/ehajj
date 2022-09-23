@@ -23,20 +23,20 @@ import ViewProfile from '../../../components/viewProfile/ViewProfile';
 const Pilgrims = () => {
     const { t } = useTranslation();
 
-    const { users, pilgrims, agents } = useData()
+    const { users, pilgrims, agents, mission } = useData()
     const navigate = useNavigate();
     const { user } = useAuth();
     const cuUser = users && users.find(u => u.id === user.uid)
     const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
     const agentPilgrims = pilgrims && pilgrims.filter(a =>a.agent === cuUser.agentId)
+    const isMission = mission && mission.find(m => m.userId === user.uid)
 
 
     const [report, setReport] = useState(null)
     const [action, setAction] = useState(null)
 
     const RenderRole = () => {
-      if(isAgent){
-        return (
+       return (
           <div className="users_inner">
           <span className='page_heading_1'>List of Pilgrims applied with this Firm</span>
           <table className='table'>
@@ -45,6 +45,7 @@ const Pilgrims = () => {
               <th>Name</th>
               <th>Sex</th>
               <th>Age</th>
+              <th>Email</th>
               <th>Ana Passpoti?</th>
               <th>Hali ya Ndoa</th>
               <th>Kajiunga</th>
@@ -53,12 +54,14 @@ const Pilgrims = () => {
               <th>Action</th>
             </thead>
             <tbody>
-              {agentPilgrims && agentPilgrims.map(pil => (
+              {isAgent && <>
+                {agentPilgrims && agentPilgrims.map(pil => (
                  <tr>
                   <td data-label='Picha'><img src={pil?.photo} alt="" /></td>
                   <td data-label='Jina'>{pil?.fname} {pil?.lname}</td>
                   <td data-label='Jinsia'>{pil?.gender}</td>
                   <td data-label='Umri'>{pil?.dob}</td>
+                  <td data-label='Email'>{pil?.email}</td>
                   <td data-label='Ana Pasipoti?'>{pil?.passNo !== ''? 'Ndio' : 'Hapana'}</td>
                   <td data-label='Hali ya Ndoa'>{pil?.marital}</td>
                   <td data-label='Kajiunga'>{moment(pil?.createdAt?.toDate()).fromNow(true)}</td>
@@ -74,37 +77,36 @@ const Pilgrims = () => {
                   
                 </tr>
                 ))}
-            
+              </>}
+              {isMission && <>
+                {pilgrims && pilgrims.map(pil => (
+                 <tr>
+                  <td data-label='Picha'><img src={pil?.photo} alt="" /></td>
+                  <td data-label='Jina'>{pil?.fname} {pil?.lname}</td>
+                  <td data-label='Jinsia'>{pil?.gender}</td>
+                  <td data-label='Umri'>{pil?.dob}</td>
+                  <td data-label='Email'>{pil?.email}</td>
+                  <td data-label='Ana Pasipoti?'>{pil?.passNo !== ''? 'Ndio' : 'Hapana'}</td>
+                  <td data-label='Hali ya Ndoa'>{pil?.marital}</td>
+                  <td data-label='Kajiunga'>{moment(pil?.createdAt?.toDate()).fromNow(true)}</td>
+                  <td data-label='Ameshalipa?'>{pil?.isPaid? 'Ndio' : 'Hapana'}</td>
+                  <td data-label='Hatua Iliyofikia'>{pil?.status}</td>
+                  <td data-label='Chukua Hatua'>
+                    <div className="actions_btns">
+                      <ChangeStatus id={pil?.id}/>
+                      <ViewProfile id={pil?.id}/>
+                      <NewChat s={pil?.userId} name={pil?.fname+" "+pil?.lname}/>                
+                    </div>
+                  </td>
+                  
+                </tr>
+                ))}
+              </>}
             </tbody>
           </table>
         </div>
         )
-      }else{
-        return (
-          <div className="users_inner">
-          {/* <span className='page_heading_1'>List of Applicants</span> */}
-          <div className="appli_layout">
-            <div className="appli_search">
-              <Search/>
-            </div>
-            {/* <div className="appli_report" onClick={() => setReport(!report)}>
-              {report? <GrClose/>: <><GoGraph/>{t('report')}</>}
-            </div> */}
-          </div>
-        
-          <div className={report? 'grid_hide' : "applicants_grid"} >
-            {pilgrims && pilgrims.map(s=> (              
-              <PilgrimCard s={s} key={s.id}/>
-           
-           
-            ))}
-        </div>
-        {/* <div className={report? 'show_report' : "hide_report"} >
-          <Reports agents={agents}/>
-        </div> */}
-         </div>
-        )
-      }
+     
     }
 
   return (

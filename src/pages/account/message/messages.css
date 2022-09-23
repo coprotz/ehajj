@@ -967,8 +967,10 @@ button:disabled{
     background-color: white;
     padding: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    top: -70px;
+    top: 30px;
     z-index: 20;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .group_btns{
