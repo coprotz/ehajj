@@ -90,7 +90,7 @@ const AgentDash = () => {
               <div className="agent_user_details">
                 <h3>{a?.fname} {a?.lname}</h3>
                 <small>Joined {moment(a?.createdAt?.toDate()).fromNow()}</small>
-                <h4>{a.isApproved? 'Approved' : 'Not Approved'}</h4>
+                <h4>{a.status}</h4>
               </div>
               
             </div>
