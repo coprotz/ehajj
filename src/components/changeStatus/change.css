@@ -1,0 +1,21 @@
+.change_wrapper{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 15px;
+    gap: 10px;
+    top: 40px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+}
+
+.change_wrapper select{
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    background-color: #bdd6f7;
+    outline: none;
+}

@@ -667,6 +667,7 @@ button:disabled{
 .btn_send{
     display: flex;
     align-items: center;
+    height: 35px;
     gap: 10px;
     padding: 11px 14px;
     margin: 5px auto;
