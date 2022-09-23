@@ -73,6 +73,10 @@
     flex-direction: column;
     width: 100px;
     gap: 7px;
+    /* border: 1px solid red; */
+    height: calc(100vh - 80px);
+    position: sticky;
+    top: 80px;
 }
 
 .agent_menu_item{

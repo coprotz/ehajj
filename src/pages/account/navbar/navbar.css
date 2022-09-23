@@ -1,3 +1,10 @@
+.agent_top{
+    position: sticky;
+    top: 0;
+    background-color: #e5effd;
+    z-index: 15;
+    border-bottom: 1px solid white;
+}
 .acc_top_wrapper{
     display: flex;
     justify-content: space-between;
@@ -101,6 +108,18 @@
     transform: translateX(-60%);
     z-index: 10;
     border-radius: 3px;
+}
+
+.mission_logo{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #36668d;
+    font-size: 3rem;
+    color: white;
 }
 
 

@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import {motion} from 'framer-motion'
-import CreateUser from './CreateUser';
-import ViewUser from './ViewUser';
+// import CreateUser from './CreateUser';
+// import ViewUser from './ViewUser';
 import { useNavigate } from 'react-router-dom';
 import { BiArrowBack} from "react-icons/bi";
 import useData from '../../../hooks/useData';
 import { useAuth } from '../../../hooks/useAuth';
-import './users.css'
+import './agent.css'
 import NewChat from '../message/NewChat';
 import ChangeStatus from '../../../components/changeStatus/ChangeStatus';
-
 import ViewProfile from '../../../components/viewProfile/ViewProfile';
-import UserCard from './UserCard';
+import moment from 'moment'
+// import UserCard from './UserCard';
 
 
 
-const Users = () => {
+const Teams = () => {
 
   const navigate = useNavigate();
   const { users, agents, mission } = useData();
@@ -38,48 +38,53 @@ const Users = () => {
       className="agent_body"> 
         <h3 className='message_head'><BiArrowBack onClick={() =>navigate('/account/main')}/>Users</h3>
         <div className="users_inner">
-          <h3>List of Users</h3>
+          <h3>List of Agents</h3>
           <table className='table'>
         <thead>
           <th >SN</th>
-          <th >Name</th>
-          <th >Firm</th>  
-          <th >Office</th>      
+          <th >Logo</th>
+          <th >Name</th>  
+          <th >Email</th>      
           <th >Phone</th>
-          <th >Email</th>
+          <th >Website</th>
+          <th >Joined</th>
+          <th >Createdby</th>
+          <th >Pilgrims</th>
           <th >Status</th>
           <th >Action</th>
         </thead>
         <tbody className='total'>
-          {agent && <>
-           {agentUsers?.filter(a => a.id !==cuUser.id).map((s, index) => (
+         
+           {agents?.map((s, index) => (
             <tr key={s.id}>
               <td data-label='SN'>{index+1}</td>     
-              <td data-label='Name'>{s?.fname}</td>    
-              <td data-label='Firm'>{s?.lname}</td>   
-              <td data-label='Office'>{s?.office}</td>             
+              <td data-label='Logo'><img src={s?.logo} alt="" /></td>    
+              <td data-label='Name'>{s?.name || s?.coName}</td>   
+              <td data-label='Email'>{s?.email}</td>             
               <td data-label='Phone'>{s?.phone}</td>
-              <td data-label='Email'>{s?.email}</td>
+              <td data-label='Website'>{s?.website}</td>
+              <td data-label='Joined'>{s?.email}</td>
+              <td data-label='Createdby'>{moment(s?.createdAt?.toDate()).fromNow(true)}</td>
+              <td data-label='Pilgrims'>{s?.status}</td>
               <td data-label='Status'>{s?.status}</td>
               <td data-label='Action'>
                 <div className="actions_btns">
-                  {/* <ChangeStatus id={s?.id}/> */}
+                  <ChangeStatus id={s?.id}/>
                   <ViewProfile id={s?.id}/>
-                  <NewChat s={s?.id} name={s?.fname+" "+s?.lname}/>                
+                  <NewChat s={s?.id} name={s?.name || s?.coName}/>                
                 </div>
               
               </td>
             </tr>
-           ))}
+           ))}           
            
-           </>}
-           {isMission && <>
+           {/* {isMission && <>
             {users?.map((s, index) => (
               <UserCard user={s} key={s.id} index={index}/>
            ))}
            
            
-           </>}
+           </>} */}
         </tbody>
       </table>
         </div>
@@ -89,4 +94,4 @@ const Users = () => {
   )
 }
 
-export default Users
+export default Teams

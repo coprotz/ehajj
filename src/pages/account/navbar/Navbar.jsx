@@ -16,12 +16,13 @@ import {
 const Navbar = () => {
 
     const navigate = useNavigate()
-    const { pilgrims, users, agents } = useData();
+    const { pilgrims, users, agents, mission } = useData();
 
     const {user, logOut} = useAuth();
     const cuUser = users && users.find(u => u.id === user.uid)
     const agent = agents && agents.find(a => a.id === cuUser.agentId)
     const pilgrim = pilgrims && pilgrims.find(a => a.userId === user.uid)
+    const cuMission = mission && mission.find(m => m.userId === user.uid)
 
     // console.log('pilgrim', pilgrim)
 
@@ -110,16 +111,16 @@ const Navbar = () => {
     <div className="agent_top">
           <div className="agent_top_left">
             <div className="agent_logo">
-              <img src={agent?.logo || pilgrim?.photo} alt="" />
+              {agent || pilgrim? <img src={agent?.logo || pilgrim?.photo} alt="" /> : <h4 className='mission_logo'>{cuMission?.name[0]}</h4>}
             </div>
-            <h1>{agent?.name || agent?.coName || pilgrim?.fname} {pilgrim?.lname}</h1>
+            <h1>{agent?.name || agent?.coName || pilgrim?.fname} {pilgrim?.lname} {cuMission?.name}</h1>
           </div>
           <div className="agent_top_right">
             <div className="user_notification">
               <button className='btn_notific'><BsBell/></button>   
             </div>
                      
-            <h4>{cuUser?.fname} {cuUser?.lname}</h4>           
+            <h4>{cuMission? cuMission?.fname+" "+cuMission?.lname : cuUser?.fname+" "+cuUser?.lname}</h4>           
             <div className="user_profile_acc" onMouseEnter={() =>setUserMenu(true)} onMouseLeave={() =>setUserMenu(null)}>
               <button className='btn_user'><BsFillCaretDownFill/></button>
               {userMenu &&

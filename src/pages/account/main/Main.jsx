@@ -9,11 +9,12 @@ import AdminDash from './dashboard/AdminDash';
 import PilgrimDash from './dashboard/PilgrimDash';
 import Navbar from '../navbar/Navbar';
 import AgentSidebar from '../sidebar/AgentSidebar';
+import MissionDash from './dashboard/MissionDash';
 
 const Main = () => {
 
     const {  user } = useAuth();
-    const { users, pilgrims, agents, dashAgents, dashPilgrims } = useData();
+    const { users, pilgrims, agents, dashAgents, dashPilgrims, mission } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
     const navigate = useNavigate()
     const ageId = cuUser?.agentId
@@ -25,9 +26,12 @@ const Main = () => {
     const isPilgrim = users && users.find(u => u.id === user.uid)?.typeOf === 'pilgrim'
     const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
     const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf === 'admin'
-    const isMission = users && users.find(u => u.id === user.uid)?.typeOf === 'mission'
     const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
     const activeAgentPilgrims = agentPilgrims && agentPilgrims.filter(a => a?.agentId === ageId)
+
+    const cuMission = mission && mission.find(m => m?.userId === user.uid)
+
+    console.log('mission', cuMission)
 
    
 
@@ -53,6 +57,10 @@ const Main = () => {
       }else if(isAgent){
         return (
          <AgentDash />
+        )
+      }else if(cuMission){
+        return (
+          <MissionDash/>
         )
       }
     }

@@ -22,7 +22,7 @@ import Layout from './pages/home/Layout';
 import Users from './pages/account/users/Users';
 import Blogs from './pages/blogs/Blogs';
 import Pilgrims from './pages/account/pilgrim/Pilgrims';
-import Team from './pages/account/agent/Team';
+import Teams from './pages/account/agent/Teams';
 
 import Reports from './pages/account/reports/Reports';
 import ChatRoom from './pages/account/message/ChatRoom'
@@ -105,7 +105,7 @@ function App() {
               <Route path='payments' element={<Payments/>}></Route>
               <Route path='users' element={<Users/>}></Route>
               <Route path='pilgrims' element={<Pilgrims/>}></Route>
-              <Route path='agents' element={<Team/>}></Route>
+              <Route path='agents' element={<Teams/>}></Route>
               <Route path='blogs' element={<Blogs/>}></Route>
               <Route path='reports' element={<Reports/>}></Route>
               <Route path='contacts' element={<ChatContacts/>}></Route>

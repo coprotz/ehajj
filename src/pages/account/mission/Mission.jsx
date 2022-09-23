@@ -1,13 +1,21 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import Footer from '../footer/Footer'
 import Navbar from '../navbar/Navbar'
+import { HiArrowNarrowLeft } from "react-icons/hi";
+import AgentSidebar from '../sidebar/AgentSidebar'
+
 
 const Mission = () => {
+  const navigate = useNavigate();
   return (
-    <div className='acc_wrapper'>
+    <div className='agent_wrapper'>
+        <button className='btn_back_home' onClick={() =>navigate('/')}><HiArrowNarrowLeft/></button>
         <Navbar/>
-        <Outlet/>
+        <div className="agent_container">
+          <AgentSidebar/>
+          <Outlet/>
+        </div>
         <Footer/>
      
     </div>
