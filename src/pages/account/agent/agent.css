@@ -331,7 +331,7 @@
         width: 100%;
         margin: 0 auto;
         padding: 0 10px;
-        /* height: 50vh; */
+        height: fit-content;
     }
 
     .agent_top_left{
@@ -365,6 +365,7 @@
         width: 100%;
         overflow-x: scroll;
         gap: 7px;
+        height: auto;
     }
 
     .agent_b_top_left{
