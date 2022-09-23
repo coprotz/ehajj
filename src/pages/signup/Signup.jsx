@@ -24,7 +24,7 @@ const Signup = () => {
               <span>Privacy</span>
             </div>
         </div>
-        <div className="cont_video">
+        <div className="cont_video reg_video">
             <video src={videoBg} autoPlay loop muted/>                      
         </div>
         

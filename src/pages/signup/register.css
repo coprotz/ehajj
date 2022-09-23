@@ -48,3 +48,23 @@
     color: white;
     text-decoration: underline;
 }
+
+@media screen and (max-width: 440px){
+    .reg_video{
+        display: none;
+    }
+
+    .register_left{
+        width: 100%;
+        background-color: #3266a8;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px;
+    }
+    
+    .reg_reg_details{
+        padding: 20px;
+    }
+}
