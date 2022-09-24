@@ -22,7 +22,7 @@ const Account = () => {
     //     loop: true
     //   };
 
-    const { pilgrims, messages, agents, users, chats } = useData();
+    const { pilgrims, messages, agents, users, chats, mission, admins } = useData();
 
     const navigate = useNavigate()
     const {user, logOut, db} = useAuth()
@@ -41,6 +41,10 @@ const Account = () => {
     const pilAgent = agents?.find((a) => a.id === cuPil?.agentId)
     const userAgent = agents?.find((a) => a.id === cuUser?.groupId)
     const agentPils = pilgrims?.filter((a) => a.agentId === cuAgent?.id)
+    const isMission = mission?.find(m => m?.userId === user?.uid)
+    const isAdmin = admins.find(a =>a.userid === user?.uid)
+    const isAgent = agents?.find(a => a.id === cuUser?.agentId)
+    const isPligrim = pilgrims?.find(p=>p.userId === user.uid)
 
     console.log('cuUser', cuUser)
 
@@ -65,20 +69,20 @@ const Account = () => {
     }
 
     const RenderAccount = () => {
-        if(cuUser && cuUser.typeOf === 'pilgrim'){
+        if(isPligrim){
             return (
                 <Pilgrim/>
             )
         }
-        else if(cuUser && cuUser.typeOf === 'agent'){
+        else if(isAgent && cuUser?.typeOf === 'agent'){
             return (
                 <Agent/>
             )
-        }else if(cuUser && cuUser.typeOf === 'admin'){
+        }else if(isAdmin){
             return (
                 <Admin/>
             )
-        }else if(cuUser && cuUser.typeOf === 'mission'){
+        }else if(isMission){
             return (
                 <Mission/>
             )

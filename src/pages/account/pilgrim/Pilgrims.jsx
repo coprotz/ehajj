@@ -38,7 +38,7 @@ const Pilgrims = () => {
     const RenderRole = () => {
        return (
           <div className="users_inner">
-          <span className='page_heading_1'>List of Pilgrims applied with this Firm</span>
+          <span className='page_heading_1'>List of Pilgrims</span>
           <table className='table'>
             <thead>
               <th>Photo</th>
@@ -46,8 +46,8 @@ const Pilgrims = () => {
               <th>Sex</th>
               <th>Age</th>
               <th>Email</th>
-              <th>Ana Passpoti?</th>
-              <th>Hali ya Ndoa</th>
+              <th>Wakala</th>
+         
               <th>Kajiunga</th>
               <th>Ameshalipa?</th>
               <th>Hatua Iliyofikia</th>
@@ -63,7 +63,7 @@ const Pilgrims = () => {
                   <td data-label='Umri'>{pil?.dob}</td>
                   <td data-label='Email'>{pil?.email}</td>
                   <td data-label='Ana Pasipoti?'>{pil?.passNo !== ''? 'Ndio' : 'Hapana'}</td>
-                  <td data-label='Hali ya Ndoa'>{pil?.marital}</td>
+                 
                   <td data-label='Kajiunga'>{moment(pil?.createdAt?.toDate()).fromNow(true)}</td>
                   <td data-label='Ameshalipa?'>{pil?.isPaid? 'Ndio' : 'Hapana'}</td>
                   <td data-label='Hatua Iliyofikia'>{pil?.status}</td>
@@ -80,26 +80,7 @@ const Pilgrims = () => {
               </>}
               {isMission && <>
                 {pilgrims && pilgrims.map(pil => (
-                 <tr>
-                  <td data-label='Picha'><img src={pil?.photo} alt="" /></td>
-                  <td data-label='Jina'>{pil?.fname} {pil?.lname}</td>
-                  <td data-label='Jinsia'>{pil?.gender}</td>
-                  <td data-label='Umri'>{pil?.dob}</td>
-                  <td data-label='Email'>{pil?.email}</td>
-                  <td data-label='Ana Pasipoti?'>{pil?.passNo !== ''? 'Ndio' : 'Hapana'}</td>
-                  <td data-label='Hali ya Ndoa'>{pil?.marital}</td>
-                  <td data-label='Kajiunga'>{moment(pil?.createdAt?.toDate()).fromNow(true)}</td>
-                  <td data-label='Ameshalipa?'>{pil?.isPaid? 'Ndio' : 'Hapana'}</td>
-                  <td data-label='Hatua Iliyofikia'>{pil?.status}</td>
-                  <td data-label='Chukua Hatua'>
-                    <div className="actions_btns">
-                      <ChangeStatus id={pil?.id}/>
-                      <ViewProfile id={pil?.id}/>
-                      <NewChat s={pil?.userId} name={pil?.fname+" "+pil?.lname}/>                
-                    </div>
-                  </td>
-                  
-                </tr>
+                <PilgrimCard pil={pil}/>
                 ))}
               </>}
             </tbody>

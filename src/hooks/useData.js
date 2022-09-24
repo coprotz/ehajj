@@ -22,6 +22,8 @@ const useData = () => {
     const paymentsRef = collection(db, 'payments')
     const [mission, setMission] = useState([])
     const missionRef = collection(db, 'mission')
+    const [admins, setAdmins] = useState([])
+    const adminsRef = collection(db, 'admins')
 
 
     const q = query(messagesRef, orderBy("createdAt"));
@@ -134,8 +136,18 @@ const useData = () => {
             }))
         })
     },[])
+    useEffect(() => {
+        onSnapshot(adminsRef, snapshot => {
+            setAdmins(snapshot.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            }))
+        })
+    },[])
 
-    return { messages, pilgrims, chats, agents, users, groups, payments, dashAgents, dashPilgrims, mission }
+    return { messages, pilgrims, chats, agents, users, groups, payments, dashAgents, dashPilgrims, mission, admins }
 }
 
 export default useData;

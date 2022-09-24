@@ -11,7 +11,8 @@ const UserCard = ({user, index}) => {
   return (
     <tr>
         <td data-label='SN'>{index+1}</td>     
-        <td data-label='Name'>{user?.fname+" "+user?.lname}</td>    
+        <td data-label='Name'>{user?.fname+" "+user?.lname}</td> 
+        <td data-label='Role'>{user?.typeOf}</td>    
         <td data-label='Firm'>{agent?.name || agent?.coName}</td>   
         <td data-label='Office'>{agent?.office}</td>             
         <td data-label='Phone'>{user?.phone}</td>

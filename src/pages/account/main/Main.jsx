@@ -31,7 +31,7 @@ const Main = () => {
 
     const cuMission = mission && mission.find(m => m?.userId === user.uid)
 
-    console.log('mission', cuMission)
+    // console.log('mission', cuMission)
 
    
 

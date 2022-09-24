@@ -111,9 +111,16 @@ const Navbar = () => {
     <div className="agent_top">
           <div className="agent_top_left">
             <div className="agent_logo">
-              {agent || pilgrim? <img src={agent?.logo || pilgrim?.photo} alt="" /> : <h4 className='mission_logo'>{cuMission?.name[0]}</h4>}
+              { 
+                pilgrim? <img src={pilgrim?.photo} alt="" /> : 
+                agent?  <img src={agent?.logo} alt="" /> : 
+                cuMission? <h4 className='mission_logo'>{cuMission?.name[0]}</h4> : 
+              null}
             </div>
-            <h1>{agent?.name || agent?.coName || pilgrim?.fname} {pilgrim?.lname} {cuMission?.name}</h1>
+            <h1>{
+              agent? agent?.name || agent?.coName : 
+              pilgrim? pilgrim?.fname+" "+pilgrim?.lname :
+              cuMission? cuMission?.name : null}</h1>
           </div>
           <div className="agent_top_right">
             <div className="user_notification">

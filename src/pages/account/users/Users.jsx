@@ -43,6 +43,7 @@ const Users = () => {
         <thead>
           <th >SN</th>
           <th >Name</th>
+          <th >Role</th>
           <th >Firm</th>  
           <th >Office</th>      
           <th >Phone</th>
@@ -55,7 +56,8 @@ const Users = () => {
            {agentUsers?.filter(a => a.id !==cuUser.id).map((s, index) => (
             <tr key={s.id}>
               <td data-label='SN'>{index+1}</td>     
-              <td data-label='Name'>{s?.fname}</td>    
+              <td data-label='Name'>{s?.fname+" "+s?.lname}</td>  
+              <td data-label='Role'>{s?.typeOf}</td>    
               <td data-label='Firm'>{s?.lname}</td>   
               <td data-label='Office'>{s?.office}</td>             
               <td data-label='Phone'>{s?.phone}</td>
