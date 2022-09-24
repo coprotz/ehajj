@@ -82,6 +82,7 @@ video{
     bottom: 20px;
     background-color: #3265a89a;
     padding: 20px;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
 }

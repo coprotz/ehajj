@@ -246,6 +246,7 @@ const CreateAgent = () => {
                            <h4>AGENT OFFICES</h4> 
                            <button className='btn_add' onClick={handleAdd}><FaPlus/></button>
                         </div>
+                        
                          {offices?.map((item, index) => (
           
                         <div className="form_inputs_wrapper">

@@ -11,6 +11,10 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from 'react';
 import axios from 'axios';
 import Loading from '../../components/loading/Loading'
+import AgentOffices from './register/AgentOffices';
+import AgentServices from './register/AgentServices';
+import AgentLogo from './register/AgentLogo';
+import useStorage from '../../hooks/useStorage';
 
 
 const Register = () => {
@@ -35,6 +39,21 @@ const Register = () => {
     const office = watch('office')
     const country = watch('country')
     const mPhone = watch('mPhone')
+    const coName = watch('coName')
+    const coEmail = watch('coEmail')
+    const coPhone = watch('coPhone')
+    const website = watch('website')
+    const coLicence = watch('coLicence')
+    const a_services = watch('services')
+    const cost = watch('cost')
+    const desc = watch('desc')
+    const [file, setFile] = useState(null)
+    const { perc, url } = useStorage(file)
+    const [services, setServices] = useState(null)
+
+    const [offices, setOffices] = useState([
+        {street: '', building: '', district: '', region: ''}
+    ])
 
     const selectedAgent = agents && agents.find(a => a.id === agentId)
     const usersRef = collection(db, 'users')
@@ -45,10 +64,10 @@ const Register = () => {
 
     const agent = agents?.find(a => a.id === agentId)
 
-    console.log('agent', agent)
+    // console.log('agent', agent)
 
-    const fdig = mPhone.slice(4,7)
-    const ldig = mPhone.slice(10,13)
+    const fdig = mPhone?.slice(4,7)
+    const ldig = mPhone?.slice(10,13)
 
     // console.log('lastdi', lastDigits)
 
@@ -97,28 +116,39 @@ const Register = () => {
 
     const [page, setPage] = useState(1)
 
+    const agentRef = collection(db, 'agents')
+    //  const userRef = doc(db, 'users', `${user.uid}`)
+
     const handleCreate = async(e) => {
         e.preventDefault();
 
         setLoading(true)
 
         const data = {
-            fname,
-            lname,
-            missionId:'',
+            coName,
+            coEmail,
+            coLicence,
+            password,
+            coPhone,
             email,
+            fname,
+            lname,          
             gender,
             status: 'Approved',
             agentId: agentId || '',
-            typeOf: 'agent',
-            isOnline: true,
-            isApproved: false,
-            phone:code + phone,
-            isAdmin: false,
-            country,
+            website,
+            services, 
+            cost,
+            desc,
+            logo:url,       
+            isOnline: true, 
+            offices,        
+            // country,
             createdAt: serverTimestamp(),
 
         }
+
+        console.log('data', data)
 
         try {
             const newUser = await signUp(email, password)            
@@ -126,9 +156,16 @@ const Register = () => {
                 ...data,
                 createdAt: serverTimestamp(),
             }) 
+            const newAgent = await addDoc(agentRef, data)
+            await updateDoc(doc(db, 'users', `${newUser.user.uid}`), {
+                agentId: newAgent?.id
+            })
+            const agent = agents?.find(a =>a.id === newAgent?.id)
+            await updateDoc(doc(db, 'agents', `${agent?.id}`), {
+                users: [...agent?.users, `${newUser.user.uid}`],
+            })  
             setLoading(null)
-            navigate('/createAgent')
-            // console.log('user', newUser.user)
+            navigate('/account/main')         
         } catch (error) {
             setErr(error.message)
         }
@@ -155,8 +192,8 @@ const Register = () => {
             isOnline: true,
             isAdmin: false,
             isApproved: false,
-            phone:code + phone,
-            country,
+            // phone:code + phone,
+            // country,
             createdAt: serverTimestamp(),
             
         }
@@ -198,8 +235,8 @@ const Register = () => {
             status:'Not Approved',              
             isOnline: true,     
             isApproved: false,
-            phone:code + phone,
-            country,
+            // phone:code + phone,
+            // country,
             createdAt: serverTimestamp(),
             
         }
@@ -263,15 +300,7 @@ const Register = () => {
                     </button>
             )
         }
-        // else{
-        //     return(
-        //         <button 
-        //             className='btn_submit' 
-        //             onClick={handleRegister} 
-        //             disabled={!isValid}>
-        //             {loading? <Loading/> : <span>{t('submit')}<BiRightArrowAlt/></span>}</button>
-        //     )
-        // }
+   
     }
     const RenderPage = () => {
         if(page === 1){
@@ -283,54 +312,66 @@ const Register = () => {
                         transition={{ ease: "easeOut", duration: 0.5 }}
                         className='cont_motion'>
                         <h4>{t('register_head')}</h4>
-                        <div className="cont_inputs">
-                            <input type="text" placeholder={`${t('fname')}`} className='cont_item' name='fname' {...register("fname", { required: true })}/>
-                            <input 
-                                type="text" 
-                                placeholder={`${t('lname')}`} 
-                                className='cont_item' 
-                                name='lname' 
-                                {...register("lname", { required: true })}
-                            />
+                        <div className="cont_inputs">                        
+                             <div className="create_group">                            
+                                <input 
+                                    type="text" 
+                                    className="create_input" 
+                                   
+                                    name='fname' 
+                                    {...register("fname", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>{`${t('fname')}`}</span>
+                            </div>
+                            <div className="create_group">                            
+                                <input 
+                                    type="text" 
+                                    className="create_input" 
+                                   
+                                    name='lname' 
+                                    {...register("lname", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>{`${t('lname')}`}</span>
+                            </div>                          
                         </div>
-                        <div className="cont_inputs">
-                            <input 
-                                type="email" 
-                                placeholder={`${t('email')}`} 
-                                className='cont_item' 
-                                name='email' 
-                                {...register("email", { required: true })}
-                                />   
-                            <select name="gender" id="" {...register("gender", { required: true })} className='cont_item'>
-                                <option value="" >--Select gender--</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>    
+                        <div className="cont_inputs">                        
+                             <div className="create_group">                            
+                                <input 
+                                    type="text" 
+                                    className="create_input" 
+                                   
+                                    name='email' 
+                                    {...register("email", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>{`${t('email')}`}</span>
+                            </div>
+                            <div className="create_group">  
+                                <select 
+                                    name="gender" 
+                                    {...register("gender", { required: true })} 
+                                    className='create_input'                                    
+                                >
+                                    <option value="" style={{color:'black'}}>--Select gender--</option>
+                                    <option value="Male" style={{color:'black'}}>Male</option>
+                                    <option value="Female" style={{color:'black'}}>Female</option>
+                                </select>                          
+                              
+                                <span className='create_span_1'>{`${t('gender')}`}</span>
+                            </div> 
+                                                     
                         </div>
-                        {/* <div className="cont_inputs">
-                            <select name="country" id="" {...register("country", { required: true })} className='cont_item'>
-                                <option value="" >--Select Country--</option>
-                                {countries && countries.sort((a,b)=>a.name.common < b.name.common ? -1 : a.name.common === b.name.common ? 0 : 1).map((data, index) => (
-                                    <option key={index}>{data.name.common}</option>
-                                ))}
-                            </select>
-                            <div className="phone_wrapper">
-                                {country && <>
-                                    <span className='con_flag'><img src={flag} alt="" /></span>
-                                    <span >{code}</span>
-                                </>}
-                                
-                                <input type="tel" 
-                                    placeholder={`${t('phone')}`} 
-                                    name='phone'
-                                    className={country? 'sq_input': 'ext_input'}
-                                    {...register("phone", { required: true })}
-                                    />
-                            </div>                         
-                            
-                        </div> */}
+                      
                         <div className="cont_inputs">
-                            <input type="password" placeholder={`${t('password')}`} className='cont_item' name='password' {...register("password", { required: true })}/>
+                            <div className="create_group">                            
+                                <input 
+                                    type="password" 
+                                    className="create_input" 
+                                   
+                                    name='password' 
+                                    {...register("password", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>{`${t('password')}`}</span>
+                            </div>                           
                             {/* <input type="password" placeholder={`${t('cPassword')}`} className='cont_item' name='cPassword' {...register("cPassword", { required: true })}/> */}
                         </div>      
                         <button className='btn_submit' onClick={() => setPage(2)} disabled={!isValid}>{t('continue')}<BiRightArrowAlt/></button>
@@ -401,26 +442,42 @@ const Register = () => {
                     
                         <h4><BiArrowBack onClick={() => setPage(2)}/>{t('select_agent')}</h4>
                         <div className="cont_inputs">
-                            <select className='cont_item' name='agent' {...register("agent", { required: true })}>
-                                <option value="">--{t('select_agent')}--</option>
-                                {agents && agents.filter(a => a.status==='Approved').map(agent => (
-                                <option value={agent.id} key={agent.id}>{agent?.coName || agent?.name}</option> 
-                                ))}                                               
-                            </select>                    
+                            <div className="create_group">  
+                                <select 
+                                    name="agent" 
+                                    {...register("agent", { required: true })} 
+                                    className='create_input'                                    
+                                    >
+                                    <option value="" style={{color:'black'}}>--{t('select_agent')}--</option>
+                                    {agents && agents.filter(a => a.status==='Approved').map(agent => (
+                                    <option value={agent.id} key={agent.id} style={{color:'black'}}                         
+                                    >{agent?.coName || agent?.name}</option> 
+                                ))}                                 
+                                </select>                       
+                                <span className='create_span_1' >{`${t('select_agent')}`}</span>
+                            </div>
+                          
                         </div>
                         <div className="cont_inputs">
-                            <select className='cont_item' name='office' {...register("office", { required: true })}>
-                                <option value="">--{t('select_office')}--</option>
-                                {selectedAgent && selectedAgent?.office?.map((district, index) => (
-                                    <option value="Wazo Agent" key={index}>{district}</option>
-                                ))} 
-                                <option value="For now">For Now</option>                       
-                            </select>                    
+                            <div className="create_group">  
+                                <select 
+                                    name="office" 
+                                    {...register("office", { required: true })} 
+                                    className='create_input'                                    
+                                    >
+                                     <option value="" style={{color:'black'}}>--{t('select_office')}--</option>
+                                    {selectedAgent && selectedAgent?.office?.map((district, index) => (
+                                    <option value="Wazo Agent" key={index} style={{color:'black'}}>{district}</option> 
+                                    ))}  
+                                    <option value="For now" style={{color:'black'}}>For Now</option>                                
+                                </select>                       
+                                <span className='create_span_1' >{`${t('select_office')}`}</span>
+                            </div>                                           
                         </div> 
                         {!agentId &&
                         <div className="create_agent">
                             <span>Cant you find your agent?</span>
-                            <button onClick={handleCreate} className='btn_create_agent'>{loading? <Loading/> : 'Create New Agent'}</button>
+                            <button onClick={() =>setPage(9)} className='btn_create_agent'>{loading? <Loading/> : 'Create New Agent'}</button>
                         </div> }                   
                         <button 
                             className='btn_submit' 
@@ -443,12 +500,19 @@ const Register = () => {
                     
                         <h4><BiArrowBack onClick={() => setPage(2)}/>{t('select_agent')}</h4>
                         <div className="cont_inputs">
-                            <select className='cont_item' name='agent' {...register("agent", { required: true })}>
-                                <option value="">--{t('select_agent')}--</option>
-                                {agents && agents.filter(a => a.status==='Approved').map(agent => (
-                                <option value={agent.id} key={agent.id}>{agent?.coName || agent?.name}</option> 
-                                ))}                                               
-                            </select>                    
+                            <div className="create_group">  
+                                <select 
+                                    name="agent" 
+                                    {...register("agent", { required: true })} 
+                                    className='create_input'                                    
+                                    >
+                                    <option value="" style={{color:'black'}}>--{t('select_agent')}--</option>
+                                    {agents && agents.filter(a => a.status==='Approved').map(agent => (
+                                    <option value={agent.id} key={agent.id} style={{color:'black'}}>{agent?.coName || agent?.name}</option> 
+                                ))}                                 
+                                </select>                       
+                                <span className='create_span_1'>{`${t('select_agent')}`}</span>
+                            </div>                    
                         </div>  
                         {!agentId &&                     
                         <div className="create_agent">
@@ -476,12 +540,20 @@ const Register = () => {
                     
                         <h4><BiArrowBack onClick={() => setPage(2)}/>{t('select_position')}</h4>
                         <div className="cont_inputs">
-                            <select className='cont_item' name='mPhone' {...register("mPhone", { required: true })}>
-                                <option value="">--{t('select_position')}--</option>
-                                {mission && mission.map(m => (
-                                <option value={m.phone} key={m.id} style={{color: 'black'}}>{m.position}</option> 
-                                ))}                                               
-                            </select>                    
+                            <div className="create_group">  
+                                <select 
+                                    name="mPhone" 
+                                    {...register("mPhone", { required: true })}
+                                    className='create_input'                                    
+                                    >
+                                    <option value="" style={{color:'black'}}>--{t('select_position')}--</option>
+                                    {mission && mission.map(m => (
+                                    <option value={m.phone} key={m.id} style={{color: 'black'}}
+                                    >{m.position}</option> 
+                                    ))}                                 
+                                </select>                       
+                                <span className='create_span_1'>{`${t('select_position')}`}</span>
+                            </div>                                              
                         </div>                                         
                         <button 
                             className='btn_submit' 
@@ -504,14 +576,18 @@ const Register = () => {
                     
                         <h4><BiArrowBack onClick={() => setPage(5)}/>
                             Please Enter the Code that has been sent to 0{fdig}_ _ _ _{ldig}</h4>
-                        <div className="cont_inputs">                            
-                            <input 
-                                type="number" 
-                                placeholder='ENTER CODE' 
-                                className='cont_item' 
-                                name='code' 
-                                {...register("code", { required: true })}
-                            />
+                        <div className="cont_inputs"> 
+                            <div className="create_group">                            
+                                <input 
+                                    type="number" 
+                                    className="create_input" 
+                                   
+                                    name='code' 
+                                    {...register("code", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>{`${t('code')}`}</span>
+                            </div>                             
+                          
                         </div>                                         
                         <button 
                             className='btn_submit' 
@@ -534,12 +610,21 @@ const Register = () => {
                     
                         <h4><BiArrowBack onClick={() => setPage(2)}/>{t('select_position')}</h4>
                         <div className="cont_inputs">
-                            <select className='cont_item' name='mPhone' {...register("mPhone", { required: true })}>
-                                <option value="">--{t('select_position')}--</option>
-                                {admins && admins.map(m => (
-                                <option value={m.phone} key={m.id} style={{color: 'black'}}>{m.position}</option> 
-                                ))}                                               
-                            </select>                    
+                        <div className="create_group">  
+                                <select 
+                                    name="mPhone" 
+                                    {...register("mPhone", { required: true })}
+                                    className='create_input'                                    
+                                    >
+                                    <option value="" style={{color:'black'}}>--{t('select_position')}--</option>
+                                    {admins && admins.map(m => (
+                                    <option value={m.phone} key={m.id} style={{color: 'black'}}
+                                    >{m.position}</option> 
+                                    ))}                                 
+                                </select>                       
+                                <span className='create_span_1'>{`${t('select_position')}`}</span>
+                            </div> 
+                          
                         </div>                                         
                         <button 
                             className='btn_submit' 
@@ -560,22 +645,271 @@ const Register = () => {
                     transition={{ ease: "easeOut", duration: 0.5 }}
                     className='cont_motion'>
                     
-                        <h4><BiArrowBack onClick={() => setPage(5)}/>
+                        <h4><BiArrowBack onClick={() => setPage(6)}/>
                             Please Enter the Code that has been sent to 0{fdig}_ _ _ _{ldig}</h4>
-                        <div className="cont_inputs">                            
-                            <input 
-                                type="number" 
-                                placeholder='ENTER CODE' 
-                                className='cont_item' 
-                                name='code' 
-                                {...register("code", { required: true })}
-                            />
+                        <div className="cont_inputs">
+                            <div className="create_group">                            
+                                <input 
+                                    type="number" 
+                                    className="create_input" 
+                                   
+                                    name='code' 
+                                    {...register("code", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>{`${t('code')}`}</span>
+                            </div>                            
+                          
                         </div>                                         
                         <button 
                             className='btn_submit' 
                             onClick={() => setPage(8)} 
                             disabled={!isValid}
                             >{t('continue')}<BiRightArrowAlt/>
+                        </button>
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 9){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(3)}/>Are you sure do want to create a new Agent?</h4>                            
+                            <div className="cont_radios">                          
+                            <label htmlFor="yes" className='cont_label' onClick={() =>setPage(10)}><span>Yes I do</span></label>                         
+                            <label htmlFor="no" className='cont_label' onClick={() =>setPage(3)}><span>No Thank You</span></label>  
+                        </div>                                       
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 10){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(9)}/>Are you the Owner of the Agent that you want to create or Authorised Personel?</h4>
+                            <div className="cont_radios">                            
+                            <label htmlFor="yes1" className='cont_label' onClick={() =>setPage(11)}><span>Yes I am</span></label>                            
+                            <label htmlFor="no1" className='cont_label' onClick={() =>setPage(3)}><span>No Thank You</span></label>  
+                        </div>                                          
+                       
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 11){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(10)}/>Is your Agent registered with Tanzania Hajj Mission?</h4>
+                            <div className="cont_radios">                          
+                                <label htmlFor="yes1" className='cont_label' onClick={() =>setPage(12)}><span>Yes I have a License</span></label>                          
+                                <label htmlFor="no1" className='cont_label' onClick={() =>setPage(3)}><span>No Thank You</span></label>  
+                            </div>                                         
+                       
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 12){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(11)}/>General Info of the Agent</h4>
+                        <div className="cont_inputs"> 
+                            <div className="create_group">                            
+                                <input 
+                                    type="text" 
+                                    className="create_input" 
+                                    name='coName' 
+                                    {...register("coName", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>Agent Name</span>
+                            </div>                            
+                     
+                        </div>   
+                        <div className="cont_inputs"> 
+                            <div className="create_group">                            
+                                <input 
+                                    type="text" 
+                                    className="create_input" 
+                                    name='coEmail' 
+                                    {...register("coEmail", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>Company Email</span>
+                            </div>                            
+                      
+                            <div className="create_group">                            
+                                <input 
+                                    type="text" 
+                                    className="create_input" 
+                                    name='coPhone' 
+                                    {...register("coPhone", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>Agent Phone</span>
+                            </div> 
+                       
+                        </div>   
+                        <div className="cont_inputs">  
+                            <div className="create_group">                            
+                                <input 
+                                    type="text" 
+                                    className="create_input" 
+                                    name='website' 
+                                    {...register("website")}
+                                    required/>
+                                <span className='create_span_1'>Agent Website if Any</span>
+                            </div> 
+                            <div className="create_group">                            
+                                <input 
+                                    type="text" 
+                                    className="create_input" 
+                                    name='coLicence' 
+                                    {...register("coLicence", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>Agent License</span>
+                            </div>                           
+                        
+                        </div>                                      
+                        <button 
+                            className='btn_submit' 
+                            onClick={() => setPage(13)} 
+                            disabled={!isValid}
+                            >{t('continue')}<BiRightArrowAlt/>
+                        </button>
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 13){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(11)}/>Agent Offices</h4>
+                          
+                        <AgentOffices offices={offices} setOffices={setOffices}/>                                    
+                        <button 
+                            className='btn_submit' 
+                            onClick={() => setPage(14)} 
+                            disabled={!isValid}
+                            >{t('continue')}<BiRightArrowAlt/>
+                        </button>
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 14){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(13)}/>Agent Services</h4>
+                          
+                        <AgentServices setServices={setServices}/>                                   
+                        <button 
+                            className='btn_submit' 
+                            onClick={() => setPage(15)} 
+                            disabled={!isValid}
+                            >{t('continue')}<BiRightArrowAlt/>
+                        </button>
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 15){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(14)}/>Agent Package Cost</h4>                          
+                        <div className="create_group">                            
+                            <input 
+                                type="text" 
+                                className="create_input" 
+                                name='cost'
+                                {...register("cost", { required: true })}
+                            />
+                            <span className='create_span_1'>Hijja Cost in USD</span>
+                        </div>                                
+                        <button 
+                            className='btn_submit' 
+                            onClick={() => setPage(16)} 
+                            disabled={!isValid}
+                            >{t('continue')}<BiRightArrowAlt/>
+                        </button>
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 16){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(15)}/>Agent Logo</h4>                          
+                          <AgentLogo file={file} setFile={setFile} url={url} perc={perc}/>                            
+                        <button 
+                            className='btn_submit' 
+                            onClick={() => setPage(17)} 
+                            disabled={!isValid}
+                            >{t('continue')}<BiRightArrowAlt/>
+                        </button>
+                    </motion.div>
+                
+            </div>
+            )
+        }else if(page === 17){
+            return (
+                <div className="cont_register">
+                    <motion.div 
+                    initial={{ x: -100}}
+                    animate={{x: 1}} 
+                    transition={{ ease: "easeOut", duration: 0.5 }}
+                    className='cont_motion'>                    
+                        <h4><BiArrowBack onClick={() => setPage(16)}/>Briefly About your Agent</h4>                          
+                        <div className="create_group">                            
+                            <textarea 
+                                type="text" 
+                                className="create_input textarea_input" 
+                                name='desc'
+                                {...register("desc", { required: true })}
+                                required></textarea>
+                            <span className='create_span_1'>Briefly about Agent</span>
+                        </div>                          
+                        <button 
+                            className='btn_submit' 
+                            onClick={handleCreate} 
+                            disabled={!isValid}
+                            >{loading? <Loading/> : 'CREATE AGENT'}<BiRightArrowAlt/>
                         </button>
                     </motion.div>
                 
