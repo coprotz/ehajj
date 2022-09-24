@@ -14,7 +14,9 @@ const AgentCard = ({s, index}) => {
   return (
     <tr key={s.id}>
         <td data-label='SN'>{index+1}</td>     
-        <td data-label='Logo'><img src={s?.logo} alt="" /></td>    
+        <td data-label='Logo'>{s?.logo? <img src={s?.logo} alt="" />: 
+          <span className='agent_logo2'>{s?.name || s?.coName}</span>}
+        </td>    
         <td data-label='Name'>{s?.name || s?.coName}</td>   
         <td data-label='Email'>{s?.email}</td>             
         <td data-label='Phone'>{s?.phone}</td>

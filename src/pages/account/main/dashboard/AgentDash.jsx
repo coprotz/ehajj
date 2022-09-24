@@ -101,7 +101,7 @@ const AgentDash = () => {
         </div>
       </div>
       <div className="agent_applicants">
-        Recent Applicants
+        Recent Pilgrims
         <div className="agent_rec_applicants">
           <table className='table'>
             <thead>
@@ -159,7 +159,8 @@ const AgentDash = () => {
       <div className="agent_ri_ac_card">
         Approval Status
         <h2>{agent?.status}</h2>
-        <button className='btn_send'>Make a Reminder</button>
+        {agent?.status === "Not Approved" &&
+        <button className='btn_send'>Make a Reminder</button>}
       </div>
       <div className="agent_ri_ac_card">
         Payment Status

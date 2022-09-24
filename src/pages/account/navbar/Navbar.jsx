@@ -20,9 +20,12 @@ const Navbar = () => {
 
     const {user, logOut} = useAuth();
     const cuUser = users && users.find(u => u.id === user.uid)
-    const agent = agents && agents.find(a => a.id === cuUser.agentId)
-    const pilgrim = pilgrims && pilgrims.find(a => a.userId === user.uid)
+    const agent = agents && agents.find(a => a?.users?.includes(`${user.uid}`))
+    // const pilgrim = agents && agents.find(a => a.pilgrims?.includes(`${user.uid}`))
+    const pilgrim = pilgrims && pilgrims.find(a => a.userId ===user.uid)
     const cuMission = mission && mission.find(m => m.userId === user.uid)
+
+    console.log('pilgrim', pilgrim)
 
     // console.log('pilgrim', pilgrim)
 

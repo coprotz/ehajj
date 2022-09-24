@@ -23,11 +23,12 @@ const Users = () => {
   const cuUser = users && users.find(u => u.id === user.uid)
 
   const agentUsers = users && users.filter(a =>a.typeOf === 'agent')?.filter(u => u.agentId === cuUser.agentId)
-  console.log('agentusers', agentUsers)
+  // console.log('agentusers', agentUsers)
 
   const agent = agents && agents.find(a => a.id === cuUser.agentId)
-  const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
+  // const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
   const isMission = mission && mission.find(m => m.userId === user.uid)
+  // const agent = agents && agents.find(u => u.id === user?.agentId)
   
 
   return (
@@ -58,7 +59,7 @@ const Users = () => {
               <td data-label='SN'>{index+1}</td>     
               <td data-label='Name'>{s?.fname+" "+s?.lname}</td>  
               <td data-label='Role'>{s?.typeOf}</td>    
-              <td data-label='Firm'>{s?.lname}</td>   
+              <td data-label='Firm'>{agent?.name || agent?.coName}</td>   
               <td data-label='Office'>{s?.office}</td>             
               <td data-label='Phone'>{s?.phone}</td>
               <td data-label='Email'>{s?.email}</td>
