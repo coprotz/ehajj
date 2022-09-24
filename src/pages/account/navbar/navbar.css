@@ -122,6 +122,18 @@
     color: white;
 }
 
+.pil_photo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    width: 45px;
+    height: 45px;
+    background-color: #36668d;
+    color: white;
+    border-radius: 50%;
+}
+
 
 
 

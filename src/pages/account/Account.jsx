@@ -43,8 +43,8 @@ const Account = () => {
     const agentPils = pilgrims?.filter((a) => a.agentId === cuAgent?.id)
     const isMission = mission?.find(m => m?.userId === user?.uid)
     const isAdmin = admins.find(a =>a.userid === user?.uid)
-    const isAgent = agents?.find(a => a.id === cuUser?.agentId)
-    const isPligrim = pilgrims?.find(p=>p.userId === user.uid)
+    const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`))
+    const isPligrim = pilgrims?.find(p=>p.id === user.uid)
 
     console.log('cuUser', cuUser)
 
@@ -74,7 +74,7 @@ const Account = () => {
                 <Pilgrim/>
             )
         }
-        else if(isAgent && cuUser?.typeOf === 'agent'){
+        else if(isAgent){
             return (
                 <Agent/>
             )

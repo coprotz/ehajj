@@ -29,6 +29,7 @@
     "continue": "Continue",
     "select_agent": "Select Agent",
     "select_office": "Select Office",
+    "select_position": "Select Position",
     "login": "LOGIN",
     "settings": "Settings",
     "logout": "LOGOUT"

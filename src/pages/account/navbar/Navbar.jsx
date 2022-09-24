@@ -21,92 +21,15 @@ const Navbar = () => {
     const {user, logOut} = useAuth();
     const cuUser = users && users.find(u => u.id === user.uid)
     const agent = agents && agents.find(a => a?.users?.includes(`${user.uid}`))
-    // const pilgrim = agents && agents.find(a => a.pilgrims?.includes(`${user.uid}`))
-    const pilgrim = pilgrims && pilgrims.find(a => a.userId ===user.uid)
+    const pilgrim = pilgrims && pilgrims.find(a => a.id ===user.uid)
     const cuMission = mission && mission.find(m => m.userId === user.uid)
-
-    console.log('pilgrim', pilgrim)
+    
 
     // console.log('pilgrim', pilgrim)
+    // console.log('agent', agent)
+    // console.log('cuUser', cuUser)
 
-    // const pilgrimsRef = collection(db, 'pilgrims')
-    // const [loading, setLoading] = useState(null)
-    // const [err, setErr] = useState('')
-    
-    // const fname = cuUser && cuUser.fname
-    // const isPilgrim = users && users.find(u => u.id === user.uid)?.typeOf === 'pilgrim'
-    // const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
-    // const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf === 'admin'
-    // const isMission = users && users.find(u => u.id === user.uid)?.typeOf === 'mission'
- 
-
-    // const addPilgrim = async(e) => {
-    //     e.preventDefault()
-    
-    //     setLoading(true)
-    
-    //     const data = {
-    //       userId: user.uid,
-    //       status: 'still pending',
-    //       fname: fname,
-    //       gender: '',
-    //       marital: '',
-    //       dob: '',
-    //       photo: '',
-    //       lname: cuUser && cuUser.lname,
-    //       email: cuUser && cuUser.email,
-    //       region: '',
-    //       district: '',
-    //       phone: [],
-    //       ibada: '',
-    //       agent: '',
-    //       passNo: '',
-    //       passIssue: '',
-    //       passExp: '',
-    //       passCopy:'',
-    //       maFname: '',
-    //       maLname:'',
-    //       maRel: '',
-    //       maDob:'',
-    //       maEmail:'',
-    //       maPhone:'',
-    //       maPassNo:'',
-    //       maPassIssue:'',
-    //       maPassExp:'',
-    //       maPassCopy: '',
-    //       nextFname:'',
-    //       nextLname: '',
-    //       nextDob: '',
-    //       nextRel:'',
-    //       nextEmail: '',
-    //       nextPhone: '',
-    //       payMode: '',
-    //       payTime: '',
-    //       payDate: '',
-    //       isCompleted: false,
-    //       isPaid: false,
-    //       amout: '',
-    
-    //     }
-    //     try {
-    //       await addDoc(pilgrimsRef, data)
-    //       setLoading(false)
-    //       navigate('/account/application')
-    //     } catch (error) {
-    //       setErr(error.message)
-    //     }
-        
-    
-    //   }
-
-    // const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
-
-    // const [items, setItems] = useState(null)
-
-    // console.log('isAgent', isAgent)
-    // console.log('isPli', isPilgrim)
-
-    // const [showMenu, setShowMenu] = useState(null)
+  
     const [userMenu, setUserMenu] = useState(null)
   
 
@@ -115,7 +38,7 @@ const Navbar = () => {
           <div className="agent_top_left">
             <div className="agent_logo">
               { 
-                pilgrim? <img src={pilgrim?.photo} alt="" /> : 
+                pilgrim? pilgrim?.photo? <img src={pilgrim?.photo} alt="" /> : <span className='pil_photo'>{pilgrim?.fname[0]}</span> : 
                 agent?  <img src={agent?.logo} alt="" /> : 
                 cuMission? <h4 className='mission_logo'>{cuMission?.name[0]}</h4> : 
               null}
@@ -130,7 +53,10 @@ const Navbar = () => {
               <button className='btn_notific'><BsBell/></button>   
             </div>
                      
-            <h4>{cuMission? cuMission?.fname+" "+cuMission?.lname : cuUser?.fname+" "+cuUser?.lname}</h4>           
+            <h4>{
+              cuMission? cuMission?.fname+" "+cuMission?.lname : 
+              pilgrim? pilgrim?.fname+" "+pilgrim?.lname :
+              agent? cuUser?.fname+" "+cuUser?.lname :  null}</h4>           
             <div className="user_profile_acc" onMouseEnter={() =>setUserMenu(true)} onMouseLeave={() =>setUserMenu(null)}>
               <button className='btn_user'><BsFillCaretDownFill/></button>
               {userMenu &&

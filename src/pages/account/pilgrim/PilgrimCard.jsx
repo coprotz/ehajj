@@ -8,7 +8,7 @@ import useData from '../../../hooks/useData'
 
 const PilgrimCard = ({pil}) => {
   const { agents } = useData();
-  const agent = agents?.find(a =>a.id === pil?.agent)
+  const agent = agents?.find(a =>a.id === pil?.agentId)
   return (
     <tr>
       <td data-label='Picha'><img src={pil?.photo} alt="" /></td>

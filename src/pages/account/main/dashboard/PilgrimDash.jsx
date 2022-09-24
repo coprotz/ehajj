@@ -13,7 +13,7 @@ const PilgrimDash = () => {
     const {  user } = useAuth();
     const { users, pilgrims, agents, dashAgents, dashPilgrims, admins, mission } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
-    const isPilgrim = pilgrims && pilgrims.find(u => u.userId === user.uid)
+    const pilgrim = pilgrims && pilgrims.find(u => u?.id === user.uid)
     // const isAgent = agents && agents.find(u => u.users.includes(`${user.uid}`))
     // const isAdmin = admins && admins.find(u => u.userId === user.uid)
     // const isMission = mission && mission.find(u => u.userId === user.uid)
@@ -21,6 +21,10 @@ const PilgrimDash = () => {
     // const agent = agents && agents.find(p => p.users.includes(`${user.uid}`))
     // const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
     const navigate = useNavigate()
+
+    console.log('pil', pilgrim)
+
+    const pilAgent = agents?.find(p => p.id === pilgrim?.agentId)
     
 
     // const agentPilgrims = pilgrims && pilgrims?.filter(u => u.agent === agent?.id)
@@ -30,43 +34,22 @@ const PilgrimDash = () => {
     <div className="agent_body">    
     <div className="acc_body">        
         <div className="acc_body_top">       
-        {isPilgrim && 
+        {pilgrim && 
         <>            
             <div className="acc_body_card">
             <small>Ibada Selected</small>
-            <h2>{isPilgrim? isPilgrim.ibada : 'No application'}</h2>
+            <h2>{pilgrim? pilAgent.ibada : 'No application'}</h2>
             </div>
             <div className="acc_body_card">
             <small>Agent</small>
-            <h2>{isPilgrim? isPilgrim.agentName || isPilgrim.name : 'No application'}</h2>
+            <h2>{pilAgent? pilAgent.agentName || pilAgent.name : 'No application'}</h2>
             </div>
             <div className="acc_body_card">
             <small>Application Status</small>
-            <h2>{isPilgrim? isPilgrim.status : 'No application'}</h2>
+            <h2>{pilgrim? pilgrim.status : 'No application'}</h2>
             </div>            
         </>
-        }
-        {/* {isAgent && 
-            <div className="acc_body_card">
-            <small>Applicants</small>
-            <h2>{activeAgentPilgrims?.length}</h2>
-            </div> 
-        
-        } */}
-        {/* { isMission && <>
-            <div className="acc_body_card">
-            <small>Applicants</small>
-            <h2>{pilgrims?.length}</h2>
-            </div>
-            <div className="acc_body_card">
-            <small>Agents</small>
-            <h2>{agents.length}</h2>
-            </div>
-        
-        </>
-            
-        
-        } */}
+        }   
                     
         
         </div>

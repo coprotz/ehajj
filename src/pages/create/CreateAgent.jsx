@@ -122,6 +122,8 @@ const CreateAgent = () => {
             services: a_services,
             offices,
             logo: url,
+            users: [],
+            pilgrims: [],
             desc,
             cost,
             isPaid: false,            

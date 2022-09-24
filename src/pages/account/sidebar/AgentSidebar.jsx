@@ -25,7 +25,7 @@ const AgentSidebar = () => {
     const {  user } = useAuth();
     const { users, pilgrims, agents, dashAgents, dashPilgrims, mission } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
-    const isPilgrim = users && users.find(u => u.id === user.uid)?.typeOf === 'pilgrim'
+    const isPilgrim = pilgrims && pilgrims.find(u => u.id === user.uid)
     const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
     const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf === 'admin'
     const isMission = mission && mission.find(u => u?.userId === user.uid)

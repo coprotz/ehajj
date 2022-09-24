@@ -23,7 +23,7 @@ const Main = () => {
     const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
     // const agent = agents && agents.find(a => a.id === ageId)
 
-    const isPilgrim = users && users.find(u => u.id === user.uid)?.typeOf === 'pilgrim'
+    const isPilgrim = pilgrims && pilgrims.find(u => u.id === user.uid)
     const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
     const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf === 'admin'
     const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
