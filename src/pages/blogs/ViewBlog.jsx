@@ -79,7 +79,7 @@ const ViewBlog = ({showMenu, setShowMenu}) => {
            
             <div className="blog_inner">
                 <h1 className='blog_inner_title'> {t(`${blog.title}`)}</h1>
-                <span>Posted: 12 June 2022</span>
+                <span>{t('posted')}</span>
             </div>
             <div className="blog_inner_img">
                 <img src={blog.url} alt="" />
