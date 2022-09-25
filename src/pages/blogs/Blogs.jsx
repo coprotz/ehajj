@@ -32,7 +32,7 @@ const Blogs = ({showMenu, setShowMenu}) => {
              <h3>{t('recent_news')}</h3>
              <div className="blogs_news">
               {news.slice(0,2).map((item, index) => (
-                <div className="blog_news_card" key={index}>
+                <div className="blog_news_card news_card" key={index}>
                   <img src={item.url} alt="" />
                   <h1>{t(`${item.title}`)}</h1>
                   <p className='news_card_pg'>{t(`${item.body}`)}
