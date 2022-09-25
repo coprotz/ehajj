@@ -6,14 +6,14 @@ import Register from './Register'
 import { BiRightArrowAlt } from "react-icons/bi";
 import ReactPlayer from 'react-player'
 import { useTranslation } from "react-i18next";
-import { AiOutlineMenu, AiOutlineTwitter, AiFillInstagram, AiOutlineYoutube, AiFillFacebook } from "react-icons/ai";
+import {  AiOutlineTwitter, AiFillInstagram, AiOutlineYoutube, AiFillFacebook } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom'
-import MainMenu from '../../components/menu/MainMenu'
-import { useState } from 'react'
-import { teachings } from '../../hooks/data'
+
+import { teachings, news } from '../../hooks/data'
 import { useAuth } from '../../hooks/useAuth'
 import useData from '../../hooks/useData'
 import Footer from '../account/footer/Footer'
+import { useEffect } from 'react'
 
 
 const Layout = ({showMenu, setShowMenu}) => {
@@ -22,6 +22,10 @@ const Layout = ({showMenu, setShowMenu}) => {
   const { users } = useData();
   const { user } = useAuth();
   const cuUser = users && users?.find(u => u.id === user?.uid)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className='layout_container'>
@@ -54,16 +58,29 @@ const Layout = ({showMenu, setShowMenu}) => {
         </div>
       </div>
       <div className="home_blog">
-              {teachings && teachings.slice(0,2).map((item, index) => (
+              {teachings && teachings.slice(0,1).map((item, index) => (
                 <div className="home_blog_card" key={index}>
                     <h1>1</h1>
                     <div className="blog_card_inner">
-                        <h3>{item.title}</h3>
-                            <p className='teach_card_pg'>{item.body}</p>
+                        <h3>{t(`${item.title}`)}</h3>
+                            <p className='teach_card_pg'>{t(`${item.body}`)}</p>
                             <button onClick={() =>navigate(`/blogs/${item.id}`)}>{t('read_more')}</button>
                     </div>
                 </div>
               ))}
+              {news && news.slice(0,1).map((item, index) => (
+               <div className="home_news" key={index}>
+                <div className="news_left">
+                  <img src={item.url} alt="" />
+                </div>
+                <div className="news_card_inner">
+                    <h3>{t(`${item.title}`)}</h3>
+                      <p className='teach_card_pg'>{t(`${item.body}`)}</p>
+                      <button onClick={() =>navigate(`/blogs/${item.id}`)} className='btn_read'>{t('read_more')}</button>
+                  </div>
+              </div>
+              ))}
+             
               
                 <div className="home_video">
                       <div className="home_video_player">

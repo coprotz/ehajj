@@ -12,6 +12,7 @@
     "firebase": "^9.9.1",
     "flag-icon-css": "^4.1.7",
     "framer-motion": "^6.5.1",
+    "html-react-parser": "^3.0.4",
     "i18next": "^21.9.1",
     "i18next-browser-languagedetector": "^6.1.5",
     "i18next-http-backend": "^1.4.1",

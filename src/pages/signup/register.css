@@ -49,6 +49,10 @@
     text-decoration: underline;
 }
 
+.reg_video{
+    height: 100vh;
+}
+
 @media screen and (max-width: 440px){
     .reg_video{
         display: none;

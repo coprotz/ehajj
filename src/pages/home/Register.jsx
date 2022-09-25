@@ -351,7 +351,7 @@ const Register = () => {
                                     {...register("gender", { required: true })} 
                                     className='create_input'                                    
                                 >
-                                    <option value="" style={{color:'black'}}>--Select gender--</option>
+                                    <option value="" style={{color:'black'}}>--{t('select_gender')}--</option>
                                     <option value="Male" style={{color:'black'}}>Male</option>
                                     <option value="Female" style={{color:'black'}}>Female</option>
                                 </select>                          

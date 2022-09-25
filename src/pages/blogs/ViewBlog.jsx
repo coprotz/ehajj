@@ -8,14 +8,24 @@ import './blogs.css'
 import { RiDeleteBin5Fill,RiEditFill, RiPencilFill, RiShareLine, RiWhatsappFill,RiFacebookCircleFill,RiMailFill } from "react-icons/ri";
 import { useState } from 'react';
 import Footer from '../account/footer/Footer';
+import { useTranslation } from "react-i18next";
+import { useEffect } from 'react';
+import parser from 'html-react-parser'
+
 
 
 const ViewBlog = ({showMenu, setShowMenu}) => {
+    const { t } = useTranslation();
     const { id } = useParams();
     const navigate = useNavigate();
     const [showBtn, setShowBtn] = useState(null)
     const blog = teachings && teachings.find(c => c.id === id) || news && news.find(c => c.id === id) || questions && questions.find(c => c.id === id)
     const url = `https://ehajj-tz.netlify.app/blogs/${id}`
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
   return (
     <div className='view_blog'>
         <Navbar showMenu={showMenu} setShowMenu={setShowMenu}/>
@@ -26,7 +36,7 @@ const ViewBlog = ({showMenu, setShowMenu}) => {
             className="view_blog_body">
                 <div className="blog_top">
                      <div className="page_back">
-                        <button className='btn_btn_back' onClick={() =>navigate(-1)}><BiChevronsLeft/></button> Blogs - {blog.title}
+                        <button className='btn_btn_back' onClick={() =>navigate(-1)}><BiChevronsLeft/></button> {t('blogs')} - {t(`${blog.title}`)}
                     </div> 
                     <div className="blog_action">
                         <div className="btn_action" onMouseEnter={() =>setShowBtn(1)} onMouseLeave={() =>setShowBtn(null)}>
@@ -68,14 +78,14 @@ const ViewBlog = ({showMenu, setShowMenu}) => {
                 </div>
            
             <div className="blog_inner">
-                <h1 className='blog_inner_title'>{blog.title}</h1>
+                <h1 className='blog_inner_title'> {t(`${blog.title}`)}</h1>
                 <span>Posted: 12 June 2022</span>
             </div>
             <div className="blog_inner_img">
                 <img src={blog.url} alt="" />
             </div>
             <div className="blog_inner_body">
-                {blog.body}
+                {parser(t(`${blog.body}`))}
             </div>
             
         </motion.div>

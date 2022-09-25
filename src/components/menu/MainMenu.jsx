@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import bar from '../images/bar.png'
 import './menu.css'
 import {motion} from 'framer-motion'
+import { useTranslation } from "react-i18next";
 
 
 
 const MainMenu = ({setShowMenu}) => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
+
   return (
     <div className='main_outer'>
         <motion.div 
@@ -21,17 +24,17 @@ const MainMenu = ({setShowMenu}) => {
             </div>
             <div 
                 className="menu_inner">
-                <span onClick={() => {setShowMenu(null); navigate('/')}} className='menu_inner_item'>Home</span>
-                <span onClick={() => {setShowMenu(null); navigate('/about')}} className='menu_inner_item'>About</span>
-                <span onClick={() => {setShowMenu(null); navigate('/blogs')}} className='menu_inner_item'>Blogs</span>
-                <span onClick={() => {setShowMenu(null); navigate('/agents')}} className='menu_inner_item'>Agents</span>
-                <span onClick={() => {setShowMenu(null); navigate('/helps')}} className='menu_inner_item'>Helps</span>
-                <span onClick={() => {setShowMenu(null); navigate('/teachings')}} className='menu_inner_item'>Teachings</span>
-                <span onClick={() => {setShowMenu(null); navigate('/terms')}} className='menu_inner_item'>Terms</span>
-                <span onClick={() => {setShowMenu(null); navigate('/privacy')}} className='menu_inner_item'>Privacy</span>
+                <span onClick={() => {setShowMenu(null); navigate('/')}} className='menu_inner_item'>{t('home')}</span>
+                <span onClick={() => {setShowMenu(null); navigate('/about')}} className='menu_inner_item'>{t('about')}</span>
+                <span onClick={() => {setShowMenu(null); navigate('/blogs')}} className='menu_inner_item'>{t('blogs')}</span>
+                <span onClick={() => {setShowMenu(null); navigate('/agents')}} className='menu_inner_item'>{t('agents')}</span>
+                <span onClick={() => {setShowMenu(null); navigate('/helps')}} className='menu_inner_item'>{t('help')}</span>
+                <span onClick={() => {setShowMenu(null); navigate('/contact')}} className='menu_inner_item'>{t('contact')}</span>
+                <span onClick={() => {setShowMenu(null); navigate('/terms')}} className='menu_inner_item'>{t('terms')}</span>
+                <span onClick={() => {setShowMenu(null); navigate('/privacy')}} className='menu_inner_item'>{t('privacy')}</span>
             </div>
             <div className="menu_footer">
-                <h4>Powered by BarruTech</h4>
+                <h4>{t('powered_by')} BarruTech</h4>
             </div>      
 
         </motion.div>
