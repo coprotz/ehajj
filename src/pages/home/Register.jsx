@@ -129,41 +129,42 @@ const Register = () => {
             coEmail,
             coLicence,
             password,
-            coPhone,
-            email,
-            fname,
-            lname,          
-            gender,
-            status: 'Approved',
-            agentId: agentId || '',
+            coPhone,            
+            status: 'Not Approved',           
             website,
             services, 
             cost,
             desc,
-            logo:url,       
-            isOnline: true, 
-            offices,        
-            // country,
+            logo:url,     
+            offices,      
             createdAt: serverTimestamp(),
 
         }
 
-        console.log('data', data)
+        // console.log('data', data)
 
         try {
             const newUser = await signUp(email, password)            
             await setDoc(doc(db, 'users', `${newUser.user.uid}`), {
-                ...data,
+                fname, 
+                lname, 
+                gender,
+                email,
+                isOnline: true,
+                status: 'Approved', 
                 createdAt: serverTimestamp(),
             }) 
-            const newAgent = await addDoc(agentRef, data)
-            await updateDoc(doc(db, 'users', `${newUser.user.uid}`), {
-                agentId: newAgent?.id
+                await addDoc(agentRef, {
+                ...data,
+                createdBy: newUser.user.uid
             })
-            const agent = agents?.find(a =>a.id === newAgent?.id)
-            await updateDoc(doc(db, 'agents', `${agent?.id}`), {
-                users: [...agent?.users, `${newUser.user.uid}`],
-            })  
+            // await updateDoc(doc(db, 'users', `${newUser.user.uid}`), {
+            //     agentId: newAgent?.id
+            // })
+            // const agent = agents?.find(a =>a.id === newAgent?.id)
+            // await updateDoc(doc(db, 'agents', `${agent?.id}`), {
+            //     users: [...agent?.users, `${newUser.user.uid}`],
+            // })  
             setLoading(null)
             navigate('/account/main')         
         } catch (error) {

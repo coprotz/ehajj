@@ -20,7 +20,7 @@ const Navbar = () => {
 
     const {user, logOut} = useAuth();
     const cuUser = users && users.find(u => u.id === user.uid)
-    const agent = agents && agents.find(a => a?.users?.includes(`${user.uid}`))
+    const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const pilgrim = pilgrims && pilgrims.find(a => a.id ===user.uid)
     const cuMission = mission && mission.find(m => m.userId === user.uid)
     

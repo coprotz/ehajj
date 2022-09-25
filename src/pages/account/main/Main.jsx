@@ -24,7 +24,7 @@ const Main = () => {
     // const agent = agents && agents.find(a => a.id === ageId)
 
     const isPilgrim = pilgrims && pilgrims.find(u => u.id === user.uid)
-    const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
+    const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf === 'admin'
     const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
     const activeAgentPilgrims = agentPilgrims && agentPilgrims.filter(a => a?.agentId === ageId)
