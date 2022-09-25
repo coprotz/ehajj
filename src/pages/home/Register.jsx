@@ -353,8 +353,8 @@ const Register = () => {
                                     className='create_input'                                    
                                 >
                                     <option value="" style={{color:'black'}}>--{t('select_gender')}--</option>
-                                    <option value="Male" style={{color:'black'}}>Male</option>
-                                    <option value="Female" style={{color:'black'}}>Female</option>
+                                    <option value="Male" style={{color:'black'}}>{t('male')}</option>
+                                    <option value="Female" style={{color:'black'}}>{t('female')}</option>
                                 </select>                          
                               
                                 <span className='create_span_1'>{`${t('gender')}`}</span>
@@ -477,7 +477,7 @@ const Register = () => {
                         </div> 
                         {!agentId &&
                         <div className="create_agent">
-                            <span>Cant you find your agent?</span>
+                            <span style={{color:'black'}}>{t('find_agent')}</span>
                             <button onClick={() =>setPage(9)} className='btn_create_agent'>{loading? <Loading/> : 'Create New Agent'}</button>
                         </div> }                   
                         <button 
@@ -517,8 +517,8 @@ const Register = () => {
                         </div>  
                         {!agentId &&                     
                         <div className="create_agent">
-                            <span>Cant you find your agent?</span>
-                            <button onClick={()=>navigate('/contact')} className='btn_create_agent'>Contact Us</button>
+                            <span>{t('find_agent')}</span>
+                            <button onClick={()=>navigate('/contact')} className='btn_create_agent'>{t('contact_us')}</button>
                         </div>  }                  
                         <button 
                             className='btn_submit' 
@@ -575,8 +575,8 @@ const Register = () => {
                     transition={{ ease: "easeOut", duration: 0.5 }}
                     className='cont_motion'>
                     
-                        <h4><BiArrowBack onClick={() => setPage(5)}/>
-                            Please Enter the Code that has been sent to 0{fdig}_ _ _ _{ldig}</h4>
+                        <h4><BiArrowBack onClick={() => setPage(5)}/>{t('enter_code')} 0{fdig}_ _ _ _{ldig}</h4>
+                            
                         <div className="cont_inputs"> 
                             <div className="create_group">                            
                                 <input 
@@ -646,8 +646,7 @@ const Register = () => {
                     transition={{ ease: "easeOut", duration: 0.5 }}
                     className='cont_motion'>
                     
-                        <h4><BiArrowBack onClick={() => setPage(6)}/>
-                            Please Enter the Code that has been sent to 0{fdig}_ _ _ _{ldig}</h4>
+                        <h4><BiArrowBack onClick={() => setPage(6)}/>{t('enter_code')} 0{fdig}_ _ _ _{ldig}</h4>                          
                         <div className="cont_inputs">
                             <div className="create_group">                            
                                 <input 
@@ -679,10 +678,10 @@ const Register = () => {
                     animate={{x: 1}} 
                     transition={{ ease: "easeOut", duration: 0.5 }}
                     className='cont_motion'>                    
-                        <h4><BiArrowBack onClick={() => setPage(3)}/>Are you sure do want to create a new Agent?</h4>                            
+                        <h4><BiArrowBack onClick={() => setPage(3)}/>{t('create_agent')}</h4>                            
                             <div className="cont_radios">                          
-                            <label htmlFor="yes" className='cont_label' onClick={() =>setPage(10)}><span>Yes I do</span></label>                         
-                            <label htmlFor="no" className='cont_label' onClick={() =>setPage(3)}><span>No Thank You</span></label>  
+                            <label htmlFor="yes" className='cont_label' onClick={() =>setPage(10)}><span>{t('yes_i_do')}</span></label>                         
+                            <label htmlFor="no" className='cont_label' onClick={() =>setPage(3)}><span>{t('no')}</span></label>  
                         </div>                                       
                     </motion.div>
                 
@@ -696,10 +695,10 @@ const Register = () => {
                     animate={{x: 1}} 
                     transition={{ ease: "easeOut", duration: 0.5 }}
                     className='cont_motion'>                    
-                        <h4><BiArrowBack onClick={() => setPage(9)}/>Are you the Owner of the Agent that you want to create or Authorised Personel?</h4>
+                        <h4><BiArrowBack onClick={() => setPage(9)}/>{t('are_you_owner')}</h4>
                             <div className="cont_radios">                            
-                            <label htmlFor="yes1" className='cont_label' onClick={() =>setPage(11)}><span>Yes I am</span></label>                            
-                            <label htmlFor="no1" className='cont_label' onClick={() =>setPage(3)}><span>No Thank You</span></label>  
+                            <label htmlFor="yes1" className='cont_label' onClick={() =>setPage(11)}><span>{t('yes_I_am')}</span></label>                            
+                            <label htmlFor="no1" className='cont_label' onClick={() =>setPage(3)}><span>{t('no')}</span></label>  
                         </div>                                          
                        
                     </motion.div>
@@ -714,10 +713,10 @@ const Register = () => {
                     animate={{x: 1}} 
                     transition={{ ease: "easeOut", duration: 0.5 }}
                     className='cont_motion'>                    
-                        <h4><BiArrowBack onClick={() => setPage(10)}/>Is your Agent registered with Tanzania Hajj Mission?</h4>
+                        <h4><BiArrowBack onClick={() => setPage(10)}/>{t('registered_with_Mission')}</h4>
                             <div className="cont_radios">                          
-                                <label htmlFor="yes1" className='cont_label' onClick={() =>setPage(12)}><span>Yes I have a License</span></label>                          
-                                <label htmlFor="no1" className='cont_label' onClick={() =>setPage(3)}><span>No Thank You</span></label>  
+                                <label htmlFor="yes1" className='cont_label' onClick={() =>setPage(12)}><span>{t('have_license')}</span></label>                          
+                                <label htmlFor="no1" className='cont_label' onClick={() =>setPage(3)}><span>{t('no')}</span></label>  
                             </div>                                         
                        
                     </motion.div>
@@ -732,7 +731,7 @@ const Register = () => {
                     animate={{x: 1}} 
                     transition={{ ease: "easeOut", duration: 0.5 }}
                     className='cont_motion'>                    
-                        <h4><BiArrowBack onClick={() => setPage(11)}/>General Info of the Agent</h4>
+                        <h4><BiArrowBack onClick={() => setPage(11)}/>{t('general_info')}</h4>
                         <div className="cont_inputs"> 
                             <div className="create_group">                            
                                 <input 

@@ -40,7 +40,7 @@ const Contact = () => {
               <div className="contact_body">
                 <div className="contact_address">
                   <span>E-HAJJ TANZANIA LTD</span>
-                  <span>P.O Box 3355, Dodoma</span>
+                  <span>P.O Box 2467, Dodoma</span>
                   <span>Machame Building, Wazo Street</span>
                   <span>Dodoma, Tanzania</span>
                   <span>+255 8877 55665</span>
