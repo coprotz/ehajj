@@ -380,7 +380,7 @@ button:disabled{
     color: white;
 }
 
-  @media screen and (max-width: 440px){
+  @media screen and (max-width: 740px){
     .container_body{
         display: flex;
         flex-direction: column;
