@@ -21,17 +21,29 @@
 }
 
 .contact_form{
-    background-color: #cee3fd;
-    position: absolute;
-    right: 60px;
-    top: -5vh;
+    /* background-color: #cee3fd; */
+    /* position: absolute; */
+    /* right: 60px; */
+    /* top: -5vh; */
     /* height: 20vh; */
     width: 50%;
-    color: #3266a8;
+    color: white;
     padding: 3vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
+}
+
+.contact_media{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    /* margin-top: 80px; */
+}
+
+.contact_form img{
+    width: 200px;
 }
 
 .contact_form h1{
@@ -41,11 +53,16 @@
 .contact_input{
     background-color: transparent;
     border: none;
-    border-bottom: 3px solid #6da5f0;
+    border-bottom: 3px solid #9fc7fa;
     width: 100%;
     padding: 1.3vh;
+    outline: none;
     /* color: white; */
-    font-size: 1.5vh;
+    font-size: 1rem;
+}
+
+.contact_input:focus{
+    border-bottom: 3px solid #3266a8;
 }
 
 .btn_contact{
@@ -54,7 +71,7 @@
     background-color: transparent;
     width: fit-content;
     margin-top: 1vh;
-    font-size: 1.5vh;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.4s ease;
 }

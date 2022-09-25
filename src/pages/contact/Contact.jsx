@@ -1,22 +1,24 @@
 import React from 'react'
 import './contact.css'
-import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
-import Main from '../main/Main';
 import {motion} from 'framer-motion'
 import {  AiOutlineTwitter, AiFillInstagram, AiOutlineYoutube, AiFillFacebook } from "react-icons/ai";
-import UserTopbar from '../../components/userTopbar/UserTopbar';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../account/footer/Footer';
-// import Navbar from '../account/navbar/Navbar';
-
+import { useTranslation } from "react-i18next";
+import { FiPhoneCall } from "react-icons/fi";
+import { MdOutlineAlternateEmail } from "react-icons/md";
+import { BsGlobe } from "react-icons/bs";
+import chat from '../../components/images/chat.png'
 
 const Contact = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation();
 
   return (
     
       <div className="contact">
+        <Navbar/>
       <motion.div 
              initial={{ x: '100vw'}}
              animate={{x:0}} 
@@ -28,12 +30,12 @@ const Contact = () => {
                 {/* <h1 className='page_title'><FaArrowLeft onClick={() => navigate('/')}/>Mawasiliano Yetu</h1> */}
                 {/* <button className='page_next' onClick={() => navigate('/')}><FaArrowRight /></button> */}
               {/* </div> */}
-              <div className="incase_menu">
+              {/* <div className="incase_menu">
                 <Navbar/>
-              </div>
+              </div> */}
               
               <div className="about_top_1">
-                <h1 className='about_title'>Tunakusubiri Tukuhudumie!!</h1>
+                <h1 className='about_title'>{t('contact_title')}</h1>
               </div>
               <div className="contact_body">
                 <div className="contact_address">
@@ -52,12 +54,13 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="contact_form">
-                  <h1>Tuachie Ujumbe</h1>
-                  <input type="name" className='contact_input' placeholder='Majina Kamili'/>
-                  <input type="tel" className='contact_input' placeholder='Namba ya Simu'/>
-                  <input type="email" className='contact_input' placeholder='Barua Pepe'/>
-                  <textarea name="" id="" cols="30" rows="5" className='contact_input' placeholder='Ujumbe'></textarea>
-                  <button className='btn_contact'>Tuma Ujumbe</button>
+                  <h1>{t('message_title')}</h1>
+                  <img src={chat} alt="" />
+                  <div className="contact_items_media contact_media">
+                    <a href='tel:+255767157057' target='_top' className='contact_link'><FiPhoneCall/></a>
+                    <a href='mailto:info@e-hajj.org?Subject=Need%20Help' target='_top' className='contact_link'><MdOutlineAlternateEmail/></a>
+                    <a href='https://ehajj-tz.netlify.app' target='_blank' className='contact_link'><BsGlobe/></a>
+                </div>
                 </div>
               </div>
              
