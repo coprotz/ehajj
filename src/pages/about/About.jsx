@@ -37,7 +37,7 @@ const About = ({showMenu, setShowMenu}) => {
                 </p>
               </div>
               <div className="about_beneficial">
-                <h2>Taasisi inawakusudia Watazania wote wanaoishi ndani na nje ya nchi ambao waataka kufanya ibada ya hija au Umrah. Katika 
+                <h2>E-Hajj inakusudia Watazania wote wanaoishi ndani na nje ya nchi ambao waataka kufanya ibada ya hija au Umrah. Katika 
                   Platform yetu yeyote anayetaka kufanya maombi ya hija, hatalazimika kwenda tena katika maofisi wa hijja bali ataomba maombi yake 
                   kupitia mtandao wetu na kuchangua Wakala ambaye atasimamia ombi lake.
                 </h2>

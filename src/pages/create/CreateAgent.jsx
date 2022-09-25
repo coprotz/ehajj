@@ -103,8 +103,6 @@ const CreateAgent = () => {
     }
 
      const agentRef = collection(db, 'agents')
-    //  const userRef = collection(db, 'users')
-
      const userRef = doc(db, 'users', `${user.uid}`)
 
 
