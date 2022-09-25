@@ -189,7 +189,7 @@
     color: white;
   }
 
-  @media screen and (max-width: 440px){
+  @media screen and (max-width: 940px){
    
     .btn_app_menu{
       background-color: #022b61;

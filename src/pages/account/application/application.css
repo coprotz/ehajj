@@ -357,7 +357,7 @@
     
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width: 940px){
     .appli_inner_left{
         display: none;
         /* flex-direction: column;

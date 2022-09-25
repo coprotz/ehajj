@@ -97,7 +97,7 @@
     color: #6da5f0;
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width: 940px){
     .contact_body{
         flex-direction: column;
         padding: 2px;

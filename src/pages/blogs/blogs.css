@@ -306,7 +306,7 @@
     color: red;
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width: 940px){
     .blog_top{
         display: flex;
         justify-content: space-between;

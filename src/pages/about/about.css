@@ -179,7 +179,7 @@
     flex-direction: column;
     justify-content: space-between;
 }
-@media screen and (max-width: 440px){
+@media screen and (max-width: 940px){
    
     .about{
       width: 100vw;

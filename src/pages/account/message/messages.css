@@ -1041,7 +1041,7 @@ button:disabled{
     width: 100%;
 }
 
-@media screen and (max-width: 720px){
+@media screen and (max-width: 920px){
     .chat_list_hide{
         /* display: none; */
         flex-direction: column;

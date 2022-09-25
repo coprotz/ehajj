@@ -357,7 +357,7 @@
     font-size: 1.5vh;
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width: 940px){
     .teachings_body{
         flex-direction: column;
     }

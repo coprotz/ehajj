@@ -202,7 +202,7 @@
     gap: 7px;
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width: 940px){
     .cont_login{
       
         flex-direction: column;
