@@ -40,8 +40,21 @@ const Layout = ({showMenu, setShowMenu}) => {
                 <AiFillFacebook/>
                </div>
             </div>
-            <div className="home_blog">
-              {teachings && teachings.slice(0,1).map((item, index) => (
+            
+        </div>
+        <div className="cont_video">
+            <video src={videoBg} autoPlay loop muted/>
+            {user? 
+              <div className='user_login'>
+                <small>You are logged in as</small>
+                {cuUser?.fname} {cuUser?.lname}
+                <button className='btn_agents' onClick={() => navigate('/account/main')}>My Account</button>
+              </div> 
+            : <div className='register_main_container reg_abso'><Register /></div>}            
+        </div>
+      </div>
+      <div className="home_blog">
+              {teachings && teachings.slice(0,2).map((item, index) => (
                 <div className="home_blog_card" key={index}>
                     <h1>1</h1>
                     <div className="blog_card_inner">
@@ -63,18 +76,6 @@ const Layout = ({showMenu, setShowMenu}) => {
                     </div>
                   </div>
             </div>
-        </div>
-        <div className="cont_video">
-            <video src={videoBg} autoPlay loop muted/>
-            {user? 
-              <div className='user_login'>
-                <small>You are logged in as</small>
-                {cuUser?.fname} {cuUser?.lname}
-                <button className='btn_agents' onClick={() => navigate('/account/main')}>My Account</button>
-              </div> 
-            : <div className='register_main_container reg_abso'><Register /></div>}            
-        </div>
-      </div>
       <Footer/>
     </div>
   )

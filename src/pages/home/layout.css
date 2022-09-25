@@ -4,7 +4,7 @@
 .container_body{
     display: flex;
     height: 100%;
-    padding: 100px;
+    padding: 70px 100px;
   
 }
 
@@ -245,9 +245,9 @@ button:disabled{
 .home_blog{
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px 100px;
     gap: 10px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .home_blog_card{
