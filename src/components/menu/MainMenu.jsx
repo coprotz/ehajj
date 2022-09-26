@@ -14,6 +14,7 @@ const MainMenu = ({setShowMenu}) => {
 
   return (
     <div className='main_outer'>
+        {/* <button>Close</button> */}
         <motion.div 
              initial={{ x: '100vw'}}
              animate={{x:0}} 

@@ -11,8 +11,8 @@ const Privacy = () => {
     <div className='help_container'>
         <Navbar/>
         <motion.div 
-          initial={{ x: '100vw'}}
-          animate={{x:0}} 
+          initial={{ opacity: 0}}
+          animate={{opacity:1}} 
           transition={{ ease: "easeOut", duration: 0.5 }} 
           className="page_container">
           <h1>{t('under_construction')}</h1>
