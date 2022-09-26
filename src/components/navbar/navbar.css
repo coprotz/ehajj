@@ -144,49 +144,6 @@
     border: 1px solid rgb(214, 214, 214);
 }
 
-.lang_select{
-    position: absolute;
-    top: 35px;
-    background: white;
-    /* height: 150px; */
-    padding: 15px;
-    z-index: 10;
-    border: 1px solid rgb(214, 214, 214);
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    border-radius: 5px;
-    width: 150px;
-    font-size: 17px;
-    right:0%;
-}
-
-.lang_code{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: flex-start;
-}
-
-/* .btn_lang{
-    border: none;
-    background-color: transparent;
-    font-size: 16px;
-    cursor: pointer;
-} */
-
-.btn_langz{
-    border: none;
-    background-color: transparent;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px;
-    width: 120px;
-    text-align: left;
-}
-
-.btn_langz:hover{
-    background-color: rgb(226, 223, 223);
-}
 
 .login_in{
     font-size: 1rem;

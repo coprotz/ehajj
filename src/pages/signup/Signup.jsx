@@ -32,7 +32,7 @@ const Signup = () => {
             </div>
             <div className="register_footer">
               <div className="reg_footer_info">
-                <span onClick={() =>navigate('/help')}>{t('help')}</span>
+                <span onClick={() =>navigate('/helps')}>{t('help')}</span>
                 <span onClick={() =>navigate('/terms')}>{t('terms')}</span>
                 <span onClick={() =>navigate('/privacy')}>{t('privacy')}</span>
               </div>
