@@ -10,13 +10,13 @@ const Terms = () => {
   return (
     <div className='help_container'>
         <Navbar/>
-        <motion.div 
-          initial={{ x: '100vw'}}
-          animate={{x:0}} 
-          transition={{ ease: "easeOut", duration: 0.5 }} 
+        <div 
+          // initial={{ x: '100vw'}}
+          // animate={{x:0}} 
+          // transition={{ ease: "easeOut", duration: 0.5 }} 
           className="page_container">
           <h1>{t('under_construction')}</h1>
-        </motion.div>
+        </div>
         
         <Footer/>
     </div>
