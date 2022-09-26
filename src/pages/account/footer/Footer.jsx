@@ -20,7 +20,7 @@ const Footer = () => {
             <small onClick={() =>navigate('/blogs')}>{t('blogs')}</small>
             <small onClick={() =>navigate('/contact')}>{t('contact')}</small>         
             <small onClick={() =>navigate('/terms')}>{t('terms')}</small>
-            <small onClick={() =>navigate('/help')}>{t('help')}</small>
+            <small onClick={() =>navigate('/helps')}>{t('help')}</small>
             <small onClick={() =>navigate('/privacy')}>{t('privacy')}</small>
         </div>
         </div>
