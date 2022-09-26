@@ -23,7 +23,11 @@ const Blogs = ({showMenu, setShowMenu}) => {
   return (
     <div className='blogs'>
       <Navbar showMenu={showMenu} setShowMenu={setShowMenu}/>
-      <div className="blogs_wrapper">
+      <motion.div 
+          initial={{ opacity: 0}}
+          animate={{opacity:1}} 
+          transition={{ ease: "easeOut", duration: 0.5 }} 
+        className="blogs_wrapper">
         <div className="page_back">
           <button className='btn_btn_back' onClick={() =>navigate(-1)}><BiChevronsLeft/></button> {t('blogs')}
         </div> 
@@ -48,8 +52,8 @@ const Blogs = ({showMenu, setShowMenu}) => {
           </div>
          
           <motion.div 
-          initial={{ x: '100vw'}}
-          animate={{x:0}} 
+          initial={{ opacity: 0}}
+          animate={{opacity:1}} 
           transition={{ ease: "easeOut", duration: 0.5 }} 
             className="blogs_cat">
             <div className={showAll === 2? 'hide_all': "blog_teach"}>
@@ -102,7 +106,7 @@ const Blogs = ({showMenu, setShowMenu}) => {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
       <Footer/>
      
     </div>

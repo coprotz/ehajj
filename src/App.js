@@ -87,7 +87,7 @@ function App() {
               
               }/>      
             <Route path='contact' element={<Contact />}/>
-            <Route path='help' element={<Help />}/>
+            <Route path='helps' element={<Help />}/>
             <Route path='blogs' element={<Blogs />}/>
             <Route path='register' element={<Signup />}/>
             <Route path='blogs/:id' element={<ViewBlog />}/>
