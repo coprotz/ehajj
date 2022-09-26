@@ -12,6 +12,7 @@ import Mission from './mission/Mission'
 
 import Admin from './admin/Admin'
 import NoWhere from './no_where/NoWhere'
+import Page404 from '../404/Page404'
 // import NewUser from './newUser/NewUser'
 
 const Account = () => {
@@ -90,7 +91,7 @@ const Account = () => {
             )
         }else{
             return (
-               <NoWhere/>
+               <Page404/>
             )
         }
     }
