@@ -57,12 +57,12 @@ const Lang = () => {
       // setActiveLan(code)
     }
   return (
-    <>
+    <div className='lan_lang'>
         <button className='btn_lang' onClick={() => setLang(!lang)}><BiGlobe/><span className='name_lan'>{langu?.name}</span>{!lang? <BiCaretDown/> :<AiFillCaretUp/> }</button>
         {lang && 
         <div className="lang_select">
           <span>{t('language')}</span>
-          <div className='lang_code'>         
+          <div className='lang_code reg_lan'>         
           {languages.map(({ code, name, country_code }) => (
               <div key={code}>
                 <button 
@@ -78,7 +78,7 @@ const Lang = () => {
           </div>
         </div>}
       
-    </>
+    </div>
   )
 }
 

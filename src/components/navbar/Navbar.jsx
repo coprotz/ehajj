@@ -54,7 +54,7 @@ const Navbar = () => {
         <MainMenu showMenu={showMenu} setShowMenu={setShowMenu}/>}
       <div className="acc_logo" onClick={() => navigate('/')}><img src={logo} alt=''/></div>
       <div className="cont_menu">    
-      <Lang />     
+        
          {user ?         
         <div className="cuUser_wrapper">
           <span className='cuUser' onClick={()=> setItems(!items)}>{cuUser?.fname} {cuUser?.lname}{!items? <AiFillCaretDown/> : <AiFillCaretUp/>}</span>
@@ -102,6 +102,7 @@ const Navbar = () => {
         }
         </>
       }
+        <Lang />   
         <button className='btn_menu' onClick={() =>setShowMenu(!showMenu)}>{showMenu? <BiX/> : <BiMenu/>}</button>
         
       </div>

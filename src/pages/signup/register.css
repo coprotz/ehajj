@@ -53,6 +53,29 @@
     height: 100vh;
 }
 
+.register_logo_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.register_footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reg_footer_lan{
+    position: relative;
+}
+
+.reg_top_top_1{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
 @media screen and (max-width: 940px){
     .reg_video{
         display: none;
