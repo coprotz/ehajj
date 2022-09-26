@@ -39,9 +39,9 @@ const Agents = () => {
               <div className="agents_heading">
                   <h1>{t('agent_welcome')}</h1>
               </div> 
-              <div className="agent_serach">
+              {/* <div className="agent_serach">
                 <Search />
-              </div>
+              </div> */}
               <div className="agents_lists">
                 
                 {agents && agents.filter(a => a.status === 'Approved').map((item) => (

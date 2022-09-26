@@ -10,8 +10,8 @@
     width: 100%;
     padding: 50px;
     text-align: center;
-    background-color: #3266a8;
-    color: white;
+    /* background-color: #3266a8; */
+    color: black;
     font-size: 2.5rem;
 }
 
@@ -40,7 +40,7 @@
     flex-direction: column;
 
     width: 100%;
-    background-color: #3266a8;
+    /* background-color: #3266a8; */
     padding: 50px;
 }
 
@@ -64,12 +64,17 @@
     display: flex;
     flex-direction: column;
     padding: 35px;
-    background-color: #95bef5;
+    border: 1px solid #95bef5;
+    /* background-color: ; */
     align-items: center;
-    border-radius: 7px;
+    border-radius: 4px;
     justify-content: space-between;
     /* gap: 20px; */
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;;
+}
+
+.agent_card:hover{
+    background-color: #dfeaf8;
 }
 
 .agent_cost{
@@ -116,6 +121,7 @@ section{
 
 .view_landing_img img{
     width: 100%;
+    border-radius: 50%;
     
 
 }
@@ -484,6 +490,7 @@ section{
 .agent_logo1 img{
     width: 100%;
     height: 100%;
+    border-radius: 50%;
     object-fit: cover;
 }
 
@@ -494,7 +501,7 @@ section{
 
 .agent_name:hover{
     text-decoration: underline;
-    color: white;
+    /* color: white; */
 }
 
 
@@ -721,7 +728,7 @@ section{
         padding: 10px;
         text-align: center;
         /* background-color: #7d25d7; */
-        color: white;
+        /* color: white; */
         font-size: 0.9rem;
         font-weight: 200 !important;
     }
@@ -800,7 +807,7 @@ section{
         padding: 30px;
         text-align: center;
         font-size: 1.5rem;
-        background-color: #3266a8;
+        /* background-color: #3266a8; */
         color: rgb(211, 211, 211);
         /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
         font-weight: 100;
@@ -916,15 +923,17 @@ section{
     }
 
     .agents_inner_2{
-       
-        background-color: #cadeee;
+       width: 100%;
+       padding: 5px;
+        /* background-color: #cadeee; */
     }
 
     .agent_card{
        
         padding: 20px;
-        background-color: #cadeee;     
-        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+        width: 100%;
+        /* background-color: #cadeee;      */
+        /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
     }
 
     .agent_logo{
@@ -943,7 +952,7 @@ section{
     .agent_name{
         cursor: pointer;
         font-size: 1.3rem;
-        color: #36668d;
+        /* color: #36668d; */
     }
     
     
