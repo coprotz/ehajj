@@ -9,6 +9,7 @@ const Footer = () => {
 
   return (
     <div className="acc_footer">
+      <div className="footer_inner">
         <div className="acc_footer_left">
             <small>{t('powered_by')} BarruTech</small>
         </div>
@@ -21,6 +22,7 @@ const Footer = () => {
             <small onClick={() =>navigate('/terms')}>{t('terms')}</small>
             <small onClick={() =>navigate('/help')}>{t('help')}</small>
             <small onClick={() =>navigate('/privacy')}>{t('privacy')}</small>
+        </div>
         </div>
     </div>
   )

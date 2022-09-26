@@ -299,7 +299,7 @@ button:disabled{
 .home_video{
     background-color: white;
     height: 19vh;
-    width: 19vw;
+    width: 19vh;
     background-image: url('/src/components/images/hajj.jpg');
     background-size: cover;
     position: relative;
@@ -461,7 +461,7 @@ button:disabled{
 
     .home_video{
         background-color: white;
-        height: 19vh;
+        height: 50vw;
         width: 100%;
         background-image: url('/src/components/images/hajj.jpg');
         background-size: cover;

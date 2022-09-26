@@ -189,6 +189,12 @@
     color: white;
   }
 
+  .page_container{
+    text-align: center;
+    color: #bdd5f7;
+  }
+  
+
   @media screen and (max-width: 940px){
    
     .btn_app_menu{

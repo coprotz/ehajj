@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { BsGlobe } from "react-icons/bs";
-import chat from '../../components/images/chat.png'
+import chat from '../../components/images/chat1.png'
 
 const Contact = () => {
   const navigate = useNavigate()
@@ -19,21 +19,11 @@ const Contact = () => {
     
       <div className="contact">
         <Navbar/>
-      <motion.div 
+        <motion.div 
              initial={{ x: '100vw'}}
              animate={{x:0}} 
              transition={{ ease: "easeOut", duration: 0.5 }} 
-          className='about'>
-          <div className="about_wrapper">
-            <div className="about_inner">
-              {/* <div className="page_title_wrapper"> */}
-                {/* <h1 className='page_title'><FaArrowLeft onClick={() => navigate('/')}/>Mawasiliano Yetu</h1> */}
-                {/* <button className='page_next' onClick={() => navigate('/')}><FaArrowRight /></button> */}
-              {/* </div> */}
-              {/* <div className="incase_menu">
-                <Navbar/>
-              </div> */}
-              
+          className='contact_inner'>                     
               <div className="about_top_1">
                 <h1 className='about_title'>{t('contact_title')}</h1>
               </div>
@@ -60,12 +50,12 @@ const Contact = () => {
                     <a href='tel:+255767157057' target='_top' className='contact_link'><FiPhoneCall/></a>
                     <a href='mailto:info@e-hajj.org?Subject=Need%20Help' target='_top' className='contact_link'><MdOutlineAlternateEmail/></a>
                     <a href='https://ehajj-tz.netlify.app' target='_blank' className='contact_link'><BsGlobe/></a>
+                  </div>
                 </div>
-                </div>
-              </div>
+              
              
             </div>
-          </div>
+        
         </motion.div>
         <Footer/>
       </div>
