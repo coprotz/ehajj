@@ -25,9 +25,9 @@
 }
 
 .cont_welcome{
-    color: #aaa;
+    /* color: #aaa; */
     font-size: 20px;
-    line-height: 1.3;
+    line-height: 1.5;
     margin: 35px 0;
     font-weight: 400;
 }
