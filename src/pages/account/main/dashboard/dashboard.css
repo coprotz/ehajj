@@ -105,6 +105,10 @@
 
 }
 
+.admin_main_top_2{
+    width: 300px;
+}
+
 
 @media screen and (max-width: 440px){
     .acc_body_top{

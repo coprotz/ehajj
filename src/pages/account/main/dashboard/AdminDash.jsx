@@ -21,7 +21,7 @@ const AdminDash = () => {
           <h2>{isAdmin?.fname+" "+isAdmin?.lname}, {isAdmin?.position}</h2>
         </div>
         <div className="acc_body_card">
-          <small>Applicants</small>
+          <small>Pilgrims Applicants</small>
           <h2>{pilgrims?.length}</h2>
         </div>
         <div className="acc_body_card">
@@ -31,12 +31,12 @@ const AdminDash = () => {
       </div>          
 
     
-      <div className="acc_main_top_2">
+      <div className="admin_main_top_2">
         <h3 className='acc_sub_title'>Recent Agents</h3>
         <div className="acc_inner_agents_1">                  
-            {dashAgents && dashAgents.map(a => (
+            {agents && agents.reverse().slice(0,3).map(a => (
               <div className="Inner_agent_card" key={a.id}>
-                <span className="agent_logo">{a.coName[0]}</span>                        
+                <span className="agent_logo">{a && a?.coName[0] ||a && a?.name[0]}</span>                        
                   <div className="post_card_inner">
                     <h3>{a.coName}</h3>
                     <small>Created {moment(a.timeStamp?.toDate()).fromNow()}</small>
@@ -49,7 +49,7 @@ const AdminDash = () => {
   </div>
   <div className="admin_main_body">
     <div className="acc_main_left">
-      <h3 className='acc_sub_title'>Recent Applicants</h3>
+      <h3 className='acc_sub_title'>Recent Pilgrims Applicants</h3>
       <div className="main_admin_inner">              
         <table className='table'>
           <thead>
@@ -62,7 +62,7 @@ const AdminDash = () => {
             <th>Agent Name</th>
           </thead>
           <tbody>
-            {pilgrims?.slice(0,3).map(d=> (
+            {pilgrims?.reverse().slice(0,3).map(d=> (
               <PligrimCard d={d} key={d.id}/>
             ))}               
           </tbody>
