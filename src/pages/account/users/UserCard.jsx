@@ -3,13 +3,14 @@ import ChangeStatus from '../../../components/changeStatus/ChangeStatus'
 import ViewProfile from '../../../components/viewProfile/ViewProfile'
 import useData from '../../../hooks/useData'
 import NewChat from '../message/NewChat'
+import moment from 'moment'
 
 
 const UserCard = ({user, index}) => {
     const { users, agents } = useData()
     const agent = agents && agents.find(u => u.id === user?.agentId)
   return (
-    <tr>
+    <tr >
         <td data-label='SN'>{index+1}</td>     
         <td data-label='Name'>{user?.fname+" "+user?.lname}</td> 
         <td data-label='Role'>{user?.typeOf}</td>    
@@ -17,6 +18,7 @@ const UserCard = ({user, index}) => {
         <td data-label='Office'>{agent?.office}</td>             
         <td data-label='Phone'>{user?.phone}</td>
         <td data-label='Email'>{user?.email}</td>
+        <td data-label='Created At'>{moment(user?.createdAt?.toDate()).fromNow()}</td>
         <td data-label='Status'>{user?.status}</td>
         <td data-label='Action'>
         <div className="actions_btns">

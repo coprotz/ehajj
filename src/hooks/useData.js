@@ -30,6 +30,10 @@ const useData = () => {
     const dashAgen = query(agentsRef, orderBy("timeStamp"), limit(3))
     const dashPil = query(pilgrimsRef, orderBy("createdAt"), limit(3))
 
+    const allUsers = query(usersRef, orderBy("createdAt")); 
+    const allAgents = query(agentsRef, orderBy("createdAt")); 
+    const allPilgrims = query(pilgrimsRef, orderBy("createdAt")); 
+
     useEffect(() => {
         onSnapshot(dashPil, snapshot => {
             setDashPilgrims(snapshot.docs.map(doc => {
@@ -63,7 +67,7 @@ const useData = () => {
     },[])
 
     useEffect(() => {
-        onSnapshot(pilgrimsRef, snapshot => {
+        onSnapshot(allPilgrims, snapshot => {
             setPilgrims(snapshot.docs.map(doc => {
                 return {
                     id: doc.id,
@@ -94,7 +98,7 @@ const useData = () => {
     },[])
 
     useEffect(() => {
-        onSnapshot(agentsRef, snapshot => {
+        onSnapshot(allAgents, snapshot => {
             setAgents(snapshot.docs.map(doc => {
                 return {
                     id: doc.id,
@@ -116,7 +120,7 @@ const useData = () => {
     },[])
 
     useEffect(() => {
-        onSnapshot(usersRef, snapshot => {
+        onSnapshot(allUsers, snapshot => {
             setUsers(snapshot.docs.map(doc => {
                 return {
                     id: doc.id,

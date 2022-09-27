@@ -23,11 +23,11 @@ import { useNavigate, NavLink } from 'react-router-dom'
 const AgentSidebar = () => {
 
     const {  user } = useAuth();
-    const { users, pilgrims, agents, dashAgents, dashPilgrims, mission } = useData();
+    const { users, pilgrims, agents, admins, mission } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
     const isPilgrim = pilgrims && pilgrims.find(u => u.id === user.uid)
-    const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
-    const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf === 'admin'
+    const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+    const isAdmin = admins && admins.find(u => u.userId === user.uid)
     const isMission = mission && mission.find(u => u?.userId === user.uid)
   return (
     <div className="agent_menu">
@@ -55,6 +55,11 @@ const AgentSidebar = () => {
         <MdSupportAgent/>
         <small>Agents</small>
       </NavLink>}
+      {isAdmin&&
+      <NavLink to='agents' className="agent_menu_item">
+        <MdSupportAgent/>
+        <small>Agents</small>
+      </NavLink>}
       <NavLink to='payments' className="agent_menu_item">
         <BsFillCreditCard2BackFill/>
         <small>Payments</small>
@@ -63,7 +68,17 @@ const AgentSidebar = () => {
         <BsChatSquareDotsFill/>
         <small>Messages</small>
       </NavLink>
-      {!isMission &&<>
+      {isPilgrim &&<>
+        <NavLink to='visa' className="agent_menu_item">
+          <BsClipboardCheck/>
+          <small>Visa</small>
+        </NavLink>
+        <NavLink to='ticket' className="agent_menu_item">
+          <BsReverseLayoutSidebarInsetReverse/>
+          <small>Tickets</small>
+        </NavLink>   
+      </>}
+      {isAgent &&<>
         <NavLink to='visa' className="agent_menu_item">
           <BsClipboardCheck/>
           <small>Visa</small>

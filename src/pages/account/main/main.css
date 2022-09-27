@@ -7,7 +7,7 @@
 
 .main_top_wrapper{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: space-between;
     width: 100%;
     /* border: 1px solid red; */
@@ -23,7 +23,7 @@
 .acc_main_top{
     width: 100%;   
     display: grid;
-    grid-template-columns: repeat(auto-fit, 300px);
+    grid-template-columns: repeat(auto-fit, 280px);
     gap: 20px;
 }
 

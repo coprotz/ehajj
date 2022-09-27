@@ -35,6 +35,7 @@ import Terms from './pages/terms/Terms';
 import Privacy from './pages/privacy/Privacy';
 import Register from './pages/signup/Signup';
 import Signup from './pages/signup/Signup';
+import SignupAdmin from './pages/signup/SignupAdmin';
 
 
 
@@ -90,6 +91,7 @@ function App() {
             <Route path='helps' element={<Help />}/>
             <Route path='blogs' element={<Blogs />}/>
             <Route path='register' element={<Signup />}/>
+            <Route path='register/admin' element={<SignupAdmin />}/>
             <Route path='blogs/:id' element={<ViewBlog />}/>
             <Route path='success' element={<Success />}/>
             <Route path='account' element={

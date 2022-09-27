@@ -45,7 +45,7 @@ const Teams = () => {
           <th >Action</th>
         </thead>
         <tbody className='total'>         
-           {agents?.map((s, index) => (
+           {agents?.reverse().map((s, index) => (
               <AgentCard s={s} index={index}/>
            ))}          
         </tbody>

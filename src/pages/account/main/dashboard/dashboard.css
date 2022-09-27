@@ -82,6 +82,15 @@
     position: relative;
 }
 
+.acc_main_left{
+    width: 100%;
+}
+
+.admin_main_body{
+    display: flex;
+    gap: 20px;
+}
+
 .div_span{
     position: absolute;
     top: 35px;

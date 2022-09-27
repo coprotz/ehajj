@@ -3,20 +3,22 @@ import { useAuth } from '../../../../hooks/useAuth';
 import useData from '../../../../hooks/useData';
 import moment from 'moment'
 import ApplicationTrend from '../ApplicationTrend';
+import PligrimCard from '../../../pilgrims/PligrimCard';
 
 
 
 const AdminDash = () => {
     const {  user } = useAuth();
-    const { users, pilgrims, agents, dashAgents, dashPilgrims } = useData();
+    const { users, pilgrims, agents, dashAgents, dashPilgrims, admins } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
+    const isAdmin = admins?.find(a => a.userId === user.uid)
   return (
     <div className="main_body">
     <div className="main_top_wrapper">
       <div className="acc_main_top">
         <div className="acc_body_card">
           <small>Assalaam Aleykum</small>
-          <h2>{cuUser?.fname} {cuUser?.lname}(Admin)</h2>
+          <h2>{isAdmin?.fname+" "+isAdmin?.lname}, {isAdmin?.position}</h2>
         </div>
         <div className="acc_body_card">
           <small>Applicants</small>
@@ -45,10 +47,10 @@ const AdminDash = () => {
         </div>
       </div>
   </div>
-  <div className="acc_main_body">
+  <div className="admin_main_body">
     <div className="acc_main_left">
       <h3 className='acc_sub_title'>Recent Applicants</h3>
-      <div className="main_pilgrims_inner">              
+      <div className="main_admin_inner">              
         <table className='table'>
           <thead>
             <th>Name</th>
@@ -60,16 +62,8 @@ const AdminDash = () => {
             <th>Agent Name</th>
           </thead>
           <tbody>
-            {dashPilgrims && dashPilgrims.map(d=> (
-              <tr key={d.id}>
-                <td data-label='Name'>{d.fname} {d.lname}</td>
-                <td data-label='Sex'>{d.gender}</td>
-                <td data-label='Age'>32</td>
-                <td data-label='Ibada Type'>{d.ibada}</td>
-                <td data-label='Created At'>{moment(d.createdAt?.toDate()).fromNow()}</td>
-                <td data-label='Application Status'>{d.status}</td>
-                <td data-label='Agent'>{d.agentName}</td>
-              </tr>
+            {pilgrims?.slice(0,3).map(d=> (
+              <PligrimCard d={d} key={d.id}/>
             ))}               
           </tbody>
         </table>

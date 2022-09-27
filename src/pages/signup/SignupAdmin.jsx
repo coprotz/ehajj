@@ -1,15 +1,15 @@
 import React from 'react'
 import './register.css'
 import videoBg from '../../components/images/kaaba3.mp4'
-import Register from '../home/Register'
 import logo from '../../components/images/logo1.png'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from "react-i18next";
-import { BiRightArrowAlt, BiX, BiMenu, BiCaretDown, BiGlobe } from "react-icons/bi";
+import {  BiX,  } from "react-icons/bi";
 import Lang from '../../components/lang/Lang'
+import AdminDeg from './AdminDeg'
 
 
-const Signup = () => {
+const SignupAdmin = () => {
   const navigate = useNavigate()
   const { t } = useTranslation();
 
@@ -28,7 +28,7 @@ const Signup = () => {
             
             <h1 className="reg_welcome">{t('welcome_to_ehajj')}</h1>
             <div className="reg_reg_details">
-                <Register/>
+                <AdminDeg/>
             </div>
             <div className="register_footer">
               <div className="reg_footer_info">
@@ -49,4 +49,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default SignupAdmin

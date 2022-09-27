@@ -9,7 +9,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import './users.css'
 import NewChat from '../message/NewChat';
 import ChangeStatus from '../../../components/changeStatus/ChangeStatus';
-
+import moment from 'moment'
 import ViewProfile from '../../../components/viewProfile/ViewProfile';
 import UserCard from './UserCard';
 
@@ -18,16 +18,17 @@ import UserCard from './UserCard';
 const Users = () => {
 
   const navigate = useNavigate();
-  const { users, agents, mission } = useData();
+  const { users, agents, mission, admins } = useData();
   const { user } = useAuth();
   const cuUser = users && users.find(u => u.id === user.uid)
 
-  const agentUsers = users && users.filter(a =>a.typeOf === 'agent')?.filter(u => u.agentId === cuUser.agentId)
+  const agentUsers = users && users.filter(a =>a.typeOf === 'agent')?.filter(u => u?.agentId === cuUser?.agentId)
   // console.log('agentusers', agentUsers)
 
-  const agent = agents && agents.find(a => a.id === cuUser.agentId)
+  const agent = agents && agents.find(a => a.id === cuUser?.agentId)
   // const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
   const isMission = mission && mission.find(m => m.userId === user.uid)
+  const isAdmin = admins?.find(a => a?.userId === user?.uid)
   // const agent = agents && agents.find(u => u.id === user?.agentId)
   
 
@@ -49,6 +50,7 @@ const Users = () => {
           <th >Office</th>      
           <th >Phone</th>
           <th >Email</th>
+          <th >Created At</th>
           <th >Status</th>
           <th >Action</th>
         </thead>
@@ -63,6 +65,7 @@ const Users = () => {
               <td data-label='Office'>{s?.office}</td>             
               <td data-label='Phone'>{s?.phone}</td>
               <td data-label='Email'>{s?.email}</td>
+              <td data-label='Created At'>{moment(s?.createdAt?.toDate()).fromNow()}</td>
               <td data-label='Status'>{s?.status}</td>
               <td data-label='Action'>
                 <div className="actions_btns">
@@ -79,12 +82,17 @@ const Users = () => {
            
            </>}
            {isMission && <>
-            {users?.map((s, index) => (
+            {users?.reverse().map((s, index) => (
               <UserCard user={s} key={s.id} index={index}/>
-           ))}
+           ))}</>}
+            {isAdmin && <>
+              {users?.reverse().map((s, index) => (
+              <UserCard user={s} key={s.id} index={index}/>
+           ))}</>}
            
            
-           </>}
+           
+           
         </tbody>
       </table>
         </div>

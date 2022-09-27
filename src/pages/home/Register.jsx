@@ -408,24 +408,7 @@ const Register = () => {
                                 {...register("typeOf", { required: true })}                                  
                             />
                             <label htmlFor="agent" className='cont_label'><span>{t('agent')}</span></label>  
-                              <input 
-                                type="radio" 
-                                name='typeOf'
-                                value='mission'
-                                id='mission'  
-                                style={{display:'none'}} 
-                                {...register("typeOf", { required: true })}                                  
-                            />
-                            <label htmlFor="mission" className='cont_label'><span>{t('mission')}</span></label>                           
-                            <input 
-                                type="radio" 
-                                name='typeOf'
-                                value='admin' 
-                                id='admin' 
-                                style={{display:'none'}}  
-                                {...register("typeOf", { required: true })}                                 
-                            />
-                            <label htmlFor="admin" className='cont_label'><span>{t('admin')}</span></label>                            
+                                                 
                         </div>     
                         {RenderButton()}
                     </motion.div> 

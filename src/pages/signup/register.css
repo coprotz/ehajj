@@ -76,6 +76,20 @@
     position: relative;
 }
 
+.cont_label{
+    width: 300px;
+    text-align: center;
+}
+
+.admin_reg{
+    margin: 15px 0;
+}
+
+.page_admin_1{
+    color: #bdd6f7;
+    font-weight: 400;
+}
+
 @media screen and (max-width: 940px){
     .reg_video{
         display: none;

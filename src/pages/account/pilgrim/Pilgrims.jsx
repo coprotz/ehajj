@@ -20,16 +20,18 @@ import ChangeStatus from '../../../components/changeStatus/ChangeStatus';
 import NewChat from '../message/NewChat';
 import ViewProfile from '../../../components/viewProfile/ViewProfile';
 
+
 const Pilgrims = () => {
     const { t } = useTranslation();
 
-    const { users, pilgrims, agents, mission } = useData()
+    const { users, pilgrims, agents, mission, admins } = useData()
     const navigate = useNavigate();
     const { user } = useAuth();
     const cuUser = users && users.find(u => u.id === user.uid)
     const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
-    const agentPilgrims = pilgrims && pilgrims.filter(a =>a.agent === cuUser.agentId)
+    const agentPilgrims = pilgrims && pilgrims.filter(a =>a.agent === cuUser?.agentId)
     const isMission = mission && mission.find(m => m.userId === user.uid)
+    const isAdmin = admins?.find(a => a?.userId === user?.uid)
 
 
     const [report, setReport] = useState(null)
@@ -79,7 +81,12 @@ const Pilgrims = () => {
                 ))}
               </>}
               {isMission && <>
-                {pilgrims && pilgrims.map(pil => (
+                {pilgrims && pilgrims.reverse().map(pil => (
+                <PilgrimCard pil={pil}/>
+                ))}
+              </>}
+              {isAdmin && <>
+                {pilgrims && pilgrims.reverse().map(pil => (
                 <PilgrimCard pil={pil}/>
                 ))}
               </>}

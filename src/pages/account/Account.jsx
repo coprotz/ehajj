@@ -41,7 +41,7 @@ const Account = () => {
     const userAgent = agents?.find((a) => a.id === cuUser?.groupId)
     const agentPils = pilgrims?.filter((a) => a.agentId === cuAgent?.id)
     const isMission = mission?.find(m => m?.userId === user?.uid)
-    const isAdmin = admins.find(a =>a.userid === user?.uid)
+    const isAdmin = admins.find(a =>a.userId === user?.uid)
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
 
     console.log('isgent',isAgent)

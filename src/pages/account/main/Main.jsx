@@ -14,7 +14,7 @@ import MissionDash from './dashboard/MissionDash';
 const Main = () => {
 
     const {  user } = useAuth();
-    const { users, pilgrims, agents, dashAgents, dashPilgrims, mission } = useData();
+    const { users, pilgrims, agents, dashAgents, dashPilgrims, mission, admins } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
     const navigate = useNavigate()
     const ageId = cuUser?.agentId
@@ -25,7 +25,7 @@ const Main = () => {
 
     const isPilgrim = pilgrims && pilgrims.find(u => u.id === user.uid)
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
-    const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf === 'admin'
+    const isAdmin = admins && admins.find(u => u.userId === user.uid)
     const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
     const activeAgentPilgrims = agentPilgrims && agentPilgrims.filter(a => a?.agentId === ageId)
 
