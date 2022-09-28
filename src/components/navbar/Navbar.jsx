@@ -79,7 +79,7 @@ const Navbar = () => {
           {err && 
           <span className='error'>
             {err}
-            <button onClick={() => setErr('')} className='login_close'><BiX/></button>
+            <button onClick={() => {setErr('');setLoading(null)}} className='login_close' ><BiX/></button>
           </span>}
           <div className="login_wrapper">
             <input 
