@@ -1,0 +1,475 @@
+.profile{
+    
+    width: 100vw;
+    min-height: 100vh;
+    
+}
+
+.profile_wrapper{
+    width: 80%;
+    margin: 0 auto;
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_inner{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3266a8;
+    color: white;
+    padding: 20px;
+    transition: 0.5s;
+
+}
+
+.profile_top{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.profile_head{
+    display: flex;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile_logo{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 180px;
+    height: 180px;
+    position: relative;
+}
+
+.error_profile{
+    font-size: 1rem !important;
+    
+    /* min-width: 500px; */
+    /* border: 1px solid black; */
+}
+
+.profile_logo img, .profile_logo span{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn_error{
+    border: none;
+    background-color: transparent;
+    margin-left: 5px;
+    font-size: 1.4rem;
+}
+
+.profile_logo span{
+    font-size: 5rem;
+    font-weight: 700;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3266a8;
+}
+
+.profile_header{
+    padding: 50px 0;   
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile_photo{
+    position: absolute;
+    right: -9px;
+    top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* background-color: red; */
+}
+
+.profile_photo span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #bdd6f7;
+    border-radius: 50%;
+    color: black;
+}
+
+.profile_photo span:hover{
+    background-color: #4978b5;
+    color: white;
+    cursor: pointer;
+}
+
+.profile_photo svg{
+    font-size: 1.5rem;
+}
+
+.profile_header h2{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+
+}
+
+.btn_profile{
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 1rem;
+    background-color: #e7effa;
+    border: 1px solid white;
+}
+
+.btn_profile:hover{
+    cursor: pointer;
+    background-color: #3266a8;
+    color: white;
+}
+
+.profile_personal{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.profile_personal span{
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    min-height: 60px;
+}
+
+.profile_span h4{
+    font-size: 1.2rem;
+}
+
+.profile_svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.profile_svg svg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    color: #bdd6f7;
+}
+
+.profile_agent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.pass_copy_doc{
+    /* border: 1px solid red; */
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app_status{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 25px;
+    background-color: #bdd6f7;
+    border-radius: 15px;
+    color: #3266a8;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.p_passport_left .pass_group{
+    background-color: #e7effa;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.profile_agent_name{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pass_card{
+    width: 350px;
+    height: 230px;
+    background-color: #e7effa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.profile_passport{
+    display: flex;
+    border: 1px solid #bdd6f7;
+    padding: 20px;
+    width: 100%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.p_passport_left{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.pass_group{
+    
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pass_group span{
+    font-size: 1rem !important;
+}
+
+.next_kin_detail{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.next_details_wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 47%);
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.next_details_wrapper .pass_group{
+    background-color: #bdd6f7;
+    padding: 25px;
+    color: black;
+    border-radius: 5px;
+}
+
+.profile_payment{
+    background-color: #3266a8;
+    padding: 30px;
+    width: 100%;
+    color: white;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile_payment span{
+    font-size: 1rem;
+}
+
+.payment_actions{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.payment_method{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    border: 1px solid #e7effa;
+}
+
+.btn_view_invo{
+    background-color: white;
+    border: none;
+    padding: 8px 13px;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.profile_card_title{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn_edit{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #e7effa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.btn_edit:hover{
+    cursor: pointer;
+    background-color: #527fbb;
+    color: white;
+  
+}
+
+.profile_photo_edit{
+    margin-top: 10px;
+}
+
+.profile_card_title svg{
+    
+    
+    
+    
+    margin: 5px;
+    
+    /* font-size: 0.5rem; */
+}
+
+.btn_save_btn{
+    border: none;
+    padding: 8px 13px;
+    background-color: #597dad;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn_save_btn:hover{
+    background-color: #1455aa;
+    cursor: pointer;
+}
+
+.ibada_type{
+    padding: 12px 18px;
+    background: #bdd6f7;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: fit-content;
+}
+
+@media screen and (max-width: 940px){
+    .profile_wrapper{
+        width: 100%;     
+        gap: 15px;
+      
+    }
+
+    .profile_personal{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .profile_personal span{
+        padding: 7px;
+        background-color: white;
+        border-radius: 5px;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        min-height: 60px;
+    }
+
+    .profile_agent{        
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .profile_passport{
+        flex-direction: column;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .p_passport_left .pass_group{
+        background-color: #e7effa;
+        padding: 20px;
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .p_passport_left{
+        width: 100%;
+       font-size: 1rem !important;
+        gap: 10px;
+    }
+
+    .pass_copy_doc{
+        /* border: 1px solid red; */
+        width: 100%;
+        margin-top: 10px;
+      
+    }
+
+    .profile_payment{
+      
+        padding: 20px;
+        width: 100%;
+        
+        margin-bottom: 20px;
+        flex-direction: column;
+    }
+
+    .payment_actions{
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .next_details_wrapper .pass_group{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .next_details_wrapper{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 45%);
+        gap: 10px;
+        justify-content: space-between;
+    }
+
+    .app_status{
+       
+        padding: 5px 15px;
+       
+        border-radius: 5px;
+        color: #3266a8;
+     
+    }
+    
+}

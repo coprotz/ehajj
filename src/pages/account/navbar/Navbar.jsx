@@ -68,8 +68,8 @@ const Navbar = () => {
               <button className='btn_user'><BsFillCaretDownFill/></button>
               {userMenu &&
               <div className="user_profile_action">
-                <span>My Profile</span>
-                <span>Company Profile</span>
+                <span onClick={() =>navigate(`/profile/${pilgrim?.id}`)}>My Profile</span>
+                <span onClick={() =>navigate(`/profile/${agent?.id}`)}>Company Profile</span>
                 <span>Settings</span>
                 <span onClick={() => logOut()}>Log Out</span>
               </div>}

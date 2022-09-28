@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { questions, teachings } from '../../../../hooks/data';
 import { useAuth } from '../../../../hooks/useAuth';
 import useData from '../../../../hooks/useData';
+import { useTranslation } from "react-i18next";
 import './dashboard.css'
 
 
@@ -14,6 +15,7 @@ const PilgrimDash = () => {
     const { users, pilgrims, agents, dashAgents, dashPilgrims, admins, mission } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
     const pilgrim = pilgrims && pilgrims.find(u => u?.id === user.uid)
+    const { t } = useTranslation();
     // const isAgent = agents && agents.find(u => u.users.includes(`${user.uid}`))
     // const isAdmin = admins && admins.find(u => u.userId === user.uid)
     // const isMission = mission && mission.find(u => u.userId === user.uid)
@@ -41,7 +43,7 @@ const PilgrimDash = () => {
             <h2>{pilgrim? pilAgent.ibada : 'No application'}</h2>
             </div>
             <div className="acc_body_card">
-            <small>Agent</small>
+            <small>Proposed Agent</small>
             <h2>{pilAgent? pilAgent.agentName || pilAgent.name : 'No application'}</h2>
             </div>
             <div className="acc_body_card">
@@ -61,9 +63,9 @@ const PilgrimDash = () => {
                 <div className="Inner_post_card">            
                     <h1 className='post_index'>01</h1>
                     <div className="post_card_inner">
-                    <h2>{item.title}</h2>
-                    <p className='pil_card_pg'>{item.body}</p>
-                    <button  className='btn_index' onClick={()=> navigate(`/blogs/${item.id}`)}>Soma Zaidi</button>
+                    <h2>{t(`${item.title}`)}</h2>
+                    <p className='pil_card_pg'>{t(`${item.body}`)}</p>
+                    <button  className='btn_index' onClick={()=> navigate(`/blogs/${item.id}`)}>{t('read_more')}</button>
                     </div>
                 
                 </div>
@@ -82,7 +84,7 @@ const PilgrimDash = () => {
             {questions && questions.slice(0,4).map((item,index)=> (
                 <div className="que_wrap_inner">
                 <span className='que_span'>H</span>
-                <h4 className='blog_qna_body' key={index} onClick={() => navigate(`/blogs/${item.id}`)}>{item.title}</h4>
+                <h4 className='blog_qna_body' key={index} onClick={() => navigate(`/blogs/${item.id}`)}>{t(`${item.title}`)}</h4>
             </div>
             ))}               
 

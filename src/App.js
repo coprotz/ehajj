@@ -36,6 +36,7 @@ import Privacy from './pages/privacy/Privacy';
 import Register from './pages/signup/Signup';
 import Signup from './pages/signup/Signup';
 import SignupAdmin from './pages/signup/SignupAdmin';
+import Profile from './pages/profile/Profile';
 
 
 
@@ -80,6 +81,7 @@ function App() {
             <Route path='privacy' element={<Privacy />}/>
             <Route path='terms' element={<Terms />}/>
             <Route path='agents/:id' element={<ViewAgent />}/>
+            <Route path='profile/:id' element={<Profile />}/>
             <Route path='teachings' element={<Teachings />}/>   
             <Route path='createAgent' element={
               <RequireAuth>
