@@ -40,10 +40,11 @@ const Navbar = () => {
     try {
       await signIn(email, password)
       navigate('/account/main')
-      setLoading(false)
+      
     } catch (error) {
       setErr(error.message);
     }
+    setLoading(false)
 
   }
 
