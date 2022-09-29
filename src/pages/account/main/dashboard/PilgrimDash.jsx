@@ -40,11 +40,11 @@ const PilgrimDash = () => {
         <>            
             <div className="acc_body_card">
             <small>Ibada Selected</small>
-            <h2>{pilgrim? pilAgent.ibada : 'No application'}</h2>
+            <h2>{pilgrim? pilgrim.ibada : 'No application'}</h2>
             </div>
             <div className="acc_body_card">
             <small>Proposed Agent</small>
-            <h2>{pilAgent? pilAgent.agentName || pilAgent.name : 'No application'}</h2>
+            <h2>{pilAgent? pilAgent.coName || pilAgent.name : 'No application'}</h2>
             </div>
             <div className="acc_body_card">
             <small>Application Status</small>
