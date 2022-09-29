@@ -50,14 +50,15 @@ const Navbar = () => {
               pilgrim? pilgrim?.fname+" "+pilgrim?.lname :
               cuMission? cuMission?.name : 
               isAdmin? isAdmin?.name : 
-              null}</h1>
+              null}
+            </h1>
           </div>
           <div className="agent_top_right">
             <div className="user_notification">
               <button className='btn_notific'><BsBell/></button>   
             </div>
                      
-            <h4>{
+            <h4 className='account_name'>{
               cuMission? cuMission?.fname+" "+cuMission?.lname : 
               pilgrim? pilgrim?.fname+" "+pilgrim?.lname :
               agent? cuUser?.fname+" "+cuUser?.lname : 
