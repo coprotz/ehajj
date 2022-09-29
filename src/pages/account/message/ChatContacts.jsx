@@ -17,8 +17,8 @@ const ChatContacts = () => {
     const { users, agents, pilgrims, groups, chats } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
 
-    const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
-    const agent = agents && agents.find(a => a.id === cuUser.agentId)
+    const pilgrim = pilgrims && pilgrims.find(u => u?.id === user.uid)
+    const agent = agents && agents.find(a => a.id === cuUser?.agentId)
     const group = groups && groups.find((u) => u.id === cuUser?.groupId)
 
     const isPilgrim = users && users.find(u => u.id === user.uid)?.typeOf === 'pilgrim'
@@ -26,12 +26,13 @@ const ChatContacts = () => {
     const isMission = users && users.find(u => u.id === user.uid)?.typeOf === 'mission' 
     const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf ===  'admin'
 
-    const agentUsers = users && users.filter(a =>a.typeOf === 'agent')?.filter(u => u.agentId === cuUser.agentId)
+    const agentUsers = users && users.filter(a =>a.typeOf === 'agent')?.filter(u => u.agentId === cuUser?.agentId)
 
     const groupChats = chats && chats.filter(c =>c.members.includes(`${group?.id}`))
 
     const userChats = chats && chats.filter(c => c.members.includes(`${user.uid}`))
     const allChats = userChats.concat(groupChats)
+    const pilAgent = agents?.find(p => p.id === pilgrim?.agentId)
 
     const [selected, setSelected] = useState(null)
     const [newMsg, setNewMsg] = useState(null)
@@ -98,7 +99,7 @@ const ChatContacts = () => {
     console.log('selcetd', selected)
 
     const RenderChoice = () => {
-        if(isPilgrim){
+        if(pilgrim){
           return (
             <div className='pil_inner_1'>
                 {/* <button className='btn_sel_new'><BiArrowBack onClick={() => navigate(-1)}/>Select Contact</button> */}
@@ -108,15 +109,15 @@ const ChatContacts = () => {
                         <BsSearch className='message_chat'/>                   
                     </div>
                 </div>
-                {pilgrim?.agentName ? <>              
-                <span className='pil_inner_2'>{pilgrim?.agentName}</span>
-                <button className='btn_send' onClick={() => setSelected(pilgrim?.agent)}><BiEnvelope/></button> </> 
+                {pilgrim? <>              
+                <span className='pil_inner_2'>{pilAgent.agentName || pilAgent.name}</span>
+                <button className='btn_send' onClick={() => setSelected(pilgrim?.agentId)}><BiEnvelope/></button> </> 
                 : <span style={{display: 'block', textAlign: 'center', marginTop: '15px'}}>No agent found</span>}
                 {/* {newMsg && <> */}
                 
                 {selected &&
                 <div className='selected'>
-                    <span>Would you like to chat with <strong>{pilgrim?.agentName}</strong>?</span>
+                    <span>Would you like to chat with <strong>{pilAgent.agentName || pilAgent.name}</strong>?</span>
                     <div className="selected_btns">
                       <button style={{color: '#7d28d4'}} onClick={(e) => handleNew(selected, e)}>OK</button>
                       <button style={{color: '#aaaaaa'}} onClick={() => setSelected(null)}>CANCEL</button>

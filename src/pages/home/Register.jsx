@@ -280,6 +280,8 @@ const Register = () => {
             const newInvoice = await addDoc(invoicesRef, {
                 ...invoiceData,
                 creatorId: newUser.user.uid,
+                no: 1026+getRandomId(),            
+                createdAt: serverTimestamp(),
                 agentId,
                 
                 

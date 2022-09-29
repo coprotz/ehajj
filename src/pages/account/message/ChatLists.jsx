@@ -13,7 +13,7 @@ const ChatLists = () => {
     const navigate = useNavigate();
 
     // const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
-    const agent = agents && agents.find(a => a.id === cuUser.agentId)
+    const agent = agents && agents.find(a => a.id === cuUser?.agentId)
 
     const group = groups && groups.find((u) => u.id === cuUser?.groupId)
     // const agentChats = agents && agents.find(a => a.id === cuUser.agent)

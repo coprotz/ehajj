@@ -363,6 +363,7 @@ button:disabled a{
     display: flex;
     align-items: center;
     gap: 15px;
+    width: 100%;
 }
 
 .payment_method{
@@ -575,5 +576,11 @@ button:disabled a{
         font-size: 1.2rem;
         padding: 15px;
     }
+    .payment_to_go{
+        flex-direction: column;
+    }
+    
+
+    
     
 }

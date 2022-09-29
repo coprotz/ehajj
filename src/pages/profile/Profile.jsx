@@ -845,7 +845,7 @@ const Profile = () => {
                                     <option value="Bank Transfer">Bank Transfer</option>
                                     <option value="Cash Deposit">Cash Deposit</option> 
                                     <option value="Cheque">Cheque</option> 
-                                    <option value="GroundCredit or Debit Card">Credit or Debit Card</option> 
+                                    <option value="Credit or Debit Card">Credit or Debit Card</option> 
                                     <option value="Mobile Money">Mobile Money</option>                                
                                 </select> :
                                 <h4>{pilgrim?.payMode? pilgrim?.payMode : 'No data' }</h4>}
@@ -862,17 +862,13 @@ const Profile = () => {
                                     onChange={(e) =>setDueDate(e.target.value)}
                                     /> :
                                 <h4>{pilgrim?.dueDate? pilgrim?.dueDate : 'No data' }</h4>}
-                        </div>                       
-                        <a href={`https://ehajj-tz.netlify.app/invoice/${pilgrim?.invoiceId}`} 
-                            target="_blank" rel="noopener noreferrer"
-                            > 
-                            <button 
+                        </div>                    
+                         <button 
+                            onClick={() =>navigate(`/invoice/${pilgrim?.invoiceId}`)}
                                 className='btn_view_invo'
                                 disabled={!pilgrim?.dueDate || !pilgrim?.payMode}
                                 >View Invoice
-                            </button>
-                        </a>
-                        
+                        </button>
                     </div>
                 </div>
                

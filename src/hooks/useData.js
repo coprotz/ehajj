@@ -24,6 +24,8 @@ const useData = () => {
     const missionRef = collection(db, 'mission')
     const [admins, setAdmins] = useState([])
     const adminsRef = collection(db, 'admins')
+    const [invoices, setInvoices] = useState([])
+    const invoicesRef = collection(db, 'invoices')
 
 
     const q = query(messagesRef, orderBy("createdAt"));
@@ -33,6 +35,7 @@ const useData = () => {
     const allUsers = query(usersRef, orderBy("createdAt")); 
     const allAgents = query(agentsRef, orderBy("createdAt")); 
     const allPilgrims = query(pilgrimsRef, orderBy("createdAt")); 
+    const allInvoices = query(invoicesRef, orderBy("createdAt")); 
 
     useEffect(() => {
         onSnapshot(dashPil, snapshot => {
@@ -69,6 +72,16 @@ const useData = () => {
     useEffect(() => {
         onSnapshot(allPilgrims, snapshot => {
             setPilgrims(snapshot.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            }))
+        })
+    },[])
+    useEffect(() => {
+        onSnapshot(allInvoices, snapshot => {
+            setInvoices(snapshot.docs.map(doc => {
                 return {
                     id: doc.id,
                     ...doc.data()
@@ -151,7 +164,7 @@ const useData = () => {
         })
     },[])
 
-    return { messages, pilgrims, chats, agents, users, groups, payments, dashAgents, dashPilgrims, mission, admins }
+    return { messages, pilgrims, chats, agents, users, groups, payments, dashAgents, dashPilgrims, mission, admins, invoices }
 }
 
 export default useData;
