@@ -43,6 +43,7 @@ const Register = () => {
     const coEmail = watch('coEmail')
     const coPhone = watch('coPhone')
     const website = watch('website')
+    const ibada = watch('ibada')
     const coLicence = watch('coLicence')
     const a_services = watch('services')
     const cost = watch('cost')
@@ -112,7 +113,15 @@ const Register = () => {
     const root2 = countries && countries.find(d => d.name.common === country)?.idd.suffixes 
     const code = root1 + root2
 
-    console.log('code', code)
+    // console.log('code', code)
+
+    const getRandomId = (min = 0, max = 500000) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        const num =  Math.floor(Math.random() * (max - min + 1)) + min;
+        return num.toString().padStart(6, "0")
+      };
+      
 
     const [page, setPage] = useState(1)
 
@@ -129,6 +138,7 @@ const Register = () => {
             coEmail,
             coLicence,
             password,
+            invoiceNo: 1026+getRandomId(),
             coPhone,            
             status: 'Not Approved',           
             website,
@@ -187,6 +197,7 @@ const Register = () => {
             agentId: agentId,
             groupId:'',
             email,
+            phone,
             status:'Not Approved',
             typeOf,           
             office: office || '',
@@ -221,6 +232,12 @@ const Register = () => {
 
     }
 
+    const invoicesRef = collection(db, 'invoices')
+
+   
+
+
+
     const handlePilgrim = async(e) => {
         e.preventDefault()
 
@@ -229,32 +246,58 @@ const Register = () => {
         const data = {
             fname,
             lname,
+            invoiceNo: 1026+getRandomId(),
+            ibada,
             photo:'',          
             gender,
             agentId,
+            cost: selectedAgent?.cost,
             email,
-            status:'Not Approved',              
+            status:'Pending',
+            payment: 'Not Paid',              
             isOnline: true,     
             isApproved: false,
-            // phone:code + phone,
+            phone,
             // country,
             createdAt: serverTimestamp(),
             
         }
 
+        const invoiceData = {
+            desc: 'Hijjah Costs',
+            name: fname+" "+lname,
+            amount: selectedAgent?.cost,
+            status: 'Not Paid',
+            agentId,
+
+        }
+
+        
+
         try {
             const newUser = await signUp(email, password)
+
+            const newInvoice = await addDoc(invoicesRef, {
+                ...invoiceData,
+                creatorId: newUser.user.uid,
+                agentId,
+                
+                
+            })
+
+
             await setDoc(doc(db, 'pilgrims', `${newUser.user.uid}`), {
-                ...data,               
+                ...data, 
+                invoiceId: newInvoice.id,              
                 createdAt: serverTimestamp(),
             }) 
-            
-        //    setPils(current => [current, newUser.user.uid])
 
             const agent = agents?.find(a => a.id === agentId)
-           await updateDoc(doc(db, 'agents', `${agentId}`), {
+            await updateDoc(doc(db, 'agents', `${agentId}`), {
                 pilgrims: [...agent?.pilgrims, `${newUser.user.uid}`],
             })  
+
+          
             setLoading(null)
             navigate('/account/main') 
        
@@ -338,7 +381,7 @@ const Register = () => {
                         <div className="cont_inputs">                        
                              <div className="create_group">                            
                                 <input 
-                                    type="text" 
+                                    type="email" 
                                     className="create_input" 
                                    
                                     name='email' 
@@ -346,6 +389,20 @@ const Register = () => {
                                     required/>
                                 <span className='create_span_1'>{`${t('email')}`}</span>
                             </div>
+                            <div className="create_group">                            
+                                <input 
+                                    type="tel" 
+                                    className="create_input" 
+                                   
+                                    name='phone' 
+                                    {...register("phone", { required: true })}
+                                    required/>
+                                <span className='create_span_1'>{`${t('phone')}`}</span>
+                            </div>
+                                           
+                        </div>
+                        <div className="cont_inputs">                        
+                          
                             <div className="create_group">  
                                 <select 
                                     name="gender" 
@@ -502,7 +559,24 @@ const Register = () => {
                         <div className="create_agent">
                             <span>{t('find_agent')}</span>
                             <button onClick={()=>navigate('/contact')} className='btn_create_agent'>{t('contact_us')}</button>
-                        </div>  }                  
+                        </div>  }
+                        <div className="cont_inputs">
+                            <div className="create_group">  
+                                <select 
+                                    name="ibada" 
+                                    {...register("ibada", { required: true })} 
+                                    className='create_input'                                    
+                                    >
+                                    <option value="" style={{color:'black'}}>--{t('ibada_type')}--</option>
+                                    <option value="Umrah" style={{color:'black'}}>--{t('umrah')}--</option>
+                                    <option value="Hijjah" style={{color:'black'}}>--{t('hijjah')}--</option>
+                                   
+                                                               
+                                </select>                       
+                                <span className='create_span_1'>{`${t('ibada_type')}`}</span>
+                            </div>                            
+                          
+                        </div>                    
                         <button 
                             className='btn_submit' 
                             onClick={handlePilgrim} 

@@ -86,5 +86,8 @@
     "have_license":"Yes we have a License",
     "general_info":"",
     "under_construction":"This page is under construction",
-    "use_email":"You will use this email for login to your account"
+    "use_email":"You will use this email for login to your account",
+    "ibada_type":"Choose a type",
+    "umrah":"Umrah",
+    "hijjah":"Hijjah"
 }
