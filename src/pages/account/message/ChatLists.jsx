@@ -13,7 +13,8 @@ const ChatLists = () => {
     const navigate = useNavigate();
 
     // const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
-    const agent = agents && agents.find(a => a.id === cuUser?.agentId)
+    const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+    const pilgrim = pilgrims?.find(p=>p.id === user.uid)
 
     const group = groups && groups.find((u) => u.id === cuUser?.groupId)
     // const agentChats = agents && agents.find(a => a.id === cuUser.agent)
@@ -23,6 +24,7 @@ const ChatLists = () => {
     // const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf ===  'admin'
     const userChats = chats && chats.filter(c => c.members.includes(`${user.uid}`))
     const agentChats = chats && chats.filter(c =>c.members.includes(`${agent?.id}`))
+    const pilChats = chats && chats.filter(c =>c.members.includes(`${pilgrim?.id}`))
 
     console.log('agentChats', agentChats)
 
@@ -44,9 +46,9 @@ const ChatLists = () => {
   return (
     <div className="chat_lists">
         {tchats.length > 0 ? <>
-            {tchats && tchats.map(chat => (                              
-            <ChatCard chat={chat} key={chat.id} />                          
-        ))} 
+          {tchats && tchats.map(chat => (                              
+              <ChatCard chat={chat} key={chat.id} />                          
+          ))} 
         
         </> : 
         <div className='exist_chats'>

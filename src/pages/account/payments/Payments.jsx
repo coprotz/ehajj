@@ -5,14 +5,16 @@ import { BiArrowBack } from "react-icons/bi";
 import {motion} from 'framer-motion'
 import './payments.css'
 import { useNavigate } from 'react-router-dom';
+import InvoiceCard from './InvoiceCard';
 
 const Payments = () => {
 
   const { user } = useAuth()
-  const { payments, pilgrims } = useData()
+  const { payments, pilgrims, invoices } = useData()
   const navigate = useNavigate();
   const pays = payments && payments.filter(p => p?.userId === user.uid)
-  const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
+  const pilgrim = pilgrims && pilgrims.find(p => p.id === user.uid)
+  const pilInvoices = invoices?.filter(a => a.creatorId === user.uid)
   return (
     <motion.div 
     initial={{ x: '-100vw'}}
@@ -24,25 +26,41 @@ const Payments = () => {
           <h3>Payments</h3>
         </div>
       
-      <div className="payments_summary"> 
-       <h3>Unpaid hijja cost Summary</h3>  
-        {pilgrim?.agentName !== undefined ?    
-        <div className="summ_details">          
-          <small>Amount Due</small>
-          <h1>$ {pilgrim?.agentCost}</h1>
-          <small>Payment Method</small>
-          <h1 className='pay_mode_info'>{pilgrim?.payMode}</h1>
-          <small>Paid to</small>
-          <h3>Hajj Mission Tanzania</h3>
-          <small>Recepient</small>
-          <h3>{pilgrim?.agentName}</h3>
-          <small>Payment Due Date</small>
-          <h3>{pilgrim?.payDate}</h3>
-          <button className='btn_pay'>Pay Now</button>
-          <button className='btn_invoice'>Download Invoice</button>
-        </div>:
-        <div className='no_pays'>Agent is not found, please complete your application</div>}
-      </div>
+        <div className="users_inner">
+          <h3>List of Invoices</h3>
+          <table className='table'>
+        <thead>
+          <th >SN</th>
+          <th >Invoice No</th>
+          <th >Invoice Amount</th>
+          <th >Paid To</th>  
+          <th >Due Date</th>      
+          <th >Payment Method</th> 
+          <th >Invoice Status</th>        
+          <th >Action</th>
+        </thead>
+        <tbody className='total'>
+       
+           {pilInvoices?.map((s, index) => (
+            <InvoiceCard s={s} index={index} key={s.id}/>
+           ))}
+           
+         
+           {/* {isMission && <>
+            {users?.reverse().map((s, index) => (
+              <UserCard user={s} key={s.id} index={index}/>
+           ))}</>}
+            {isAdmin && <>
+              {users?.reverse().map((s, index) => (
+              <UserCard user={s} key={s.id} index={index}/>
+           ))}</>} */}
+           
+           
+           
+           
+        </tbody>
+      </table>
+        </div>
       <div className="transaction_history">
         <h3>Payments Records</h3>
         {pays.length > 0 ? pays.map(p => (

@@ -17,7 +17,7 @@ import { db, useAuth } from '../../../hooks/useAuth';
 
 const SendMessage = ({currentRoom}) => {
 
-  const { users, mission} = useData();
+  const { users, mission, pilgrims} = useData();
   const { user } = useAuth();
   const [attached, setAttached] = useState(null)
   const { uid } = user
@@ -30,10 +30,14 @@ const SendMessage = ({currentRoom}) => {
   const [image, setImage] = useState(null)
   const [error, setError] = useState('')
   const isMission = mission && mission.find(m => m.userId === user.uid)
+  const pilgrim = pilgrims?.find(p=>p.id === user.uid)
 
   // console.log('user', cuUser)
 
-  const name =isMission? isMission?.fname+" "+isMission?.lname : cuUser?.fname +" "+ cuUser?.lname
+  const name =
+    isMission? isMission?.fname+" "+isMission?.lname : 
+    pilgrim? pilgrim?.fname+" "+pilgrim?.lname : null
+    // cuUser?.fname +" "+ cuUser?.lname
 
   const types = ['image/png', 'image/jpeg']
 

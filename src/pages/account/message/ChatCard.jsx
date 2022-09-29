@@ -7,28 +7,33 @@ import { useNavigate } from 'react-router-dom';
 const ChatCard = ({chat, setCurrentRoom, currentRoom}) => {
 
     const {user} = useAuth();
-    const {groups, messages, agents, users} = useData();
+    const {groups, messages, agents, users, pilgrims} = useData();
     const navigate = useNavigate();
     
-    const cuUser = users && users.find(u => u.id === user.uid)
+    // const cuUser = users && users.find(u => u.id === user.uid)
 
-    const isPilgrim = users && users.find(u => u.id === user.uid)?.typeOf === 'pilgrim'
+    const pilgrim = pilgrims?.find(p=>p.id === user.uid)
     const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
     const isMission = users && users.find(u => u.id === user.uid)?.typeOf === 'mission' 
     const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf ===  'admin'
 
     // const memberId = c.members.find(m => m !== user.uid)
 
-    // const memberId = isPilgrim || isAgent? c && c.members.find(m => m !== user.uid) : c && c.members.find(m => m !== cuUser?.groupId)
+    const memberId = 
+    // isPilgrim || isAgent? c && c.members.find(m => m !== user.uid) : c && c.members.find(m => m !== cuUser?.groupId)
 
-    const memberId = isAgent? chat && chat.members.find(m => m !== cuUser?.agentId) 
-    || chat && chat.members.find(m => m !== cuUser?.groupId) : chat && chat.members.find(m => m !== cuUser?.id)
+    // const memberId = isAgent? chat && chat.members.find(m => m !== cuUser?.agentId) : 
+    // isMission? chat && chat.members.find(m => m !== cuUser?.groupId) : 
+    // cuUser? chat && chat.members.find(m => m !== cuUser?.id) :
+    pilgrim? chat?.members?.find(m =>m !== pilgrim?.id) : null
 
     // const memberId = cuUser && cuUser.groupId
     // console.log('groupId', groupId)
 
-    const member = groups && groups.find(g => g.id === memberId)?.name 
-      || agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name
+    const member = agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name
+      // groups && groups.find(g => g.id === memberId)?.name 
+    
+      
       || users && users.find(a => a.id === memberId)?.fname +" "+users?.find(a => a.id === memberId)?.lname || 'Guest'
 
 
@@ -38,7 +43,7 @@ const ChatCard = ({chat, setCurrentRoom, currentRoom}) => {
 
     // const membe = groups && groups.find(g => g.id === groupId)
 
-    console.log('c', chat)
+    console.log('memberId', memberId)
 
     // const {name, createdAt, text} = lastMsg && lastMsg
 

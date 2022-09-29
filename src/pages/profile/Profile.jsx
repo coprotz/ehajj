@@ -8,7 +8,7 @@ import NewChat from '../account/message/NewChat';
 import ChangeStatus from '../../components/changeStatus/ChangeStatus';
 import { useState } from 'react';
 import useStorage from '../../hooks/useStorage';
-import { doc, updateDoc } from 'firebase/firestore';
+import { collection, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../hooks/useAuth';
 import { update } from 'firebase/database';
 import Loading from '../../components/loading/Loading';
@@ -265,28 +265,8 @@ const Profile = () => {
        
     }
 
-    // useEffect(() => {
-    //     // setDueDate(pilgrim?.dueDate || '')
-    //     // setPayMode(pilgrim?.payMode)
-    //     setKinName()
-    //     setKinGender()
-    //     setKinAge()
-    //     setKinPhone()
-    //     setKinEmail()
-    //     setKinRel()
-    //     // setMName('' || )
-    //     setMGender()
-    //     setMAge()
-    //     setMPhone()
-    //     setMEmail()
-    //     setMRel()
-    //     setMPassNo(pilgrim?.mPassNo)
-    //     setMPassIssue(pilgrim?.mPassIssue)
-    //     setMPassExpire(pilgrim?.mPassExpire)
-    //     setMPassPlace(pilgrim?.mPassPlace)
-    // })
-    
-    
+ const invoicesRef = collection(db, 'invoices')
+
 
     
 
@@ -351,10 +331,10 @@ const Profile = () => {
                         <small>Age</small>
                         <h4>25</h4>
                     </span>
-                    <span className='profile_span'>
+                    {/* <span className='profile_span'>
                         <small>Marital Status</small>
                         <h4>{pilgrim?.marrital}</h4>
-                    </span>
+                    </span> */}
                     <span className='profile_span'>
                         <small>Phone</small>
                         <h4>{pilgrim?.phone}</h4>
@@ -378,7 +358,7 @@ const Profile = () => {
                         <h1>{myAgent?.name || myAgent?.coName}</h1>
                         <NewChat/>
                     </div>
-                    <div className='ibada_type'>Umrah</div>
+                    <div className='ibada_type'>{pilgrim?.ibada}</div>
                     
                 </div>
                 <button className='btn_profile'>Change Agent</button> 

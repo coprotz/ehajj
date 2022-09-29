@@ -38,6 +38,7 @@ import Signup from './pages/signup/Signup';
 import SignupAdmin from './pages/signup/SignupAdmin';
 import Profile from './pages/profile/Profile';
 import Invoice from './pages/invoice/Invoice';
+import Page404 from './pages/404/Page404';
 
 
 
@@ -115,6 +116,7 @@ function App() {
               <Route path='blogs' element={<Blogs/>}></Route>
               <Route path='reports' element={<Reports/>}></Route>
               <Route path='contacts' element={<ChatContacts/>}></Route>
+              <Route path='*' element={<Page404/>}></Route>
             </Route>
             {/* <Route path='messages' element={
               <RequireAuth>

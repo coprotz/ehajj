@@ -13,21 +13,26 @@ const ChatRoom = () => {
     const { id } = useParams();
     const {user} = useAuth();
     
-    const {groups, messages, agents, users, chats} = useData();
+    const {groups, messages, agents, users, chats, pilgrims} = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
     const navigate = useNavigate();
 
-    const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
+    const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+    const pilgrim = pilgrims?.find(p=>p.id === user.uid)
 
     const currentRoom = chats && chats.find(c => c.id === id) 
     // const memberId = currentRoom && currentRoom.members.find(m => m !== user.uid) 
 
-    const memberId = isAgent? currentRoom && currentRoom.members.find(m => m !== cuUser?.agentId) 
-    || currentRoom && currentRoom.members.find(m => m !== cuUser?.groupId) : currentRoom && currentRoom.members.find(m => m !== cuUser?.id)
+    const memberId = 
+      agent? currentRoom && currentRoom.members.find(m => m !== cuUser?.agentId) : 
+      pilgrim? currentRoom?.members.find(m => m !== pilgrim?.id) : null 
+    // || currentRoom && currentRoom.members.find(m => m !== cuUser?.groupId) : currentRoom && currentRoom.members.find(m => m !== cuUser?.id)
 
-    const member = groups && groups.find(g => g.id === memberId)?.name 
-    || agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name
-    || users && users.find(a => a.id === memberId)?.fname +" "+users?.find(a => a.id === memberId)?.lname
+    const member = pilgrim? agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name : null
+    // groups && groups.find(g => g.id === memberId)?.name 
+    
+    // pilgrim? 
+    // || users && users.find(a => a.id === memberId)?.fname +" "+users?.find(a => a.id === memberId)?.lname
 
 
     const scrollRef = React.useRef(null);
