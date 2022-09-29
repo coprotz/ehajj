@@ -44,10 +44,10 @@ const Account = () => {
     const isAdmin = admins.find(a =>a.userId === user?.uid)
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
 
-    console.log('isgent',isAgent)
+    // console.log('isgent',isAgent)
     const isPligrim = pilgrims?.find(p=>p.id === user.uid)
 
-    console.log('cuUser', cuUser)
+    // console.log('cuUser', cuUser)
 
     const props = {
         cuUser, 

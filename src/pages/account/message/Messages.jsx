@@ -84,13 +84,8 @@ const Messages = () => {
               initial={{ opacity: 0}}
               animate={{opacity: 1}} 
               transition={{ ease: "easeOut", duration: 0.5 }}
-              className="message_wrapper">               
-                 <motion.div 
-                    initial={{ x: '-100vw'}}
-                    animate={{x:0}} 
-                    transition={{ ease: "easeOut", duration: 0.5 }}  
-                    className= "message_contaoner"> 
-                     <div className="message_heading">
+              className="message_wrapper">      
+              {/* <div className="message_heading">
                         <h3 className='message_head'><BiArrowBack onClick={() =>navigate('/account/main')}/>Messages</h3> 
                         <div className="msg_chat_menu">                        
                           <h4 className="chat_list_history">Chats</h4>                     
@@ -103,12 +98,12 @@ const Messages = () => {
                           </div>
                           
                         </div>
-                      </div>
+              </div> */}
                                                  
-                    <div className= "chatlist_wrapper">                                        
-                      <ChatLists/>
-                    </div>
-                  </motion.div>
+              <div className= "chatlist_wrapper">                                        
+                <ChatLists/>
+              </div>
+                 
                   {currentRoom? 
                   <motion.div 
                         initial={{ x: '-100vw'}}

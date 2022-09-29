@@ -4,6 +4,7 @@
     width: 100vw;
     min-height: 100vh;
     background-color: #e5effd;
+    justify-content: space-between;
 }
 
 .agent_container{
