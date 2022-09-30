@@ -246,4 +246,16 @@
         gap: 5px;
        
     }
+
+    .mission_logo{
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #36668d;
+        font-size: 1.3rem;
+        color: white;
+    }
 }

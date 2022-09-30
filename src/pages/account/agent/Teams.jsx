@@ -34,13 +34,13 @@ const Teams = () => {
         <thead>
           <th >SN</th>
           <th >Logo</th>
-          <th >Name</th>  
-          <th >Email</th>      
+          <th >Name</th> 
           <th >Phone</th>
           <th >Website</th>
           <th >Joined</th>
           <th >Createdby</th>
           <th >Pilgrims</th>
+          <th >Users</th>
           <th >Status</th>
           <th >Action</th>
         </thead>

@@ -4,11 +4,14 @@ import ViewProfile from '../../../components/viewProfile/ViewProfile'
 import NewChat from '../message/NewChat'
 import moment from 'moment'
 import useData from '../../../hooks/useData'
+import { useAuth } from '../../../hooks/useAuth'
 
 
 const PilgrimCard = ({pil}) => {
   const { agents } = useData();
+  const { user } = useAuth()
   const agent = agents?.find(a =>a.id === pil?.agentId)
+  const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
 
   console.log('pil', pil)
   return (
@@ -23,9 +26,13 @@ const PilgrimCard = ({pil}) => {
       <td data-label='Wakala'>{agent?.name || agent?.coName}</td>
       <td data-label='Chukua Hatua'>
         <div className="actions_btns">
-          <ChangeStatus id={pil?.id}/>
+          {isAgent && 
+          <ChangeStatus id={pil?.id}/>}
           <ViewProfile id={pil?.id}/>
-          <NewChat s={pil?.userId} name={pil?.fname+" "+pil?.lname}/>                
+          <span className='profile_span '>
+             <NewChat s={pil?.id} name={pil?.fname+" "+pil?.lname}/>   
+          </span>
+                      
         </div>
       </td>
       

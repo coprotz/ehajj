@@ -218,12 +218,16 @@
     justify-content: center;
     align-items: center;
     border: none;
-    font-size: 1rem;
+    
     background-color: #c2dcf7;
     width: 35px;
     height: 35px;
     border-radius: 50%;
     
+}
+
+.btn svg{
+    font-size: 1rem !important;
 }
 
 .btn_action{

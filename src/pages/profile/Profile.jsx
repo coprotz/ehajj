@@ -10,6 +10,7 @@ import { useState } from 'react';
 import useStorage from '../../hooks/useStorage';
 import { collection, doc, updateDoc } from 'firebase/firestore';
 import { db, useAuth } from '../../hooks/useAuth';
+import moment from 'moment'
 // import { update } from 'firebase/database';
 import Loading from '../../components/loading/Loading';
 // import { useEffect } from 'react';
@@ -19,11 +20,21 @@ const Profile = () => {
 
     const { id } = useParams()
     const { user } = useAuth()
-    const { pilgrims, agents } = useData()
+    const { pilgrims, agents, mission, users } = useData()
     const pilgrim = pilgrims?.find(p => p.id === id)
     const agent = agents?.find(a => a.id === id)
     const myAgent = agents?.find(a => a.id === pilgrim?.agentId)
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+
+    const agentPils = pilgrims?.filter(p => p.agentId === id)
+    const agentUsers = agent?.users?.length
+    const agentAdmin = users?.find(u => u.id === agent?.createdBy)
+
+    console.log('agent', agent)
+
+
+
+    const isMission = mission?.find(m => m.userId === user.uid)
     const navigate = useNavigate()
 
     const [file, setFile] = useState(null)
@@ -273,111 +284,87 @@ const Profile = () => {
 
  const invoicesRef = collection(db, 'invoices')
 
-
-    
-
-  return (
-    <div className='profile'>
-        <div className="profile_wrapper">
-            <div className="profile_inner">        
-                <div className="profile_top">
-                    <h3 className='profile_head'><BiArrowBack onClick={() =>navigate(-1)}/>Profile</h3>  
-                    <div className="app_status">
-                        <small>Applicaion Status</small>
-                        <h2>{pilgrim?.status}</h2>
-                    </div>           
-                </div>
-                <div className="profile_header">
-                    <div className="profile_logo">
-                    { file?                         
-                        <img src={URL.createObjectURL(file)} alt="" />                                                 
-                        :
-                        pilgrim? pilgrim?.photo? <img src={pilgrim?.photo} alt="" /> : <span>{pilgrim?.fname[0]}</span> :
-                        agent?  <img src={agent?.logo} alt="" />  
-                        // cuMission? <h4 className='mission_logo'>{cuMission?.name[0]}</h4> : 
-                        // isAdmin? <h4 className='mission_logo'>{isAdmin?.name[0]}</h4>:
-                    : null}
-                    {!file && own &&
-                        <label htmlFor="photo" className='profile_photo'>
-                            <input 
-                                type="file" 
-                                name='photo' 
-                                id="photo" style={{display: 'none'}}
-                                onChange={handleSelect}
-                            />
-                        <span className='attached_photo'><BsCamera/></span>
-                        </label>}
-                    </div>                  
-                    {error && <span className='error error_profile'>{error}<button onClick={() =>setError('')} className='btn_error'>x</button></span>}                                     
-                    {file && <>                                       
-                    <div className="progress-bar"  style={{width: perc + '%'}}></div>  
-                    <div className="profile_photo_edit">
-                        <button className='btn_save_btn' onClick={handlePhoto} disabled={perc < '100'}>{loading? <Loading/>: 'Save Changes'}</button>
-                        <button className='btn_cancel' onClick={() =>setFile(null)}>CANCEL</button>
-                    </div>
-                    </>
-                    
-                    }
-                    
-                    <h2>{
-                    agent? agent?.name || agent?.coName : 
-                    pilgrim? pilgrim?.fname+" "+pilgrim?.lname :
-                    //   cuMission? cuMission?.name : 
-                    //   isAdmin? isAdmin?.name : 
-                    null}</h2>
-                   
-                  
-                </div>
-                <div className="profile_personal">
-                    <span className='profile_span'>
-                        <small>Gender</small>
-                        <h4>{pilgrim?.gender}</h4>
-                    </span>
-                    <span className='profile_span'>
-                        <small>Age</small>
-                        <h4>25</h4>
-                    </span>
-                    {/* <span className='profile_span'>
-                        <small>Marital Status</small>
-                        <h4>{pilgrim?.marrital}</h4>
-                    </span> */}
-                    <span className='profile_span'>
-                        <small>Phone</small>
-                        <h4>{pilgrim?.phone}</h4>
-                    </span>
-                    <span className='profile_span'>
-                        <small>Email</small>
-                        <h4>{pilgrim?.email}</h4>
-                    </span>
-                    {!own &&    
-                      <span className='profile_span '>
-                        <NewChat s={pilgrim?.id} name={pilgrim?.fname+" "+pilgrim?.lname}/>
-                    </span>}
-                    {isAgent &&
-                    <span className='profile_span '>
-                        <ChangeStatus/>
-                    </span>}
-                   
-                </div>
+ const RenderDash = () => {
+    if(pilgrim){
+        return (
+            <div className="profile_personal">
+                <span className='profile_span'>
+                    <small>Gender</small>
+                    <h4>{pilgrim?.gender}</h4>
+                </span>
+                <span className='profile_span'>
+                    <small>Age</small>
+                    <h4>25</h4>
+                </span>
+                {/* <span className='profile_span'>
+                    <small>Marital Status</small>
+                    <h4>{pilgrim?.marrital}</h4>
+                </span> */}
+                <span className='profile_span'>
+                    <small>Phone</small>
+                    <h4>{pilgrim?.phone}</h4>
+                </span>
+                <span className='profile_span'>
+                    <small>Email</small>
+                    <h4>{pilgrim?.email}</h4>
+                </span>
+                {!own &&    
+                <span className='profile_span '>
+                    <NewChat s={pilgrim?.id} name={pilgrim?.fname+" "+pilgrim?.lname}/>
+                </span>}
+                {isAgent &&
+                <span className='profile_span '>
+                    <ChangeStatus/>
+                </span>}
+            
             </div>
-            <div className="profile_agent">
-                <div className="p_agent_left">
-                    <small>Agent Name</small>
-                    
-                    <div className="profile_agent_name">
-                        <h1>{myAgent?.name || myAgent?.coName}</h1>
-                        {own &&
-                        <NewChat s={myAgent?.id} name={myAgent?.name || myAgent?.coName}/>}
-                    </div>
-                    <div className='ibada_type'>{pilgrim?.ibada}</div>
-                    
-                </div>
-                {own &&
-                <button className='btn_profile'>Change Agent</button> }
-                
-                
-            </div>
-            <div className="profile_passport">
+        )
+    }else if(agent){
+        return (
+            <div className="profile_personal">
+            <span className='profile_span'>
+                <small>Pilgrims</small>
+                <h4>{agentPils?.length}</h4>
+            </span>
+            <span className='profile_span'>
+                <small>Users</small>
+                <h4>{agentUsers}</h4>
+            </span>       
+            <span className='profile_span'>
+                <small>Created by</small>
+                <h4>{agentAdmin?.fname+" "+agentAdmin?.lname}</h4>
+            </span>
+            <span className='profile_span'>
+                <small>Created</small>
+                <h4>{moment(agent?.createdAt?.toDate()).fromNow(true)}</h4>
+            </span>
+            {/* <span className='profile_span'>
+                <small>Email</small>
+                <h4>{pilgrim?.email}</h4>
+            </span> */}
+            {!agent &&    
+            <span className='profile_span '>
+                <NewChat s={agent?.id} name={agent?.name || agent?.coName}/>
+            </span>}
+            {isMission &&
+            <span className='profile_span '>
+                <ChangeStatus/>
+            </span>}
+        
+        </div>
+        )
+    }else{
+        return (
+            <span>Not Found</span>
+        )
+    }
+ }
+
+ const RenderBody = () => {
+    if(pilgrim){
+        return (
+            <>
+                <div className="profile_passport">
                 
                 <div className="p_passport_left">                 
                     <div className="profile_card_title">
@@ -873,6 +860,96 @@ const Profile = () => {
                 </div>
                
             </div>
+            </>
+        )
+    }else if(agent){
+        return (
+            <>
+                <div className="profile_passport">
+                    haloo agent
+                </div>
+            </>
+        )
+    }
+ }
+
+
+    
+
+  return (
+    <div className='profile'>
+        <div className="profile_wrapper">
+            <div className="profile_inner">        
+                <div className="profile_top">
+                    <h3 className='profile_head'><BiArrowBack onClick={() =>navigate(-1)}/>Profile</h3>  
+                    <div className="app_status">
+                        <small>Applicaion Status</small>
+                        <h2>{pilgrim? pilgrim?.status : agent? agent?.status : null}</h2>
+                    </div>           
+                </div>
+                <div className="profile_header">
+                    <div className="profile_logo">
+                    { file?                         
+                        <img src={URL.createObjectURL(file)} alt="" />                                                 
+                        : pilgrim? pilgrim?.photo? <img src={pilgrim?.photo} alt="" /> 
+                        : <span>{pilgrim?.fname[0]}</span> 
+                        : agent?  <img src={agent?.logo} alt="" />  
+                        // cuMission? <h4 className='mission_logo'>{cuMission?.name[0]}</h4> : 
+                        // isAdmin? <h4 className='mission_logo'>{isAdmin?.name[0]}</h4>:
+                    : null}
+                    {!file && own &&
+                        <label htmlFor="photo" className='profile_photo'>
+                            <input 
+                                type="file" 
+                                name='photo' 
+                                id="photo" style={{display: 'none'}}
+                                onChange={handleSelect}
+                            />
+                        <span className='attached_photo'><BsCamera/></span>
+                        </label>}
+                    </div>                  
+                    {error && <span className='error error_profile'>{error}<button onClick={() =>setError('')} className='btn_error'>x</button></span>}                                     
+                    {file && <>                                       
+                    <div className="progress-bar"  style={{width: perc + '%'}}></div>  
+                    <div className="profile_photo_edit">
+                        <button className='btn_save_btn' onClick={handlePhoto} disabled={perc < '100'}>{loading? <Loading/>: 'Save Changes'}</button>
+                        <button className='btn_cancel' onClick={() =>setFile(null)}>CANCEL</button>
+                    </div>
+                    </>
+                    
+                    }
+                    
+                    <h2>{
+                    agent? agent?.name || agent?.coName : 
+                    pilgrim? pilgrim?.fname+" "+pilgrim?.lname :
+                    //   cuMission? cuMission?.name : 
+                    //   isAdmin? isAdmin?.name : 
+                    null}</h2>
+                   
+                  
+                </div>
+                {RenderDash()}
+            </div>
+            {pilgrim &&
+            <div className="profile_agent">
+                
+                <div className="p_agent_left">
+                    <small>Agent Name</small>
+                    
+                    <div className="profile_agent_name">
+                        <h1>{myAgent?.name || myAgent?.coName}</h1>
+                        {own &&
+                        <NewChat s={myAgent?.id} name={myAgent?.name || myAgent?.coName}/>}
+                    </div>
+                    <div className='ibada_type'>{pilgrim?.ibada}</div>
+                    
+                </div>
+                {own &&
+                <button className='btn_profile'>Change Agent</button> }
+                
+                
+            </div>}
+            {RenderBody()}
         </div>
     </div>
   )
