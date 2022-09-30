@@ -26,6 +26,7 @@ const Main = () => {
     const isPilgrim = pilgrims && pilgrims.find(u => u.id === user.uid)
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const isAdmin = admins && admins.find(u => u.userId === user.uid)
+    const isMission = mission && mission.find(u => u.userId === user.uid)
     const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
     const activeAgentPilgrims = agentPilgrims && agentPilgrims.filter(a => a?.agentId === ageId)
 
@@ -58,7 +59,7 @@ const Main = () => {
         return (
          <AgentDash />
         )
-      }else if(cuMission){
+      }else if(isMission){
         return (
           <MissionDash/>
         )

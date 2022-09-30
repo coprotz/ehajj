@@ -10,10 +10,12 @@ import InvoiceCard from './InvoiceCard';
 const Payments = () => {
 
   const { user } = useAuth()
-  const { payments, pilgrims, invoices } = useData()
+  const { payments, pilgrims, invoices, mission, admins } = useData()
   const navigate = useNavigate();
   const pays = payments && payments.filter(p => p?.userId === user.uid)
   const pilgrim = pilgrims && pilgrims.find(p => p.id === user.uid)
+  const isMission = mission && mission.find(p => p.userId === user.uid)
+  const isAdmin = admins && admins.find(p => p.userId === user.uid)
   const pilInvoices = invoices?.filter(a => a.creatorId === user.uid)
   return (
     <motion.div 
@@ -46,14 +48,14 @@ const Payments = () => {
            ))}
            
          
-           {/* {isMission && <>
-            {users?.reverse().map((s, index) => (
-              <UserCard user={s} key={s.id} index={index}/>
+           {isMission && <>
+            {invoices?.reverse().map((s, index) => (
+              <InvoiceCard s={s} index={index} key={s.id}/>
            ))}</>}
             {isAdmin && <>
-              {users?.reverse().map((s, index) => (
-              <UserCard user={s} key={s.id} index={index}/>
-           ))}</>} */}
+              {invoices?.reverse().map((s, index) => (
+              <InvoiceCard s={s} index={index} key={s.id}/>
+           ))}</>}
            
            
            

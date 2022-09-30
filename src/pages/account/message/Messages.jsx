@@ -40,7 +40,7 @@ const Messages = () => {
               animate={{opacity: 1}} 
               transition={{ ease: "easeOut", duration: 0.5 }}
               className="message_wrapper">      
-              <div className= "chatlist_wrapper1">                                        
+              <div className= "chatlist_wrapper">                                        
                 <ChatLists/>
               </div>
                  

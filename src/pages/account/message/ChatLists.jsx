@@ -1,8 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import ChatAction from '../../../components/chatAction/ChatAction';
 import { useAuth } from '../../../hooks/useAuth';
 import useData from '../../../hooks/useData'
 import ChatCard from './ChatCard';
+
 
 
 const ChatLists = () => {
@@ -72,6 +74,13 @@ const ChatLists = () => {
 }
   return (
     <div className="chat_lists">
+      <div className="chat_list_head">
+          <h3 className='chat_left_title'>Chats</h3>
+          <div className="chat_kichumba">
+             <ChatAction/> 
+          </div>
+         
+        </div>
         {RenderChats()}
     </div>
   )

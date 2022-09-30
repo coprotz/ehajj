@@ -119,7 +119,7 @@ const SendMessage = ({chat}) => {
             </div> 
             <button 
               className='btn_send_msg'
-              disabled={!message && loading}
+              disabled={!message}
               ><MdOutlineSend/>
             </button>   
         </form>

@@ -222,14 +222,20 @@
     display: flex;
     justify-content: space-between;
     padding: 7px;
+    /* border-bottom: 1px solid #adc1f9; */
+    cursor: pointer;
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+}
+
+.card_message:hover{
+    background-color: #bdd6f7;
 }
 
 .active_card_message{
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: #bccdfb;
+    background-color: #adc1f9;
    
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
 }

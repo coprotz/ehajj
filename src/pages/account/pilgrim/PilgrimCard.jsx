@@ -16,7 +16,9 @@ const PilgrimCard = ({pil}) => {
   console.log('pil', pil)
   return (
     <tr>
-      <td data-label='Picha'><img src={pil?.photo} alt="" /></td>
+      <td data-label='Picha' className='pil_icon'>
+        {pil?.photo? <img src={pil?.photo} alt="" /> : <h4 className='agent_logo2'>{pil?.fname[0]+""+pil?.lname[0]}</h4>}
+      </td>
       <td data-label='Jina'>{pil?.fname+" "+pil?.lname}</td>
       <td data-label='Umri'>32</td>
       <td data-label='Jinsia'>{pil?.gender}</td>      
