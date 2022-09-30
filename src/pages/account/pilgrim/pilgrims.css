@@ -17,6 +17,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.online{
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: rgb(46, 230, 46);
+    position: absolute;
+    right: 27px;
+    top: 8px;
+}
+
+.offline{
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background-color: #aaa;
+    position: absolute;
+    right: 27px;
+    top: 8px;
 }
 
 .pil_icon h4{

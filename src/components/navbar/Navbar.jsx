@@ -3,7 +3,7 @@ import './navbar.css'
 import { BiRightArrowAlt, BiX, BiMenu, BiCaretDown, BiGlobe } from "react-icons/bi";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import { db, useAuth } from '../../hooks/useAuth';
 import { useForm } from "react-hook-form";
 import { motion } from 'framer-motion';
 import useData from '../../hooks/useData';
@@ -13,6 +13,7 @@ import Lang from '../lang/Lang';
 import logo from '../images/logo1.png'
 import MainMenu from '../menu/MainMenu';
 import Loading from '../loading/Loading';
+import { doc, updateDoc } from 'firebase/firestore';
 
 
 const Navbar = () => {
@@ -23,15 +24,19 @@ const Navbar = () => {
   const [err, setErr] = useState('')
   const navigate = useNavigate();
   const { signIn, user, logOut } = useAuth();
-  const { users } = useData();
+  const { users, pilgrims } = useData();
   const { register,  watch, formState: { isValid } } = useForm({mode: 'all'});
   const email = watch('email')
   const password = watch('password')
   const [items, setItems] = useState(null)
 
-
+  const pilgrim = pilgrims?.find(p => p.userId === user?.uid)
   const cuUser = users && users?.find(u => u.id === user?.uid)
+
   const [showMenu, setShowMenu] = useState(null)
+
+  const userRef = doc(db, 'users', `${cuUser?.id}`)
+  const pilRef = doc(db, 'pilgrims', `${pilgrim?.id}`)
 
   const handleLogin = async(e) => {
     e.preventDefault()
@@ -41,6 +46,16 @@ const Navbar = () => {
       await signIn(email, password)
       navigate('/account/main')
       
+        if(cuUser){
+        await updateDoc(userRef, {
+          isOnline: true
+        })
+      }else if(pilgrim){
+        await updateDoc(pilRef, {
+          isOnline: true
+        })
+      }
+     
     } catch (error) {
       setErr(error.message);
     }

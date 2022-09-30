@@ -28,11 +28,13 @@ const Pilgrims = () => {
     const { users, pilgrims, agents, mission, admins } = useData()
     const navigate = useNavigate();
     const { user } = useAuth();
-    const cuUser = users && users.find(u => u.id === user.uid)
-    const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
-    const agentPilgrims = pilgrims && pilgrims.filter(a =>a.agent === cuUser?.agentId)
+
+    const isAgent = users && users.find(u => u.id === user.uid)?.agentId
+    const agentPilgrims = pilgrims && pilgrims.filter(a =>a.agentId === isAgent)
     const isMission = mission && mission.find(m => m.userId === user.uid)
     const isAdmin = admins?.find(a => a?.userId === user?.uid)
+
+    console.log('isagent', isAgent)
 
 
     // const [report, setReport] = useState(null)

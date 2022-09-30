@@ -18,6 +18,8 @@ const PilgrimCard = ({pil}) => {
     <tr>
       <td data-label='Picha' className='pil_icon'>
         {pil?.photo? <img src={pil?.photo} alt="" /> : <h4 className='agent_logo2'>{pil?.fname[0]+""+pil?.lname[0]}</h4>}
+        {pil?.isOnline?<span className='online'></span> :<span className='offline'></span>   }
+        
       </td>
       <td data-label='Jina'>{pil?.fname+" "+pil?.lname}</td>
       <td data-label='Umri'>32</td>
