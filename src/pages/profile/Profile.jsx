@@ -13,6 +13,7 @@ import { db, useAuth } from '../../hooks/useAuth';
 import moment from 'moment'
 // import { update } from 'firebase/database';
 import Loading from '../../components/loading/Loading';
+import ViewProfile from '../../components/viewProfile/ViewProfile';
 // import { useEffect } from 'react';
 
 
@@ -20,21 +21,22 @@ const Profile = () => {
 
     const { id } = useParams()
     const { user } = useAuth()
-    const { pilgrims, agents, mission, users } = useData()
+    const { pilgrims, agents, mission, users, admins } = useData()
     const pilgrim = pilgrims?.find(p => p.id === id)
     const agent = agents?.find(a => a.id === id)
     const myAgent = agents?.find(a => a.id === pilgrim?.agentId)
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
 
     const agentPils = pilgrims?.filter(p => p.agentId === id)
-    const agentUsers = agent?.users?.length
+    const agentUsers = users?.filter(u => u.agentId === id)
     const agentAdmin = users?.find(u => u.id === agent?.createdBy)
 
-    console.log('agent', agent)
+    console.log('agentUsers', agentUsers)
 
 
 
     const isMission = mission?.find(m => m.userId === user.uid)
+    const isAdmin = admins?.find(m => m.userId === user.uid)
     const navigate = useNavigate()
 
     const [file, setFile] = useState(null)
@@ -328,11 +330,15 @@ const Profile = () => {
             </span>
             <span className='profile_span'>
                 <small>Users</small>
-                <h4>{agentUsers}</h4>
+                <h4>{agentUsers?.length}</h4>
             </span>       
             <span className='profile_span'>
                 <small>Created by</small>
                 <h4>{agentAdmin?.fname+" "+agentAdmin?.lname}</h4>
+            </span>
+            <span className='profile_span'>
+                <small>Hijjah Cost</small>
+                <h4>$ {agent?.cost}</h4>
             </span>
             <span className='profile_span'>
                 <small>Created</small>
@@ -342,7 +348,7 @@ const Profile = () => {
                 <small>Email</small>
                 <h4>{pilgrim?.email}</h4>
             </span> */}
-            {!agent &&    
+            {isAdmin &&    
             <span className='profile_span '>
                 <NewChat s={agent?.id} name={agent?.name || agent?.coName}/>
             </span>}
@@ -865,10 +871,65 @@ const Profile = () => {
     }else if(agent){
         return (
             <>
-                <div className="profile_passport">
-                    haloo agent
+             <div className='profile_agent_b'>
+                <h3>Services</h3>
+                <div className="agent_services_group">
+                    {agent?.services?.map((s, index) => (
+                       <div className="profile_passport agent_service_hover" key={index}>
+                        {s}
+                    </div> 
+                    ))}
                 </div>
+                
+            </div>
+            <div className='profile_agent_b'>
+                <h3>Pilgrims</h3>
+                <div className="agent_services_group">
+                    {agentPils?.map((s) => (
+                       <div className="profile_passport" key={s.id}>
+                        <div className="profile_pil_card">
+                            <div className="profile_card_inner">
+                                {s?.photo? <img src={s?.photo} alt="" /> : 
+                                <span className='agent_logo2'>{s?.fname[0]+""+s?.lname[0]}</span>}
+                                
+                                <h4>{s?.fname+" "+s?.lname}</h4>
+                            </div> 
+                            <div className='profile_2_2'>
+                                <ViewProfile id={s.id}/>
+                                <NewChat s={s.id} name={s?.fname+" "+s?.lname}/>
+                            </div>               
+                            
+                        </div>
+                      
+                    </div> 
+                    ))}
+                </div>
+                
+            </div>
+            <div className='profile_agent_b'>
+                <h3>Users</h3>
+                <div className="agent_services_group">
+                {agentUsers?.map((s) => (
+                    <div className="profile_user_card">
+                        <div className="profile_card_inner">
+                            {s?.photo? <img src={s?.photo} alt="" /> : 
+                            <span className='agent_logo2'>{s?.fname[0]+""+s?.lname[0]}</span>}
+                                
+                            <h4>{s?.fname+" "+s?.lname}</h4>
+                        </div> 
+                        <div className='profile_2_2'>
+                            <ViewProfile id={s.id}/>
+                            <NewChat s={s.id} name={s?.fname+" "+s?.lname}/>
+                        </div>               
+                            
+                    </div>
+                     ))}
+                </div>
+                
+            </div>
             </>
+           
+            
         )
     }
  }

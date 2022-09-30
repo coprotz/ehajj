@@ -5,6 +5,7 @@ import moment from 'moment'
 // import ApplicationTrend from '../ApplicationTrend';
 // import PligrimCard from '../../../pilgrims/PligrimCard';
 import PilgrimCard from '../../pilgrim/PilgrimCard';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 
@@ -13,6 +14,8 @@ const AdminDash = () => {
     const {  user } = useAuth();
     const { pilgrims, agents, admins } = useData();
     const isAdmin = admins?.find(a => a.userId === user.uid)
+    const navigate = useNavigate()
+
   return (
     <div className="main_body">
     <div className="main_top_wrapper">
@@ -36,7 +39,7 @@ const AdminDash = () => {
         <h3 className='acc_sub_title'>Recent Agents</h3>
         <div className="acc_inner_agents_1">                  
             {agents && agents.reverse().slice(0,3).map(a => (
-              <div className="Inner_agent_card" key={a.id}>
+              <div className="Inner_agent_card" key={a.id} onClick={() =>navigate(`/profile/${a.id}`)}>
                 <span className="agent_logo1"><img src={a?.logo} alt="" /></span>                        
                   <div className="post_card_inner">
                     <h3>{a.coName}</h3>

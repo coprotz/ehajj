@@ -106,6 +106,15 @@
 
 }
 
+.Inner_agent_card{
+    padding: 5px;
+}
+
+.Inner_agent_card:hover{
+    background-color: #bdd6f7;
+    cursor: pointer;
+}
+
 /* .admin_main_top_2{
     width: 300px;
 } */

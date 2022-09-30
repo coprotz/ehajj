@@ -15,7 +15,7 @@ const AgentCard = ({s, index}) => {
     const isMission = mission?.find(a =>a.userId === user.uid)
     // const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const pilgrimsTot = pilgrims && pilgrims.filter(p =>p?.agentId === s.id)?.length
-    const agentUsers = s?.users?.length
+    const agentUsers = users?.filter(u => u.agentId === s.id)?.length
 
   return (
     <tr key={s.id}>

@@ -1057,6 +1057,19 @@ button:disabled{
     
 }
 
+.chat_list_head{
+    width: 100%;
+    padding: 10px;
+    background-color: #3266a8;
+    color: white;
+    text-align: center;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
 .chat_left_title{
     width: 100%;
     padding: 10px;
@@ -1065,7 +1078,7 @@ button:disabled{
     text-align: center;
     height: 40px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 }
 
@@ -1091,12 +1104,20 @@ button:disabled{
     width: 100%;
 }
 
+.chat_kichumba{
+    display: none;
+}
+
 @media screen and (max-width: 920px){
     .chat_list_hide{
         /* display: none; */
         flex-direction: column;
         gap: 10px;
         margin-top: 10px;
+    }
+
+    .chat_kichumba{
+        display: flex;
     }
 
     .message_heading{
@@ -1338,5 +1359,18 @@ button:disabled{
         width: 100%;
         border: 1px solid #bdd6f7;
         height: 100%;
+    }
+
+    .pop_new_chat{
+       
+        width: 270px;
+        right: -125px;
+        top: 0;
+      
+        
+      
+        z-index: 20;
+        
+        
     }
 }

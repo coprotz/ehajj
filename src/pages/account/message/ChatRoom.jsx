@@ -80,7 +80,14 @@ const ChatRoom = () => {
   return (
     <div className='chatroom_container'>
       <div className="chatroom_left">
-        <h3 className='chat_left_title'>Chats</h3>
+        <div className="chat_list_head">
+          <h3 className='chat_left_title'>Chats</h3>
+          <div className="chat_kichumba">
+             <ChatAction/> 
+          </div>
+         
+        </div>
+        
         <ChatLists/>
       </div>
       <motion.div 
