@@ -35,23 +35,27 @@ const ChatCard = ({chat, currentRoom}) => {
               mission?.find(m => m.id === memberId) ||
               admins?.find(a => a.id === memberId)
 
-    const memberName = member?.fname+" "+member?.lname || member?.name || member?.coName
+    const memberName =   member?.name || member?.coName || member?.fname+" "+member?.lname
     const memberIcon = 
+      member?.logo? 
+        <span className="member_icon">
+            <img src={member?.logo} alt="" />            
+        </span> : 
+         <span className="member_icon">
+         {member?.name}            
+       </span> ||
+       <span className="member_icon">
+         {member?.coName}            
+       </span> || 
+      member?.photo? 
           <span className="member_icon">
             <img src={member?.photo} alt="" />            
-          </span> || 
+          </span> :
+           
           <span className="member_icon">
-            <img src={member?.logo} alt="" />            
-          </span> ||
-          <span className="member_icon">
-           {member?.fname[0]}            
-          </span> ||
-          <span className="member_icon">
-            {member?.name[0]}            
-          </span> ||
-          <span className="member_icon">
-            {member?.coName[0]}            
-          </span>  
+           {member?.fname}            
+          </span> 
+          
           
          
 
@@ -59,7 +63,7 @@ const ChatCard = ({chat, currentRoom}) => {
     const lastMsg = messages && messages.findLast((m) => m.room === chat.id)
 
 
-    // console.log('memberId', member)
+    console.log('memberId', memberId)
 
     // const {name, createdAt, text} = lastMsg && lastMsg
 

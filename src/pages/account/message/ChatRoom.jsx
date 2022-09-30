@@ -42,15 +42,18 @@ const ChatRoom = () => {
               mission?.find(m => m.id === memberId) ||
               admins?.find(a => a.id === memberId)
 
-    const memberName = member?.fname+" "+member?.lname || member?.name || member?.coName
+    const memberName =  member?.name || member?.coName || member?.fname+" "+member?.lname
 
     const memberIcon = 
+
+    member?.logo? <img src={member?.logo} alt="" /> : <>{member?.name}  </> ||  <> {member?.coName} </>  ||
+    member?.photo?<img src={member?.photo} alt="" />  : <>{member?.fname} </>
     
-      <img src={member?.photo} alt="" />  ||           
-      <img src={member?.logo} alt="" /> ||           
-      <>{member?.fname[0]} </> ||          
-      <>{member?.name[0]}  </> ||         
-      <>{member?.coName[0]} </>           
+         
+     
+      
+      
+      console.log('member', member)
    
 
     // groups && groups.find(g => g.id === memberId)?.name 

@@ -77,7 +77,7 @@ const ChatContacts = () => {
           }
           else{
             const data = {
-              members : [`${myId}`, `${selected}`]
+              members : [`${myId}`, `${id}`]
             }
         
             const chat = await addDoc (chatsRef, data)
@@ -210,13 +210,13 @@ const ChatContacts = () => {
                 </div>           
                 {agents.length > 0 ?<>
                 {agents && agents.map(member => (
-                  <span onClick={() => setSelected(member)} key={member.id}>{member.coName} </span>
+                  <span onClick={() => setSelected(member)} key={member.id} className='chat_team'>{member.coName || member.name} </span>
                 ))}
               </> : "No Agent"}
             </div>
             :
             <div className='selected'>
-                <span>Would you like to chat with <strong>{selected.coName}</strong>?</span>
+                <span>Would you like to chat with <strong>{selected.coName || selected.name}</strong>?</span>
                 <div className="selected_btns">
                   <button style={{color: '#7d28d4'}} onClick={(e) => handleNew(selected.id, e)}>OK</button>
                   <button style={{color: '#aaaaaa'}} onClick={() => setSelected(null)}>CANCEL</button>
