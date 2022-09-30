@@ -89,6 +89,7 @@
 .admin_main_body{
     display: flex;
     gap: 20px;
+    width: 100%;
 }
 
 .div_span{
@@ -105,9 +106,9 @@
 
 }
 
-.admin_main_top_2{
+/* .admin_main_top_2{
     width: 300px;
-}
+} */
 
 
 @media screen and (max-width: 440px){
@@ -125,6 +126,10 @@
         /* margin-top: 20px; */
         padding: 5px 20px;
        
+    }
+
+    .admin_main_body{
+        flex-direction: column;
     }
     
 

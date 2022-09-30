@@ -7,54 +7,72 @@ import ChatCard from './ChatCard';
 
 const ChatLists = () => {
     const { user } = useAuth();
-    const { users, groups, pilgrims, agents, chats } = useData();
-    const cuUser = users && users.find(u => u.id === user.uid)
+    const { pilgrims, agents, chats, admins, mission } = useData();
+
 
     const navigate = useNavigate();
 
     // const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
     const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const pilgrim = pilgrims?.find(p=>p.id === user.uid)
+    const admin = admins?.find(a => a.userId === user.uid)
+    const isMission = mission?.find(a => a.userId === user.uid)
 
-    const group = groups && groups.find((u) => u.id === cuUser?.groupId)
-    // const agentChats = agents && agents.find(a => a.id === cuUser.agent)
-    // const isPilgrim = users && users.find(u => u.id === user.uid)?.typeOf === 'pilgrim'
-    // const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
-    // const isMission = users && users.find(u => u.id === user.uid)?.typeOf === 'mission' 
-    // const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf ===  'admin'
-    const userChats = chats && chats.filter(c => c.members.includes(`${user.uid}`))
     const agentChats = chats && chats.filter(c =>c.members.includes(`${agent?.id}`))
     const pilChats = chats && chats.filter(c =>c.members.includes(`${pilgrim?.id}`))
+    const adminChats = chats && chats.filter(c =>c.members.includes(`${admin?.id}`))
+    const missionChats = chats && chats.filter(c =>c.members.includes(`${isMission?.id}`))
 
-    console.log('agentChats', agentChats)
+    // console.log('adminChats', adminChats)
 
-    
+  
 
-    
-    
-    
-    const groupChats = chats && chats.filter(c =>c.members.includes(`${group?.id}`))
-    const allChats = userChats.concat(groupChats)
+    const RenderChats = () => {
+      if(agent){
+        return (
+          <>
+          {agentChats?.map(chat => (
+            <ChatCard chat={chat} key={chat.id} /> 
+          ))}
+          </>
+        )
+      }else if(admin){
+        return (
+          <>
+          {adminChats?.map(chat => (
+            <ChatCard chat={chat} key={chat.id} /> 
+          ))}
+          </>
+        )
+      }else if(pilgrim){
+        return (
+          <>
+          {pilChats?.map(chat => (
+            <ChatCard chat={chat} key={chat.id} /> 
+          ))}
+          </>
+        )
+      }else if(isMission){
+        return (
+          <>
+          {missionChats?.map(chat => (
+            <ChatCard chat={chat} key={chat.id} /> 
+          ))}
+          </>
+        )
 
-    const tchats = allChats.concat(agentChats)
-
-    const activeChats = userChats || groupChats || allChats
-
-    console.log('tchats', tchats)
-
-      
+    }else{
+      return (
+        <div className='exist_chats'>
+          <span>No chats</span>
+          <button className='btn_create' onClick={() => navigate('/account/contacts')}>Creat new Chat</button>
+        </div>
+      )   
+  }
+}
   return (
     <div className="chat_lists">
-        {tchats.length > 0 ? <>
-          {tchats && tchats.map(chat => (                              
-              <ChatCard chat={chat} key={chat.id} />                          
-          ))} 
-        
-        </> : 
-        <div className='exist_chats'>
-        <span>No chats</span>
-        <button className='btn_create' onClick={() => navigate('/account/contacts')}>Creat new Chat</button>
-        </div>  }
+        {RenderChats()}
     </div>
   )
 }

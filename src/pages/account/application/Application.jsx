@@ -16,6 +16,7 @@ import { AiOutlineCheck } from "react-icons/ai";
 import Complete from './Complete'
 import { serverTimestamp } from 'firebase/database'
 import AgentSidebar from '../sidebar/AgentSidebar'
+import Profile from '../../profile/Profile'
 
 
 const Application = () => {
@@ -212,7 +213,7 @@ const Application = () => {
             </span>}
           {pilgrim ? 
           <>
-            {RenderPage()}
+            <Profile/>
             </>
             :
             <div className='no_appli'>

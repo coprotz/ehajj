@@ -10,22 +10,27 @@ import {  BsChatLeftText, BsEye, BsPencil } from "react-icons/bs";
 
 const NewChat = ({s, name}) => {
     const { user } = useAuth();
-    const { chats, agents, users } = useData();
+    const { chats, agents, users, admins, pilgrims, mission } = useData();
     const [open, setOpen] = useState(null)
     const [sending, setSending] = useState(null)
     const navigate = useNavigate();
 
     const cuUser = users && users.find(a => a.id === user.uid)
-
     const agent = agents && agents.find(a => a.id === cuUser?.agentId)
+    const admin = admins?.find(a => a.userId === user.uid)
+    const isMission = mission?.find(m => m.userId === user.uid)
+    const pilgrim = pilgrims?.find(p =>p.userId === user.uid)
 
-    const userChats = chats && chats.filter(c =>c.members.includes(`${user.uid}`))
+    // const userChats = chats && chats.filter(c =>c.members.includes(`${user.uid}`))
     const agentChats = chats && chats.filter(c => c.members.includes(`${agent?.id}`))
+    const adminChats = chats && chats.filter(c => c.members.includes(`${admin?.id}`))
+    const missionChats = chats && chats.filter(c => c.members.includes(`${isMission?.id}`))
+    const pilgrimChats = chats && chats.filter(c => c.members.includes(`${pilgrim?.id}`))
     
 
     console.log('agent', agent)
 
-    const myId = agent? agent.id : user.uid
+    const myId = agent? agent.id : admin? admin?.id : pilgrim? pilgrim?.id : isMission? isMission?.id : null
 
     console.log('agentChats', agentChats)
     const chatsRef = collection(db, 'chats')
@@ -39,8 +44,12 @@ const NewChat = ({s, name}) => {
         setSending(true)
     
         try {
-          const oldChat = agent? agentChats && agentChats.find(c => c.members.includes(`${id}`)) 
-                        : userChats && userChats.find(c => c.members.includes(`${id}`))
+          const oldChat = 
+                agent? agentChats && agentChats.find(c => c.members.includes(`${id}`)) :
+                admin? adminChats && adminChats.find(c => c.members.includes(`${id}`)) :
+                pilgrim? pilgrimChats && pilgrimChats.find(c => c.members.includes(`${id}`)) :
+                isMission? missionChats && missionChats.find(c => c.members.includes(`${id}`)) : null
+                        
 
           if(oldChat){
             // console.log('old', oldChat)

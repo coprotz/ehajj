@@ -3,12 +3,18 @@
     flex-direction: column;
     gap: 15px;
     padding: 5px;
+    width: 100%;
+}
+
+.account_main_wrapper{
+    width: 100%;
 }
 
 .main_top_wrapper{
     display: flex;
+    gap: 20px;
     /* align-items: center; */
-    justify-content: space-between;
+    /* justify-content: space-between; */
     width: 100%;
     /* border: 1px solid red; */
 

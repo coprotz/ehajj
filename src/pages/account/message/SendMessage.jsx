@@ -15,31 +15,37 @@ import { db, useAuth } from '../../../hooks/useAuth';
 
 
 
-const SendMessage = ({currentRoom}) => {
+const SendMessage = ({chat}) => {
 
-  const { users, mission, pilgrims} = useData();
+  const { users, mission, pilgrims, admins, agents} = useData();
   const { user } = useAuth();
   const [attached, setAttached] = useState(null)
   const { uid } = user
   const [message, setMessage] = useState('')
   const [loading, setLoding] = useState(null) 
-  const cuUser = users && users.find(u => u.id === uid)
+  // const cuUser = users && users.find(u => u.id === uid)
 
   const messageRef = collection(db, 'messages')
-  const [document, setDocument] = useState(null)
-  const [image, setImage] = useState(null)
+  // const [document, setDocument] = useState(null)
+  // const [image, setImage] = useState(null)
   const [error, setError] = useState('')
-  const isMission = mission && mission.find(m => m.userId === user.uid)
+
+  const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
   const pilgrim = pilgrims?.find(p=>p.id === user.uid)
+  const admin = admins?.find(a => a.userId === user.uid)
+  const isMission = mission?.find(a => a.userId === user.uid)
+  const agentUser = users?.find(a =>a.agentId === agent?.id)
 
   // console.log('user', cuUser)
 
   const name =
-    isMission? isMission?.fname+" "+isMission?.lname : 
+    isMission? isMission?.fname+" "+isMission?.lname :
+    admin? admin?.fname+" "+admin?.lname : 
+    agent? agentUser?.fname+" "+agentUser?.lname :
     pilgrim? pilgrim?.fname+" "+pilgrim?.lname : null
     // cuUser?.fname +" "+ cuUser?.lname
 
-  const types = ['image/png', 'image/jpeg']
+  // const types = ['image/png', 'image/jpeg']
 
 
   const handleSubmit = async(e) => {
@@ -50,7 +56,7 @@ const SendMessage = ({currentRoom}) => {
             name: name,        
             createdAt: serverTimestamp(),
             text: message,
-            room: currentRoom.id,
+            room: chat.id,
            
     }
 

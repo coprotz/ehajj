@@ -19,7 +19,7 @@
 }
 
 .transaction_history{
-    background-color: #9ec8fe;
+    background-color: #a4c5f0;
     width: 35%;
     padding: 25px;
 }
@@ -80,6 +80,24 @@
     display: none;
 }
 
+.actions_btns{
+    display: flex;
+    justify-content: flex-end;
+    z-index: 10;
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.actions_btns button{
+    border: none;
+    display: flex;
+    padding: 8px 13px;
+    background-color: #a4c5f0;
+    font-size: 1rem;
+    
+    
+}
+
 
 @media screen and (max-width: 940px){
     .payment_wrapper{
@@ -118,7 +136,7 @@
     }
 
     .transaction_history{
-        background-color: #e8e8e8;
+        background-color: #a4c5f0;
         width: 100%;
         padding: 25px;
     }

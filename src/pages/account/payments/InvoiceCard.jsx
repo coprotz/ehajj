@@ -18,7 +18,7 @@ const InvoiceCard = ({index, s}) => {
         <td data-label='Due Date'>{s?.dueDate}</td>             
         <td data-label='Payment Method'>{s?.payMode}</td>   
         <td data-label='Invoice Status'>{s?.status}</td>            
-        <td data-label='Action'>
+        <td >
         <div className="actions_btns">
             <button onClick={() =>navigate(`/invoice/${s?.id}`)}>View</button> 
             <button >Pay Now</button>

@@ -257,6 +257,26 @@
     aspect-ratio: 1;
 }
 
+.chat_r_middle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.chat_r_middle h4{
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #91acf6;
+}
+
+.member_icon img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .card_member_details{
     display: flex;
     flex-direction: column;
@@ -977,6 +997,13 @@ button:disabled{
     z-index: 20;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.pop_new_chat span{
+    font-size: 1rem;
+    /* border: 1px solid red;
+    display: block;
+    width: 100%; */
 }
 
 .group_btns{

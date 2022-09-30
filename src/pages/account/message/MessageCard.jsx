@@ -5,7 +5,7 @@ import {motion} from 'framer-motion'
 
 const MessageCard = ({message}) => {
 
-    console.log('msg', message)
+    // console.log('msg', message)
     const { user } = useAuth();
 
     const { uid, text, name, createdAt } = message

@@ -13,22 +13,46 @@ const ChatRoom = () => {
     const { id } = useParams();
     const {user} = useAuth();
     
-    const {groups, messages, agents, users, chats, pilgrims} = useData();
-    const cuUser = users && users.find(u => u.id === user.uid)
+    const { messages, agents, chats, pilgrims, mission, admins} = useData();
+    // const cuUser = users && users.find(u => u.id === user.uid)
     const navigate = useNavigate();
 
     const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const pilgrim = pilgrims?.find(p=>p.id === user.uid)
+    const admin = admins?.find(a => a.userId === user.uid)
+    const isMission = mission?.find(a => a.userId === user.uid)
 
-    const currentRoom = chats && chats.find(c => c.id === id) 
+    const chat = chats && chats.find(c => c.id === id) 
+
+    const memberId =    
+    agent? chat?.members?.find(m =>m !== agent?.id) : 
+    pilgrim? chat?.members?.find(m =>m !== pilgrim?.id) : 
+    isMission? chat?.members?.find(m =>m !== isMission?.id) : 
+    admin? chat?.members?.find(m =>m !== admin?.id) : null
     // const memberId = currentRoom && currentRoom.members.find(m => m !== user.uid) 
 
-    const memberId = 
-      agent? currentRoom && currentRoom.members.find(m => m !== cuUser?.agentId) : 
-      pilgrim? currentRoom?.members.find(m => m !== pilgrim?.id) : null 
+    // const memberId = 
+    //   agent? currentRoom && currentRoom.members.find(m => m !== cuUser?.agentId) : 
+    //   pilgrim? currentRoom?.members.find(m => m !== pilgrim?.id) : null 
     // || currentRoom && currentRoom.members.find(m => m !== cuUser?.groupId) : currentRoom && currentRoom.members.find(m => m !== cuUser?.id)
 
-    const member = pilgrim? agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name : null
+    const member = 
+              pilgrims?.find(a => a.id === memberId) || 
+              agents?.find(a => a.id === memberId) ||             
+              mission?.find(m => m.id === memberId) ||
+              admins?.find(a => a.id === memberId)
+
+    const memberName = member?.fname+" "+member?.lname || member?.name || member?.coName
+
+    const memberIcon = 
+    
+      <img src={member?.photo} alt="" />  ||           
+      <img src={member?.logo} alt="" /> ||           
+      <>{member?.fname[0]} </> ||          
+      <>{member?.name[0]}  </> ||         
+      <>{member?.coName[0]} </>           
+   
+
     // groups && groups.find(g => g.id === memberId)?.name 
     
     // pilgrim? 
@@ -66,25 +90,31 @@ const ChatRoom = () => {
               <div className="chat_room_top">
                 <div className="chat_name_info">
                   <HiOutlineArrowLeft onClick={() => navigate('/account/messages')}/>
-                  <h4 >{member}</h4> 
+                  <span className="member_icon">
+                     {memberIcon}
+                  </span>                 
+                  <h4 >{memberName}</h4> 
                 </div>           
                 <ChatAction/>          
               </div>
               <div className="messages_wrapper" ref={scrollRef}>
-                  {messages && messages.filter(m=> m.room === currentRoom?.id).map((message) => (               
+                  {messages && messages.filter(m=> m.room === chat?.id).map((message) => (               
                       <MessageCard  message={message} key={message.id}/>             
                 ))} 
                   
               </div>
           </div> 
-          <SendMessage currentRoom={currentRoom}/>
+          <SendMessage chat={chat}/>
         </motion.div> 
         <div className="chatroom_right">
           <div className="chat_r_top">
             Member Profile
           </div>
           <div className="chat_r_middle">
-            <h4 >{member}</h4>
+            <span className="profile_icon">
+              {memberIcon}
+            </span>  
+            <h4 >{memberName}</h4>
           </div>
           <div className="chat_r_bottom">
             footer

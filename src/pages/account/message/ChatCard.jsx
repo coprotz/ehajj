@@ -4,46 +4,62 @@ import useData from '../../../hooks/useData';
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom';
 
-const ChatCard = ({chat, setCurrentRoom, currentRoom}) => {
+const ChatCard = ({chat, currentRoom}) => {
 
     const {user} = useAuth();
-    const {groups, messages, agents, users, pilgrims} = useData();
+    const { messages, agents, users, pilgrims, admins, mission} = useData();
     const navigate = useNavigate();
-    
-    // const cuUser = users && users.find(u => u.id === user.uid)
-
+ 
+    const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const pilgrim = pilgrims?.find(p=>p.id === user.uid)
-    const isAgent = users && users.find(u => u.id === user.uid)?.typeOf === 'agent'
-    const isMission = users && users.find(u => u.id === user.uid)?.typeOf === 'mission' 
-    const isAdmin = users && users.find(u => u.id === user.uid)?.typeOf ===  'admin'
+    const admin = admins?.find(a => a.userId === user.uid)
+    const isMission = mission?.find(a => a.userId === user.uid)
+
+    // const agentChats = chats && chats.filter(c =>c.members.includes(`${agent?.id}`))
+    // const pilChats = chats && chats.filter(c =>c.members.includes(`${pilgrim?.id}`))
+    // const adminChats = chats && chats.filter(c =>c.members.includes(`${admin?.id}`))
+    // const missionChats = chats && chats.filter(c =>c.members.includes(`${isMission?.id}`))
+   
 
     // const memberId = c.members.find(m => m !== user.uid)
 
-    const memberId = 
-    // isPilgrim || isAgent? c && c.members.find(m => m !== user.uid) : c && c.members.find(m => m !== cuUser?.groupId)
+    const memberId =    
+    agent? chat?.members?.find(m =>m !== agent?.id) : 
+    pilgrim? chat?.members?.find(m =>m !== pilgrim?.id) : 
+    isMission? chat?.members?.find(m =>m !== isMission?.id) : 
+    admin? chat?.members?.find(m =>m !== admin?.id) : null
 
-    // const memberId = isAgent? chat && chat.members.find(m => m !== cuUser?.agentId) : 
-    // isMission? chat && chat.members.find(m => m !== cuUser?.groupId) : 
-    // cuUser? chat && chat.members.find(m => m !== cuUser?.id) :
-    pilgrim? chat?.members?.find(m =>m !== pilgrim?.id) : null
+    const member = 
+              pilgrims?.find(a => a.id === memberId) || 
+              agents?.find(a => a.id === memberId) ||             
+              mission?.find(m => m.id === memberId) ||
+              admins?.find(a => a.id === memberId)
 
-    // const memberId = cuUser && cuUser.groupId
-    // console.log('groupId', groupId)
-
-    const member = agents && agents.find(a => a.id === memberId)?.coName || agents && agents.find(a => a.id === memberId)?.name
-      // groups && groups.find(g => g.id === memberId)?.name 
-    
-      
-      || users && users.find(a => a.id === memberId)?.fname +" "+users?.find(a => a.id === memberId)?.lname || 'Guest'
-
-
+    const memberName = member?.fname+" "+member?.lname || member?.name || member?.coName
+    const memberIcon = 
+          <span className="member_icon">
+            <img src={member?.photo} alt="" />            
+          </span> || 
+          <span className="member_icon">
+            <img src={member?.logo} alt="" />            
+          </span> ||
+          <span className="member_icon">
+           {member?.fname[0]}            
+          </span> ||
+          <span className="member_icon">
+            {member?.name[0]}            
+          </span> ||
+          <span className="member_icon">
+            {member?.coName[0]}            
+          </span>  
+          
+         
 
     const cuMsgs = messages && messages.filter(m => m.room === chat.id)
     const lastMsg = messages && messages.findLast((m) => m.room === chat.id)
 
-    // const membe = groups && groups.find(g => g.id === groupId)
 
-    console.log('memberId', memberId)
+    // console.log('memberId', member)
 
     // const {name, createdAt, text} = lastMsg && lastMsg
 
@@ -51,11 +67,9 @@ const ChatCard = ({chat, setCurrentRoom, currentRoom}) => {
   return (
     <div className={currentRoom === chat ? 'active_card_message' : 'card_message'} onClick={() => navigate(`/account/messages/${chat.id}`)}>
         <div className="card_msg_details">
-          <span className="member_icon">
-            {member[0]}
-          </span>
+          {memberIcon}
           <div className="card_member_details">          
-            <h4 className='member_name'>{undefined + undefined ? 'Guest' : member}</h4>
+            <h4 className='member_name'>{memberName}</h4>
             <div className="chat_id">           
               <small className='chat_text'>{lastMsg && lastMsg.text}</small>
             </div>

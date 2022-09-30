@@ -9,25 +9,31 @@ import ChangeStatus from '../../components/changeStatus/ChangeStatus';
 import { useState } from 'react';
 import useStorage from '../../hooks/useStorage';
 import { collection, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../hooks/useAuth';
-import { update } from 'firebase/database';
+import { db, useAuth } from '../../hooks/useAuth';
+// import { update } from 'firebase/database';
 import Loading from '../../components/loading/Loading';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 
 const Profile = () => {
 
     const { id } = useParams()
+    const { user } = useAuth()
     const { pilgrims, agents } = useData()
     const pilgrim = pilgrims?.find(p => p.id === id)
     const agent = agents?.find(a => a.id === id)
     const myAgent = agents?.find(a => a.id === pilgrim?.agentId)
+    const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const navigate = useNavigate()
 
     const [file, setFile] = useState(null)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const { perc, url } = useStorage(file)
+
+    const own = pilgrim?.id === user?.uid
+
+    // console.log('own', own)
 
     const types = ['image/png', 'image/jpeg']
 
@@ -42,7 +48,7 @@ const Profile = () => {
         }
     }
 
-    const today = new Date()
+    // const today = new Date()
     // const age = today.getFullYear() - pilgrim?.dob?.getFullYear()
 
     // console.log('age', age)
@@ -291,7 +297,7 @@ const Profile = () => {
                         // cuMission? <h4 className='mission_logo'>{cuMission?.name[0]}</h4> : 
                         // isAdmin? <h4 className='mission_logo'>{isAdmin?.name[0]}</h4>:
                     : null}
-                    {!file &&
+                    {!file && own &&
                         <label htmlFor="photo" className='profile_photo'>
                             <input 
                                 type="file" 
@@ -343,25 +349,31 @@ const Profile = () => {
                         <small>Email</small>
                         <h4>{pilgrim?.email}</h4>
                     </span>
-                    <span className='profile_span '>
-                        <NewChat/>
-                    </span>
+                    {!own &&    
+                      <span className='profile_span '>
+                        <NewChat s={pilgrim?.id} name={pilgrim?.fname+" "+pilgrim?.lname}/>
+                    </span>}
+                    {isAgent &&
                     <span className='profile_span '>
                         <ChangeStatus/>
-                    </span>
+                    </span>}
+                   
                 </div>
             </div>
             <div className="profile_agent">
                 <div className="p_agent_left">
                     <small>Agent Name</small>
+                    
                     <div className="profile_agent_name">
                         <h1>{myAgent?.name || myAgent?.coName}</h1>
-                        <NewChat/>
+                        {own &&
+                        <NewChat s={myAgent?.id} name={myAgent?.name || myAgent?.coName}/>}
                     </div>
                     <div className='ibada_type'>{pilgrim?.ibada}</div>
                     
                 </div>
-                <button className='btn_profile'>Change Agent</button> 
+                {own &&
+                <button className='btn_profile'>Change Agent</button> }
                 
                 
             </div>
@@ -370,7 +382,8 @@ const Profile = () => {
                 <div className="p_passport_left">                 
                     <div className="profile_card_title">
                         <h4>Passport Details</h4>
-                        <button className='btn_edit' onClick={() =>setChange(1)}><BsPencil/></button>
+                        {own &&
+                        <button className='btn_edit' onClick={() =>setChange(1)}><BsPencil/></button>}
                         {change === 1 && <>                      
                             <button className='btn_save_btn' onClick={handlePassDetails}>{loading? <Loading/> : 'Save Changes'}</button>
                             <button className='btn_cancel' onClick={() =>setChange(null)}>CANCEL</button>
@@ -435,7 +448,7 @@ const Profile = () => {
                         // cuMission? <h4 className='mission_logo'>{cuMission?.name[0]}</h4> : 
                         // isAdmin? <h4 className='mission_logo'>{isAdmin?.name[0]}</h4>:
                     : null}
-                    {!file || !pilgrim?.passport &&
+                    {!file || !pilgrim?.passport && own &&
                         <label htmlFor="passport" className='profile_photo'>
                             <input 
                                 type="file" 
@@ -457,9 +470,10 @@ const Profile = () => {
                                 id="passport" style={{display: 'none'}}
                                 onChange={handleSelect}
                             />
-                        <span className='btn_edit_pass btn_change'>Change</span>
+                        {own &&
+                        <span className='btn_edit_pass btn_change'>Change</span>}
                         </label>
-                        {!file && pilgrim?.passport &&
+                        { pilgrim?.passport && isAgent &&
                         <button className='btn_edit_pass'>Download</button>}
                         {file && <>
                         <div className="progress-bar"  style={{width: perc + '%'}}></div> 
@@ -483,7 +497,8 @@ const Profile = () => {
                    
                     <div className="profile_card_title">
                         <h4>Pilgrim's Mahrem Info</h4>
-                        <button className='btn_edit' onClick={() =>setChange(2)}><BsPencil/></button>
+                        {own &&
+                        <button className='btn_edit' onClick={() =>setChange(2)}><BsPencil/></button>}
                         {change === 2 && <> 
                             <button className='btn_save_btn' onClick={handleMahrem}>{loading? <Loading/> : 'Save Changes'}</button>
                             <button className='btn_cancel' onClick={() =>setChange(null)}>CANCEL</button>
@@ -581,7 +596,8 @@ const Profile = () => {
             <div className="p_passport_left">                 
                     <div className="profile_card_title">
                         <h4>Pilgrim Mahrem's Passport Details</h4>
-                        <button className='btn_edit' onClick={() =>setChange(3)}><BsPencil/></button>
+                        {own &&
+                        <button className='btn_edit' onClick={() =>setChange(3)}><BsPencil/></button>}
                         {change === 3 && <>                      
                             <button className='btn_save_btn' onClick={handleMPassDetails}>{loading? <Loading/> : 'Save Changes'}</button>
                             <button className='btn_cancel' onClick={() =>setChange(null)}>CANCEL</button>
@@ -668,9 +684,10 @@ const Profile = () => {
                                 id="mPass" style={{display: 'none'}}
                                 onChange={handleSelect}
                             />
-                        <span className='btn_edit_pass btn_change'>Change</span>
+                        {own &&
+                        <span className='btn_edit_pass btn_change'>Change</span>}
                         </label>
-                        {!file && pilgrim?.mPass &&
+                        { pilgrim?.mPass && isAgent &&
                         <button className='btn_edit_pass'>Download</button>}
                         {file && <>
                         <div className="progress-bar"  style={{width: perc + '%'}}></div> 
@@ -691,7 +708,8 @@ const Profile = () => {
                    
                     <div className="profile_card_title">
                         <h4>Pilgrim's Next of Kin Info</h4>
-                        <button className='btn_edit' onClick={() =>setChange(4)}><BsPencil/></button>
+                        {own &&
+                        <button className='btn_edit' onClick={() =>setChange(4)}><BsPencil/></button>}
                         {change === 4 && <> 
                             <button className='btn_save_btn' onClick={handleKin}>{loading? <Loading/> : 'Save Changes'}</button>
                             <button className='btn_cancel' onClick={() =>setChange(null)}>CANCEL</button>
@@ -796,7 +814,8 @@ const Profile = () => {
                  
                     <div className="profile_card_title">
                         <h4>Payment Details</h4>
-                        <button className='btn_edit' onClick={() =>setChange(5)}><BsPencil/></button>
+                        {own &&
+                        <button className='btn_edit' onClick={() =>setChange(5)}><BsPencil/></button>}
                        
                         
                     </div>                   
@@ -842,13 +861,14 @@ const Profile = () => {
                                     onChange={(e) =>setDueDate(e.target.value)}
                                     /> :
                                 <h4>{pilgrim?.dueDate? pilgrim?.dueDate : 'No data' }</h4>}
-                        </div>                    
+                        </div> 
+                        {own &&                   
                          <button 
                             onClick={() =>navigate(`/invoice/${pilgrim?.invoiceId}`)}
                                 className='btn_view_invo'
                                 disabled={!pilgrim?.dueDate || !pilgrim?.payMode}
                                 >View Invoice
-                        </button>
+                        </button>}
                     </div>
                 </div>
                

@@ -3,22 +3,23 @@ import {motion} from 'framer-motion'
 import { useNavigate } from 'react-router-dom';
 import { BiArrowBack} from "react-icons/bi";
 import useData from '../../../hooks/useData';
-import moment from 'moment'
+// import moment from 'moment'
 import { useAuth } from '../../../hooks/useAuth';
-import {  BsChatLeftText, BsEye, BsPencil } from "react-icons/bs";
+// import {  BsChatLeftText, BsEye, BsPencil } from "react-icons/bs";
 import './pilgrims.css'
 
 
-import Search from '../../../components/search/Search';
-import { GoGraph } from "react-icons/go";
+// import Search from '../../../components/search/Search';
+// import { GoGraph } from "react-icons/go";
 import { useTranslation } from "react-i18next";
 import { useState } from 'react';
 // import Reports from '../reports/Reports';
-import { GrClose } from "react-icons/gr";
+// import { GrClose } from "react-icons/gr";
 import PilgrimCard from './PilgrimCard';
-import ChangeStatus from '../../../components/changeStatus/ChangeStatus';
-import NewChat from '../message/NewChat';
-import ViewProfile from '../../../components/viewProfile/ViewProfile';
+// import ChangeStatus from '../../../components/changeStatus/ChangeStatus';
+// import NewChat from '../message/NewChat';
+// import ViewProfile from '../../../components/viewProfile/ViewProfile';
+// PilgrimCard
 
 
 const Pilgrims = () => {
@@ -34,8 +35,8 @@ const Pilgrims = () => {
     const isAdmin = admins?.find(a => a?.userId === user?.uid)
 
 
-    const [report, setReport] = useState(null)
-    const [action, setAction] = useState(null)
+    // const [report, setReport] = useState(null)
+    // const [action, setAction] = useState(null)
 
     const RenderRole = () => {
        return (
@@ -44,40 +45,19 @@ const Pilgrims = () => {
           <table className='table'>
             <thead>
               <th>Photo</th>
-              <th>Name</th>
-              <th>Sex</th>
+              <th>Name</th>              
               <th>Age</th>
-              <th>Email</th>
-              <th>Wakala</th>
-         
-              <th>Kajiunga</th>
-              <th>Ameshalipa?</th>
-              <th>Hatua Iliyofikia</th>
+              <th>Gender</th> 
+              <th>Ibada Type</th>         
+              <th>Created At</th>          
+              <th>Application Status</th>
+              <th>Wakala</th>  
               <th>Action</th>
             </thead>
             <tbody>
               {isAgent && <>
                 {agentPilgrims && agentPilgrims.map(pil => (
-                 <tr>
-                  <td data-label='Picha'><img src={pil?.photo} alt="" /></td>
-                  <td data-label='Jina'>{pil?.fname} {pil?.lname}</td>
-                  <td data-label='Jinsia'>{pil?.gender}</td>
-                  <td data-label='Umri'>{pil?.dob}</td>
-                  <td data-label='Email'>{pil?.email}</td>
-                  <td data-label='Ana Pasipoti?'>{pil?.passNo !== ''? 'Ndio' : 'Hapana'}</td>
-                 
-                  <td data-label='Kajiunga'>{moment(pil?.createdAt?.toDate()).fromNow(true)}</td>
-                  <td data-label='Ameshalipa?'>{pil?.isPaid? 'Ndio' : 'Hapana'}</td>
-                  <td data-label='Hatua Iliyofikia'>{pil?.status}</td>
-                  <td data-label='Chukua Hatua'>
-                    <div className="actions_btns">
-                      <ChangeStatus id={pil?.id}/>
-                      <ViewProfile id={pil?.id}/>
-                      <NewChat s={pil?.userId} name={pil?.fname+" "+pil?.lname}/>                
-                    </div>
-                  </td>
-                  
-                </tr>
+                 <PilgrimCard pil={pil} key={pil.id}/>
                 ))}
               </>}
               {isMission && <>

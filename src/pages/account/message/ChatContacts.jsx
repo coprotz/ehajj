@@ -24,13 +24,17 @@ const ChatContacts = () => {
     const pilgrim = pilgrims && pilgrims.find(u => u?.id === user.uid)
     const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const isMission = mission?.find(m => m?.userId === user?.uid)
-    const isAdmin = admins.find(a =>a.userId === user?.uid)
-    const group = groups && groups.find((u) => u.id === cuUser?.groupId)
+    const admin = admins.find(a =>a.userId === user?.uid)
+    // const group = groups && groups.find((u) => u.id === cuUser?.groupId)
 
-    const groupChats = chats && chats.filter(c =>c.members.includes(`${group?.id}`))
-    const userChats = chats && chats.filter(c => c.members.includes(`${user.uid}`))
-    const allChats = userChats.concat(groupChats)
+    const agentChats = chats && chats.filter(c => c.members.includes(`${agent?.id}`))
+    const adminChats = chats && chats.filter(c => c.members.includes(`${admin?.id}`))
+    const missionChats = chats && chats.filter(c => c.members.includes(`${isMission?.id}`))
+    const pilgrimChats = chats && chats.filter(c => c.members.includes(`${pilgrim?.id}`))
+
+ 
     const pilAgent = agents?.find(p => p.id === pilgrim?.agentId)
+    const myId = agent? agent.id : admin? admin?.id : pilgrim? pilgrim?.id : isMission? isMission?.id : null
 
     const chatsRef = collection(db, 'chats')
 
@@ -61,7 +65,11 @@ const ChatContacts = () => {
     
     
         try {
-          const oldChat = allChats && allChats.find(c => c.members.includes(`${id}`))
+          const oldChat = 
+                agent? agentChats && agentChats.find(c => c.members.includes(`${id}`)) :
+                admin? adminChats && adminChats.find(c => c.members.includes(`${id}`)) :
+                pilgrim? pilgrimChats && pilgrimChats.find(c => c.members.includes(`${id}`)) :
+                isMission? missionChats && missionChats.find(c => c.members.includes(`${id}`)) : null
 
           if(oldChat){
             console.log('id', id)
@@ -69,7 +77,7 @@ const ChatContacts = () => {
           }
           else{
             const data = {
-              members : [`${user.uid}`, `${selected}`]
+              members : [`${myId}`, `${selected}`]
             }
         
             const chat = await addDoc (chatsRef, data)
@@ -185,7 +193,7 @@ const ChatContacts = () => {
             </>}
           </div>
           )
-        }else if(isAdmin){
+        }else if(admin){
           return (
             <div className='pil_inner_1'>
               <button  className='btn_sel_new'><BiArrowBack onClick={() => navigate(-1)}/>Select Contact</button>
@@ -238,15 +246,15 @@ const ChatContacts = () => {
       {RenderChoice()}
     </div>
     <div className="chats_footer">
-      {isMission || isAdmin? 'New Message to:' : 'Complaints'}
+      {isMission || admin? 'New Message to:' : 'Complaints'}
       <div className="chat_footer_inner">
-        {groups && groups.filter(g => g.id !== group?.id).map(g => (
+        {/* {groups && groups.filter(g => g.id !== group?.id).map(g => (
           <div className="footer_inner_con" key={g.id}>
             <h4 >{g.name}</h4>
             <NewChat s={g.id} name={g.name}/>
-            {/* <BiEnvelope onClick={(e) => handleNew(g.id, e)}/>  */}
+          
           </div>
-        ))}
+        ))} */}
         
       </div>                   
     </div>                       
