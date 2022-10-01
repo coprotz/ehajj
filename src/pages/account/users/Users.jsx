@@ -22,8 +22,8 @@ const Users = () => {
   const { user } = useAuth();
   const cuUser = users && users.find(u => u.id === user.uid)
 
-  const agentUsers = users && users.filter(a =>a.typeOf === 'agent')?.filter(u => u?.agentId === cuUser?.agentId)
-  // console.log('agentusers', agentUsers)
+  const agentUsers = users?.filter(u => u.agentId === cuUser?.agentId)
+  console.log('agentUsers', agentUsers)
 
   const agent = agents && agents.find(a => a.id === cuUser?.agentId)
   // const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )

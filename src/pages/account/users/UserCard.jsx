@@ -26,7 +26,7 @@ const UserCard = ({user, index}) => {
         <div className="actions_btns">
             {/* <ChangeStatus id={agent?.id}/> */}
             <ViewProfile id={agent?.id}/>
-            <NewChat s={agent?.id} name={user?.fname+" "+user?.lname}/>                
+            <NewChat s={user?.id} name={user?.fname+" "+user?.lname}/>                
         </div>
         
         </td>

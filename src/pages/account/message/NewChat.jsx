@@ -22,41 +22,46 @@ const NewChat = ({s, name}) => {
     const pilgrim = pilgrims?.find(p =>p.id === user.uid)
 
     // const userChats = chats && chats.filter(c =>c.members.includes(`${user.uid}`))
-    const agentChats = chats && chats.filter(c => c.members.includes(`${agent?.id}`))
+    const userChats = chats && chats.filter(c => c.members.includes(`${cuUser?.id}`))
     const adminChats = chats && chats.filter(c => c.members.includes(`${admin?.id}`))
     const missionChats = chats && chats.filter(c => c.members.includes(`${isMission?.id}`))
     const pilgrimChats = chats && chats.filter(c => c.members.includes(`${pilgrim?.id}`))
+    const agentChats = chats && chats.filter(c => c.members.includes(`${agent?.id}`))
     
 
-    console.log('agent', agent?.id)
+    // console.log('agent', agent?.id)
 
-    const myId =  agent && agent.id ||  admin && admin?.id ||  pilgrim && pilgrim?.id ||  isMission && isMission?.id
+    const myId =  cuUser && cuUser.id ||  admin && admin?.id ||  pilgrim && pilgrim?.id ||  isMission && isMission?.id
 
     console.log('myId', myId)
 
     console.log('pilgrimChats', pilgrimChats)
     console.log('adminChats', adminChats)
     console.log('missionChats', missionChats)
-    console.log('agentChats', agentChats)
+    console.log('userChats', userChats)
 
     const chatsRef = collection(db, 'chats')
     const [action, setAction] = useState(null)
 
     console.log('s', s)
+
+    const allChats = userChats.concat(agentChats)
+
+    const oldChat = 
+                cuUser? allChats && allChats.find(c => c.members.includes(`${s}`)) :
+                admin? adminChats && adminChats.find(c => c.members.includes(`${s}`)) :
+                pilgrim? pilgrimChats && pilgrimChats.find(c => c.members.includes(`${s}`)) :
+                isMission? missionChats && missionChats.find(c => c.members.includes(`${s}`)) : null
+
+
     
-    const handleNew = async(id,e) => {
+    const handleNew = async(e) => {
 
         e.preventDefault();
         
         setSending(true)
     
         try {
-          const oldChat = 
-                agent? agentChats && agentChats.find(c => c.members.includes(`${id}`)) :
-                admin? adminChats && adminChats.find(c => c.members.includes(`${id}`)) :
-                pilgrim? pilgrimChats && pilgrimChats.find(c => c.members.includes(`${id}`)) :
-                isMission? missionChats && missionChats.find(c => c.members.includes(`${id}`)) : null
-                        
 
           if(oldChat){
             // console.log('old', oldChat)
@@ -64,7 +69,7 @@ const NewChat = ({s, name}) => {
           }
           else{
             const data = {
-              members : [`${ myId}`, `${id}`]
+              members : [`${ myId}`, `${s}`]
             }
         
             const chat = await addDoc(chatsRef, data)
@@ -96,7 +101,7 @@ const NewChat = ({s, name}) => {
           <div className="pop_new_chat">
               <span>Send message to <strong>{name}</strong>?</span>
               <div className="group_btns">
-                  <button onClick={(e) =>handleNew(s,e)}>{sending? <Loading/>: 'OK'}</button>
+                  <button onClick={handleNew}>{sending? <Loading/>: 'OK'}</button>
                   <button onClick={() => setOpen(null)}>CANCEL</button>
               </div>
           </div>

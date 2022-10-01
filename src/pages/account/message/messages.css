@@ -5,6 +5,7 @@
     margin-top: 10px;
     overflow-y: scroll;
     height: 73vh;
+    min-width: 300px;
     width: 100%;
     /* background-color: white; */
 

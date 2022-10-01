@@ -30,20 +30,31 @@ const SendMessage = ({chat}) => {
   // const [image, setImage] = useState(null)
   const [error, setError] = useState('')
 
-  const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+  const cuUser = users?.find(u => u.id === user.uid)
+  const agent = agents?.find(a => a.id === cuUser?.agentId)
   const pilgrim = pilgrims?.find(p=>p.id === user.uid)
   const admin = admins?.find(a => a.userId === user.uid)
   const isMission = mission?.find(a => a.userId === user.uid)
-  const agentUser = users?.find(a =>a.agentId === agent?.id)
+
+  console.log('user', cuUser)
 
   // console.log('user', cuUser)
 
-  const name =
-    isMission? isMission?.fname+" "+isMission?.lname :
-    admin? admin?.fname+" "+admin?.lname : 
-    agent? agentUser?.fname+" "+agentUser?.lname :
-    pilgrim? pilgrim?.fname+" "+pilgrim?.lname : null
+  // const name =
+  //   isMission? isMission?.fname+" "+isMission?.lname :
+  //   admin? admin?.fname+" "+admin?.lname : 
+  //   agent? agentUser?.fname+" "+agentUser?.lname :
+  //   pilgrim? pilgrim?.fname+" "+pilgrim?.lname : null
     // cuUser?.fname +" "+ cuUser?.lname
+
+  const name = 
+    cuUser? cuUser?.fname+" "+cuUser?.lname :
+    isMission? isMission?.fname+" "+isMission?.lname :
+    admin? admin?.fname+" "+admin?.lname :
+    pilgrim? pilgrim?.fname+" "+pilgrim?.lname :    
+    agent?.name || agent?.coName 
+    
+
 
   // const types = ['image/png', 'image/jpeg']
 

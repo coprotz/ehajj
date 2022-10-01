@@ -9,33 +9,51 @@ import ChatCard from './ChatCard';
 
 const ChatLists = () => {
     const { user } = useAuth();
-    const { pilgrims, agents, chats, admins, mission } = useData();
+    const { pilgrims, agents, chats, admins, mission, users } = useData();
+
+   
 
 
     const navigate = useNavigate();
 
     // const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
-    const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+    // const agentUser = users?.find(u => u.agentId === )
+    const cuUser = users?.find(u => u.id === user.uid)
     const pilgrim = pilgrims?.find(p=>p.id === user.uid)
     const admin = admins?.find(a => a.userId === user.uid)
     const isMission = mission?.find(a => a.userId === user.uid)
+    const agent = agents?.find(a => a.id === cuUser?.agentId)
 
     const agentChats = chats && chats.filter(c =>c.members.includes(`${agent?.id}`))
+    const userChats = chats && chats.filter(c =>c.members.includes(`${cuUser?.id}`))
     const pilChats = chats && chats.filter(c =>c.members.includes(`${pilgrim?.id}`))
     const adminChats = chats && chats.filter(c =>c.members.includes(`${admin?.id}`))
     const missionChats = chats && chats.filter(c =>c.members.includes(`${isMission?.id}`))
 
-    console.log('pilChats', pilChats)
+   
+    console.log('cuUser', cuUser)
+
+    const allUserChats = agentChats.concat(userChats)
+
+    console.log('allUserChats', allUserChats)
 
   
 
     const RenderChats = () => {
-      if(agent){
+      if(cuUser){
         return (
           <>
-          {agentChats?.map(chat => (
-            <ChatCard chat={chat} key={chat.id} /> 
-          ))}
+          {allUserChats?.length > 0? <>         
+            {allUserChats?.map(chat => (
+              <ChatCard chat={chat} key={chat.id} /> 
+            ))}</> : 
+            
+            <div className='exist_chats'>
+              <span>No chats</span>
+              <button className='btn_create' onClick={() => navigate('/account/contacts')}>Creat new Chat</button>
+            </div>
+            
+            }
           </>
         )
       }else if(admin){
@@ -63,14 +81,14 @@ const ChatLists = () => {
           </>
         )
 
-    }else{
-      return (
-        <div className='exist_chats'>
-          <span>No chats</span>
-          <button className='btn_create' onClick={() => navigate('/account/contacts')}>Creat new Chat</button>
-        </div>
-      )   
-  }
+      }else{
+        return (
+          <div className='exist_chats'>
+            <span>No chats</span>
+            <button className='btn_create' onClick={() => navigate('/account/contacts')}>Creat new Chat</button>
+          </div>
+        )   
+    }
 }
   return (
     <div className="chat_lists">

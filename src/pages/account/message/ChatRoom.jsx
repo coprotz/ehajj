@@ -13,22 +13,23 @@ const ChatRoom = () => {
     const { id } = useParams();
     const {user} = useAuth();
     
-    const { messages, agents, chats, pilgrims, mission, admins} = useData();
+    const { messages, agents, chats, pilgrims, mission, admins, users} = useData();
     // const cuUser = users && users.find(u => u.id === user.uid)
     const navigate = useNavigate();
 
-    const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+    const cuUser = users?.find(u => u.id === user.uid)
     const pilgrim = pilgrims?.find(p=>p.id === user.uid)
     const admin = admins?.find(a => a.userId === user.uid)
     const isMission = mission?.find(a => a.userId === user.uid)
+    const agent = agents?.find(a => a.id === cuUser?.agentId)
 
     const chat = chats && chats.find(c => c.id === id) 
 
-    const memberId =    
-    agent? chat?.members?.find(m =>m !== agent?.id) : 
+    const memberId = 
+    cuUser? chat?.members?.find(m =>m !== cuUser?.id) :
     pilgrim? chat?.members?.find(m =>m !== pilgrim?.id) : 
-    isMission? chat?.members?.find(m =>m !== isMission?.id) : 
-    admin? chat?.members?.find(m =>m !== admin?.id) : null
+    isMission? chat?.members?.find(m =>m !== isMission?.id) :   
+    admin? chat?.members?.find(m =>m !== admin?.id) : chat?.members?.find(m =>m !== agent?.id)
     // const memberId = currentRoom && currentRoom.members.find(m => m !== user.uid) 
 
     // const memberId = 
@@ -37,8 +38,9 @@ const ChatRoom = () => {
     // || currentRoom && currentRoom.members.find(m => m !== cuUser?.groupId) : currentRoom && currentRoom.members.find(m => m !== cuUser?.id)
 
     const member = 
+              agents?.find(a => a.id === memberId) ||
               pilgrims?.find(a => a.id === memberId) || 
-              agents?.find(a => a.id === memberId) ||             
+              users?.find(a => a.id === memberId) ||             
               mission?.find(m => m.id === memberId) ||
               admins?.find(a => a.id === memberId)
 
