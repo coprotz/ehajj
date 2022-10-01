@@ -142,7 +142,7 @@ const Account = () => {
         }
         makeOnline()
         },5000)
-    },[pilgrim?.id])
+    },[pilgrim?.id, cuUser?.id])
 
    
   return (

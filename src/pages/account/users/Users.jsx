@@ -47,7 +47,7 @@ const Users = () => {
           <th >Name</th>
           <th >Role</th>
           <th >Firm</th>  
-          <th >Status</th>      
+          <th >Status Line</th>      
           <th >Phone</th>
           <th >Email</th>
           <th >Created At</th>
@@ -62,7 +62,7 @@ const Users = () => {
               <td data-label='Name'>{s?.fname+" "+s?.lname}</td>  
               <td data-label='Role'>{s?.typeOf}</td>    
               <td data-label='Firm'>{agent?.name || agent?.coName}</td>   
-              <td data-label='Office'>{s?.isOnline? 'Online' : 'Offline'}</td>             
+              <td data-label='Status Line'>{s?.isOnline? <span className='online1'></span> : <span className='offline1'></span>}</td>             
               <td data-label='Phone'>{s?.phone}</td>
               <td data-label='Email'>{s?.email}</td>
               <td data-label='Created At'>{moment(s?.createdAt?.toDate()).fromNow()}</td>

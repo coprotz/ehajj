@@ -15,7 +15,9 @@ const UserCard = ({user, index}) => {
         <td data-label='Name'>{user?.fname+" "+user?.lname}</td> 
         <td data-label='Role'>{user?.typeOf}</td>    
         <td data-label='Firm'>{agent?.name || agent?.coName}</td>   
-        <td data-label='Office'>{user?.isOnline? 'Online' : 'Offline'}</td>             
+        <td data-label='Status Line' className='user_line'>
+          {user?.isOnline? <span className='online1'></span> : <span className='offline1'></span>}
+        </td>             
         <td data-label='Phone'>{user?.phone}</td>
         <td data-label='Email'>{user?.email}</td>
         <td data-label='Created At'>{moment(user?.createdAt?.toDate()).fromNow()}</td>
