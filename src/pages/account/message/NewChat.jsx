@@ -16,21 +16,21 @@ const NewChat = ({s, name}) => {
     const navigate = useNavigate();
 
     const cuUser = users && users.find(a => a.id === user.uid)
-    const agentId = agents && agents.find(a => a.id === cuUser?.agentId)
+    const agent = agents && agents.find(a => a.id === cuUser?.agentId)
     const admin = admins?.find(a => a.userId === user.uid)
     const isMission = mission?.find(m => m.userId === user.uid)
     const pilgrim = pilgrims?.find(p =>p.id === user.uid)
 
     // const userChats = chats && chats.filter(c =>c.members.includes(`${user.uid}`))
-    const agentChats = chats && chats.filter(c => c.members.includes(`${agentId}`))
+    const agentChats = chats && chats.filter(c => c.members.includes(`${agent?.id}`))
     const adminChats = chats && chats.filter(c => c.members.includes(`${admin?.id}`))
     const missionChats = chats && chats.filter(c => c.members.includes(`${isMission?.id}`))
     const pilgrimChats = chats && chats.filter(c => c.members.includes(`${pilgrim?.id}`))
     
 
-    console.log('agent', agentId)
+    console.log('agent', agent?.id)
 
-    const myId =  agentId && agentId ||  admin && admin?.id ||  pilgrim && pilgrim?.id ||  isMission && isMission?.id
+    const myId =  agent && agent.id ||  admin && admin?.id ||  pilgrim && pilgrim?.id ||  isMission && isMission?.id
 
     console.log('myId', myId)
 
@@ -52,7 +52,7 @@ const NewChat = ({s, name}) => {
     
         try {
           const oldChat = 
-                agentId? agentChats && agentChats.find(c => c.members.includes(`${id}`)) :
+                agent? agentChats && agentChats.find(c => c.members.includes(`${id}`)) :
                 admin? adminChats && adminChats.find(c => c.members.includes(`${id}`)) :
                 pilgrim? pilgrimChats && pilgrimChats.find(c => c.members.includes(`${id}`)) :
                 isMission? missionChats && missionChats.find(c => c.members.includes(`${id}`)) : null
