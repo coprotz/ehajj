@@ -29,7 +29,10 @@ const Support = () => {
                     <div className="support_card" key={admin?.id}>
                       <div className="support_card_front">
                           <div className="su_card_fr_inner">
-                             <img src={photo} alt="" />
+                            <div className="su_photo">
+                                <img src={photo} alt="" />
+                            </div>
+                             
                              <div className="su_card_inside">
                                   <h4>{admin?.fname+" "+admin?.lname[0]}</h4>
                                   <span>{admin?.position}</span>
