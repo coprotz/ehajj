@@ -9,7 +9,7 @@ const ChatCard = ({chat}) => {
 
     const { id } = useParams()
 
-    console.log('id', id)
+    console.log('chat', chat)
 
     const {user} = useAuth();
     const { messages, agents, users, pilgrims, admins, mission} = useData();
@@ -25,6 +25,8 @@ const ChatCard = ({chat}) => {
     pilgrim? chat?.members?.find(m =>m !== pilgrim?.id) : 
     isMission? chat?.members?.find(m =>m !== isMission?.id) : 
     admin? chat?.members?.find(m =>m !== admin?.id) : null
+
+    console.log('memberid', memberId)
 
     const member = 
               pilgrims?.find(a => a.id === memberId) || 

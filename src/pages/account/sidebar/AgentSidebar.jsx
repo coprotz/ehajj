@@ -9,8 +9,8 @@ import {
     BsClipboardCheck,
     BsReverseLayoutSidebarInsetReverse,
     BsBarChartLineFill,
-    BsFillCaretDownFill,
-    BsBell
+    BsFillGearFill,
+    BsQuestionSquareFill
     } from "react-icons/bs";
 import { useAuth } from '../../../hooks/useAuth';
 import { MdSupportAgent } from "react-icons/md";
@@ -93,7 +93,16 @@ const AgentSidebar = () => {
       <NavLink to='reports' className="agent_menu_item">
         <BsBarChartLineFill/>
         <small>Reports</small>
-      </NavLink>}
+      </NavLink>
+      }
+       <NavLink to='support' className="agent_menu_item">
+        < BsQuestionSquareFill/>
+        <small>Support</small>
+      </NavLink>
+      <NavLink to='authority' className="agent_menu_item">
+        <BsFillGearFill/>
+        <small>Authority</small>
+      </NavLink>
     </div>
   )
 }

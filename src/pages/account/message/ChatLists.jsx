@@ -25,7 +25,7 @@ const ChatLists = () => {
     const adminChats = chats && chats.filter(c =>c.members.includes(`${admin?.id}`))
     const missionChats = chats && chats.filter(c =>c.members.includes(`${isMission?.id}`))
 
-    // console.log('adminChats', adminChats)
+    console.log('pilChats', pilChats)
 
   
 

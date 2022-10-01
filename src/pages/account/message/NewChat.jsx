@@ -32,23 +32,25 @@ const NewChat = ({s, name}) => {
 
     const myId = agent? agent.id : admin? admin?.id : pilgrim? pilgrim?.id : isMission? isMission?.id : null
 
-    console.log('agentChats', agentChats)
+    console.log('pilgrimChats', pilgrimChats)
+
     const chatsRef = collection(db, 'chats')
     const [action, setAction] = useState(null)
 
     console.log('s', s)
     
-    const handleNew = async(id, e) => {
+    const handleNew = async(e) => {
+
         e.preventDefault();
         
         setSending(true)
     
         try {
           const oldChat = 
-                agent? agentChats && agentChats.find(c => c.members.includes(`${id}`)) :
-                admin? adminChats && adminChats.find(c => c.members.includes(`${id}`)) :
-                pilgrim? pilgrimChats && pilgrimChats.find(c => c.members.includes(`${id}`)) :
-                isMission? missionChats && missionChats.find(c => c.members.includes(`${id}`)) : null
+                agent? agentChats && agentChats.find(c => c.members.includes(`${s}`)) :
+                admin? adminChats && adminChats.find(c => c.members.includes(`${s}`)) :
+                pilgrim? pilgrimChats && pilgrimChats.find(c => c.members.includes(`${s}`)) :
+                isMission? missionChats && missionChats.find(c => c.members.includes(`${s}`)) : null
                         
 
           if(oldChat){
@@ -57,7 +59,7 @@ const NewChat = ({s, name}) => {
           }
           else{
             const data = {
-              members : [`${ myId}`, `${id}`]
+              members : [`${ myId}`, `${s}`]
             }
         
             const chat = await addDoc(chatsRef, data)
@@ -88,7 +90,7 @@ const NewChat = ({s, name}) => {
         <div className="pop_new_chat">
             <span>Send message to <strong>{name}</strong>?</span>
             <div className="group_btns">
-                <button onClick={(e) => handleNew(s, e)}>{sending? <Loading/>: 'OK'}</button>
+                <button onClick={handleNew}>{sending? <Loading/>: 'OK'}</button>
                 <button onClick={() => setOpen(null)}>CANCEL</button>
             </div>
         </div>

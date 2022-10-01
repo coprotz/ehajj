@@ -1,14 +1,23 @@
+import userEvent from '@testing-library/user-event'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../hooks/useAuth'
 import useData from '../../../hooks/useData'
 
 const InvoiceCard = ({index, s}) => {
-    const { agents, invoices } = useData()
+
+
+    const { user } = useAuth()
+
+    const { agents, invoices, pilgrims } = useData()
     const agent = agents?.find(a => a.id === s?.agentId)
+    const pilgrim = pilgrims?.find(p => p.id === user.uid)
+
+    const isOwn = user.uid === s?.creatorId
     const navigate = useNavigate()
 
 
-    console.log('s', s)
+    // console.log('s', s)
   return (
     <tr >
         <td data-label='SN'>{index+1}</td>     
@@ -20,9 +29,13 @@ const InvoiceCard = ({index, s}) => {
         <td data-label='Invoice Status'>{s?.status}</td>            
         <td >
         <div className="actions_btns">
-            <button onClick={() =>navigate(`/invoice/${s?.id}`)}>View</button> 
-            <button >Pay Now</button>
-            <button>Download</button>      
+            {isOwn && <>
+              <button onClick={() =>navigate(`/invoice/${s?.id}`)}>View</button> 
+              <button >Pay Now</button>
+            </>}     
+             <button onClick={alert('under construction')}>Download</button> 
+           
+                 
         </div>
         
         </td>
