@@ -22,7 +22,10 @@ const Navbar = () => {
     const {user, logOut} = useAuth();
     const cuUser = users && users.find(u => u.id === user.uid)
     const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
-    const pilgrim = pilgrims && pilgrims.find(a => a.userId ===user.uid)
+    
+    const pilgrim = pilgrims && pilgrims.find(a => a.id ===user.uid)
+ 
+
     const cuMission = mission && mission.find(m => m.userId === user.uid)
     const isAdmin = admins?.find(a => a.userId === user?.uid)
     
@@ -40,7 +43,8 @@ const Navbar = () => {
     const handleLogout = async (e) => {
       e.preventDefault()
 
-      if(pilgrim){
+      try {
+        if(pilgrim){
           await updateDoc(pilgrimRef, {
         isOnline: false
       })
@@ -49,8 +53,17 @@ const Navbar = () => {
           isOnline: false
         })
       }
+      } catch (error) {
+        console.log(error.message)
+      }
 
-      logOut();
+    
+        logOut();
+    
+
+      
+
+      
 
 
     }
@@ -92,7 +105,7 @@ const Navbar = () => {
               {userMenu &&
               <div className="user_profile_action">
                 <span onClick={() =>navigate(`/profile/${pilgrim?.id}`)}>My Profile</span>
-                <span onClick={() =>navigate(`/profile/${agent?.id}`)}>Company Profile</span>
+                <span onClick={() =>navigate(`/profile/${pilgrim?.agentId}`)}>Company Profile</span>
                 <span>Settings</span>
                 <span onClick={handleLogout}>Log Out</span>
               </div>}

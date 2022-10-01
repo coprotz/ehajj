@@ -11,6 +11,7 @@ import Pilgrim from './pilgrim/Pilgrim'
 import Mission from './mission/Mission'
 import Admin from './admin/Admin'
 import Page404 from '../404/Page404'
+import { doc, updateDoc } from 'firebase/firestore'
 // import NewUser from './newUser/NewUser'
 
 const Account = () => {
@@ -32,7 +33,8 @@ const Account = () => {
 
     const [loading, setLoading] = useState(true)
     const [msg, setMsg] = useState('')
-    console.log('user', user)
+    const [error, setError] = useState('')
+    // console.log('user', user)
 
     const cuUser = users.find((u) => u?.id === user?.uid)
     const cuAgent = agents.find((a) => a?.id === user?.uid)
@@ -45,7 +47,8 @@ const Account = () => {
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
 
     // console.log('isgent',isAgent)
-    const isPligrim = pilgrims?.find(p=>p.id === user.uid)
+    const pilgrim = pilgrims?.find(p=>p.id === user.uid)
+    
 
     // console.log('cuUser', cuUser)
 
@@ -70,7 +73,7 @@ const Account = () => {
     }
 
     const RenderAccount = () => {
-        if(isPligrim){
+        if(pilgrim){
             return (
                 <Pilgrim/>
             )
@@ -101,6 +104,45 @@ const Account = () => {
         setLoading(false)
       }, 3000)
     }, [])
+
+    const pilgrimRef = doc(db, 'pilgrims', `${pilgrim?.id}`)
+    const userRef = doc(db, 'users', `${cuUser?.id}`)
+
+    useEffect(() => {
+
+        setTimeout(() => {
+  
+        const makeOnline = async () => {
+            
+
+            try {
+
+                if(pilgrim){
+                   await updateDoc(pilgrimRef, {
+                        isOnline: true
+                    })  
+                }else if(cuUser){
+                    await updateDoc(userRef, {
+                        isOnline: true
+                    }) 
+                }
+                
+                setTimeout(() => {
+                    setMsg('You are online')  
+                 },4000)
+                setTimeout(() => {
+                   setMsg('')  
+                },7000)
+               
+                
+            } catch (error) {
+                setError(error.message)
+            }
+           
+        }
+        makeOnline()
+        },5000)
+    },[pilgrim?.id])
 
    
   return (

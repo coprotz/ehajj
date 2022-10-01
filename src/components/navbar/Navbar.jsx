@@ -30,7 +30,7 @@ const Navbar = () => {
   const password = watch('password')
   const [items, setItems] = useState(null)
 
-  const pilgrim = pilgrims?.find(p => p.userId === user?.uid)
+  const pilgrim = pilgrims?.find(p => p.id === user?.uid)
   const cuUser = users && users?.find(u => u.id === user?.uid)
 
   const [showMenu, setShowMenu] = useState(null)
@@ -45,7 +45,7 @@ const Navbar = () => {
     try {
       await signIn(email, password)
       navigate('/account/main')
-      
+
         if(cuUser){
         await updateDoc(userRef, {
           isOnline: true

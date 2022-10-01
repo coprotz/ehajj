@@ -24,7 +24,7 @@ const PilgrimDash = () => {
     // const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
     const navigate = useNavigate()
 
-    console.log('pil', pilgrim)
+    // console.log('pil', pilgrim)
 
     const pilAgent = agents?.find(p => p.id === pilgrim?.agentId)
     
