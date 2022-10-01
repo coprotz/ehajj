@@ -55,7 +55,7 @@ const Users = () => {
           <th >Action</th>
         </thead>
         <tbody className='total'>
-          {agent && <>
+          {cuUser && <>
            {agentUsers?.filter(a => a.id !==cuUser.id).map((s, index) => (
             <tr key={s.id}>
               <td data-label='SN'>{index+1}</td>     

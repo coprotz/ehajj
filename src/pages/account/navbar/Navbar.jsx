@@ -101,7 +101,8 @@ const Navbar = () => {
               {userMenu &&
               <div className="user_profile_action">
                 <span onClick={() =>navigate(`/profile/${pilgrim?.id}`)}>My Profile</span>
-                <span onClick={() =>navigate(`/profile/${companyId}`)}>Company Profile</span>
+                {pilgrim || cuUser &&
+                <span onClick={() =>navigate(`/profile/${companyId}`)}>Company Profile</span>}
                 <span>Settings</span>
                 <span onClick={handleLogout}>Log Out</span>
               </div>}

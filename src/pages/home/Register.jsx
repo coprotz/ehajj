@@ -126,6 +126,7 @@ const Register = () => {
     const [page, setPage] = useState(1)
 
     const agentRef = collection(db, 'agents')
+    const invoicesRef = collection(db, 'invoices')
     //  const userRef = doc(db, 'users', `${user.uid}`)
 
     const handleCreate = async(e) => {
@@ -151,6 +152,15 @@ const Register = () => {
 
         }
 
+        const invoiceData = {
+            desc: 'Subscription Fee',
+            name: fname+" "+lname,
+            amount: '$ 150',
+            status: 'Not Paid',
+            
+
+        }
+
         // console.log('data', data)
 
         try {
@@ -160,27 +170,42 @@ const Register = () => {
                 lname, 
                 gender,
                 email,
+                phone,
                 isOnline: true,
                 status: 'Approved', 
                 createdAt: serverTimestamp(),
             }) 
-                await addDoc(agentRef, {
+                const newAgent = await addDoc(agentRef, {
                 ...data,
                 createdBy: newUser.user.uid
             })
-            // await updateDoc(doc(db, 'users', `${newUser.user.uid}`), {
-            //     agentId: newAgent?.id
-            // })
-            // const agent = agents?.find(a =>a.id === newAgent?.id)
-            // await updateDoc(doc(db, 'agents', `${agent?.id}`), {
-            //     users: [...agent?.users, `${newUser.user.uid}`],
-            // })  
+            await updateDoc(doc(db, 'users', `${newUser.user.uid}`), {
+                agentId: newAgent?.id
+            })
+
+            const newInvoice = await addDoc(invoicesRef, {
+                ...invoiceData,
+                creatorId: newUser.user.uid,
+                no: 1026+getRandomId(),            
+                createdAt: serverTimestamp(),
+                agentId: newAgent?.id
+                
+                
+            })
+
+            await updateDoc(doc(db, 'agents', `${newAgent?.id}`), {
+                invoiceId: newInvoice.id              
+                
+            })
+              
             setLoading(null)
             navigate('/account/main')         
         } catch (error) {
             setErr(error.message)
         }
     }
+
+    
 
     // const agent = agents.find(a =>a.id === agentId)
     const [pils, setPils] = useState([agent?.pilgrims])
@@ -194,12 +219,10 @@ const Register = () => {
             fname,
             lname,
             photo:'',
-            agentId: agentId,
-            groupId:'',
+            agentId: agentId,           
             email,
             phone,
-            status:'Not Approved',
-            typeOf,           
+            status:'Not Approved',                      
             office: office || '',
             isOnline: true,
             isAdmin: false,
@@ -210,6 +233,8 @@ const Register = () => {
             
         }
 
+     
+
         try {
             const newUser = await signUp(email, password)            
             await setDoc(doc(db, 'users', `${newUser.user.uid}`), {
@@ -217,22 +242,24 @@ const Register = () => {
                 createdAt: serverTimestamp(),
             }) 
 
-            const agent = agents?.find(a =>a.id === agentId)
-            await updateDoc(doc(db, 'agents', `${agentId}`), {
-                users: [...agent?.users, `${newUser.user.uid}`],
-            })  
-            setLoading(null)
+            // const agent = agents?.find(a =>a.id === agentId)
+            // await updateDoc(doc(db, 'agents', `${agentId}`), {
+            //     users: [...agent?.users, `${newUser.user.uid}`],
+            // }) 
+            
+           
+            
             navigate('/account/main')
             // console.log('user', newUser.user)
         } catch (error) {
             setErr(error.message)
         }
-       
+       setLoading(null)
 
 
     }
 
-    const invoicesRef = collection(db, 'invoices')
+   
 
    
 
