@@ -32,6 +32,7 @@
     background-color: white;
     padding: 3vh;
     border-left: 8px solid #3266a8;
+    z-index: 15;
 
 }
 

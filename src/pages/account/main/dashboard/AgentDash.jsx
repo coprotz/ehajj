@@ -15,7 +15,7 @@ const AgentDash = () => {
     const { user } = useAuth();
     const cuUser = users && users.find(u => u.id === user.uid)
     const ageId = cuUser?.agentId
-    const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+    const agent = agents?.find(a => a.id === cuUser?.agentId)
     const agentUsers = users && users.filter(u => u.agentId === agent?.id)
     // const agentPils = pilgrims && pilgrims.filter(a => a.agent === ageId)
     const agentPilgrims = pilgrims && pilgrims.filter(u => u.agent === agent?.id)
