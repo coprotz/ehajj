@@ -6,6 +6,7 @@ import useData from '../../../hooks/useData';
 import { useAuth } from '../../../hooks/useAuth';
 import './agent.css'
 import AgentCard from './AgentCard';
+import Search from '../../../components/search/Search';
 
 
 const Teams = () => {
@@ -29,7 +30,8 @@ const Teams = () => {
       className="agent_body"> 
         <h3 className='message_head'><BiArrowBack onClick={() =>navigate('/account/main')}/>Users</h3>
         <div className="users_inner">
-          <h3>List of Agents</h3>
+          <h4 className='account_page_name'>List of Agents</h4>
+          <Search/>
           <table className='table'>
         <thead>
           <th >SN</th>

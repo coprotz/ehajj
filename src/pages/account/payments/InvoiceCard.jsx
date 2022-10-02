@@ -3,15 +3,35 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../../hooks/useAuth'
 import useData from '../../../hooks/useData'
+import { jsPDF } from "jspdf";
+import PdfInvoice from '../pdfInvoice/PdfInvoice'
 
 const InvoiceCard = ({index, s}) => {
 
-
-    const { user } = useAuth()
+  const { user } = useAuth()
 
     const { agents, invoices, pilgrims } = useData()
     const agent = agents?.find(a => a.id === s?.agentId)
     const pilgrim = pilgrims?.find(p => p.id === user.uid)
+
+    
+
+ 
+
+  const generatePdf = (id) => {
+    const doc = new jsPDF("p", "pt", "a4");
+    doc.html(document.querySelector(`#${id}`), {
+      callback: function(pdf){
+        const pageCount = doc.internal.getNumberOfPages();
+        pdf.deletePage(pageCount)
+        pdf.save(`${s?.no}.pdf`)
+      }
+    })
+  }
+  
+
+
+    
 
     const isOwn = user.uid === s?.creatorId
     const navigate = useNavigate()
@@ -19,6 +39,9 @@ const InvoiceCard = ({index, s}) => {
 
     // console.log('s', s)
   return (
+    <>
+    
+   
     <tr >
         <td data-label='SN'>{index+1}</td>     
         <td data-label='Invoice No'>{s?.no}</td>  
@@ -33,13 +56,18 @@ const InvoiceCard = ({index, s}) => {
               <button onClick={() =>navigate(`/invoice/${s?.id}`)}>View</button> 
               <button >Pay Now</button>
             </>}     
-             <button onClick={alert('under construction')}>Download</button> 
+             <button onClick={() => generatePdf(s?.id)} className='btn_dwn'>Download Pdf</button> 
            
                  
         </div>
         
         </td>
     </tr>
+    <div className="pdf_download" style={{display: 'none'}}>
+      <PdfInvoice id={s?.id}/>
+    </div>
+    
+    </>
   )
 }
 

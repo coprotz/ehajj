@@ -98,6 +98,19 @@
     
 }
 
+.btn_dwn{
+    background-color: #3266a8 !important;
+    color: white;
+    padding: 5px 7px;
+    font-size: 0.9rem !important;
+    border-radius: 3px;
+}
+
+.btn_dwn:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 
 @media screen and (max-width: 940px){
     .payment_wrapper{

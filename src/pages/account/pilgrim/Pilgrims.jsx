@@ -16,6 +16,7 @@ import { useState } from 'react';
 // import Reports from '../reports/Reports';
 // import { GrClose } from "react-icons/gr";
 import PilgrimCard from './PilgrimCard';
+import Search from '../../../components/search/Search';
 // import ChangeStatus from '../../../components/changeStatus/ChangeStatus';
 // import NewChat from '../message/NewChat';
 // import ViewProfile from '../../../components/viewProfile/ViewProfile';
@@ -43,7 +44,8 @@ const Pilgrims = () => {
     const RenderRole = () => {
        return (
           <div className="users_inner">
-          <span className='page_heading_1'>List of Pilgrims</span>
+          <h4 className='account_page_name'>List of Pilgrims</h4>
+          <Search/>
           <table className='table'>
             <thead>
               <th>Photo</th>

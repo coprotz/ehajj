@@ -7,10 +7,10 @@ import Teachings from './pages/teachings/Teachings';
 import Contact from './pages/contact/Contact';
 import ViewAgent from './pages/agents/ViewAgent';
 import Account from './pages/account/Account';
-import { useEffect, useState} from 'react';
-import { collection, onSnapshot} from "firebase/firestore";
+import {  useState} from 'react';
+
 import { useAuth } from '../src/hooks/useAuth'
-import Thanks from './pages/success/Success';
+
 import Success from './pages/success/Success';
 import Messages from './pages/account/message/Messages';
 import Main from './pages/account/main/Main';
@@ -27,19 +27,21 @@ import Teams from './pages/account/agent/Teams';
 import Reports from './pages/account/reports/Reports';
 import ChatRoom from './pages/account/message/ChatRoom'
 import ChatContacts from './pages/account/message/ChatContacts';
-import MainMenu from './components/menu/MainMenu';
+
 import ViewBlog from './pages/blogs/ViewBlog';
 import CreateAgent from './pages/create/CreateAgent';
 import Help from './pages/help/Help';
 import Terms from './pages/terms/Terms';
 import Privacy from './pages/privacy/Privacy';
-import Register from './pages/signup/Signup';
+
 import Signup from './pages/signup/Signup';
 import SignupAdmin from './pages/signup/SignupAdmin';
 import Profile from './pages/profile/Profile';
 import Invoice from './pages/invoice/Invoice';
-import Page404 from './pages/404/Page404';
+
 import Support from './pages/account/support/Support';
+import Loading from './pages/loading/Loading';
+import PdfInvoice from './pages/account/pdfInvoice/PdfInvoice';
 
 
 
@@ -79,6 +81,7 @@ function App() {
             {/* <Route path='login' element={
               <Login />}/> */}
             <Route path='about' element={<About />}/>
+            <Route path='pdfInvoice/:id' element={<PdfInvoice />}/>
             <Route path='services' element={<Services />}/>
             <Route path='agents' element={<Agents />}/>
             <Route path='privacy' element={<Privacy />}/>
@@ -100,6 +103,7 @@ function App() {
             <Route path='register/admin' element={<SignupAdmin />}/>
             <Route path='blogs/:id' element={<ViewBlog />}/>
             <Route path='success' element={<Success />}/>
+            <Route path='loading' element={<Loading />}/>
             <Route path='account' element={
               <RequireAuth>
                 <Account />
@@ -121,7 +125,7 @@ function App() {
               <Route path='authority' element={<ChatContacts/>}></Route>
               
             </Route>
-            <Route path='*' element={<Page404/>}></Route>
+            <Route path='*' element={<Loading/>}></Route>
             {/* <Route path='messages' element={
               <RequireAuth>
                 <Messages                  

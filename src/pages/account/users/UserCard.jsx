@@ -11,9 +11,11 @@ const UserCard = ({user, index}) => {
     const agent = agents && agents.find(u => u.id === user?.agentId)
   return (
     <tr >
-        <td data-label='SN'>{index+1}</td>     
-        <td data-label='Name'>{user?.fname+" "+user?.lname}</td> 
-        <td data-label='Role'>{user?.typeOf}</td>    
+        <td data-label='SN'>{index+1}</td>   
+        <td data-label='Photo'>{user?.photo? <img src={user?.photo} alt="" />: 
+          <span className='agent_logo2'>{user?.fname[0]+""+user?.lname[0]}</span>}
+        </td>   
+        <td data-label='Name'>{user?.fname+" "+user?.lname}</td>         
         <td data-label='Firm'>{agent?.name || agent?.coName}</td>   
         <td data-label='Status Line' className='user_line'>
           {user?.isOnline? <span className='online1'></span> : <span className='offline1'></span>}
@@ -25,7 +27,7 @@ const UserCard = ({user, index}) => {
         <td data-label='Action'>
         <div className="actions_btns">
             {/* <ChangeStatus id={agent?.id}/> */}
-            <ViewProfile id={agent?.id}/>
+            <ViewProfile id={user?.id}/>
             <NewChat s={user?.id} name={user?.fname+" "+user?.lname}/>                
         </div>
         

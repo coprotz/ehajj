@@ -1,0 +1,110 @@
+
+.pdf_invoice_wrapper{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #bdd6f7;
+    padding: 0;
+    margin: 0;
+}
+.pdf_invoice_inner{
+    width: 595px;
+    height: 842px;
+    background-color: white;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px;
+    gap: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.pdf_tin{
+    color: #aaa;
+}
+
+.invoice_title{
+    color: #3266a8;
+}
+
+.pdf_invoice_top{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.pdf_invoice_right{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: right;
+}
+
+.pdf_invoice_bill{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.7rem;
+}
+
+.pdf_invoice_body{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.pdf_invoice_bill{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.pdf_invoice_inner span{
+    font-size: 0.7rem;
+}
+
+.pdf_invoice_b_left{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.pdf_detail{
+    padding: 3px 0;
+}
+
+.pdf_invoice_details{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 10px;
+}
+
+
+.pdf_invoice_det_amount{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.total_usd{
+    padding: 20px 0;
+    border-top: 2px solid #e8e8e8;
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.grand_total{
+    border-top: 2px solid #e8e8e8;
+    padding: 20px 0;
+}
+
+.pdf_invoice_logo{
+    width: 80px;
+}
+
+.pdf_invoice_logo img{
+    width: 100%;
+}

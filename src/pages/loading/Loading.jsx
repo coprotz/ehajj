@@ -1,7 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './loading.css'
 
 const Loading = () => {
+    const navigate = useNavigate()
+
+    // setTimeout(()=>{
+    //     navigate('/account/main')
+    // },4000)
   return (
     <div className="loading_wrapper">
       <div className='loading'>
@@ -16,7 +22,6 @@ const Loading = () => {
         
       </div>
     </div>
-    
   )
 }
 

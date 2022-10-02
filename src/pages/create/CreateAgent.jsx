@@ -10,7 +10,6 @@ import { FaPlus, FaMinus, FaTimes } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom'
 import { BiChevronsLeft } from "react-icons/bi";
 import { useForm } from "react-hook-form";
-import { useRef } from 'react'
 import { useEffect } from 'react'
 import useStorage from '../../hooks/useStorage'
 import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'

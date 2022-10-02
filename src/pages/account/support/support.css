@@ -42,6 +42,7 @@
 .su_photo{
     width: 80px;
     height: 80px;
+    position: relative;
    
  
     aspect-ratio: 1;
@@ -97,5 +98,24 @@
     justify-content: center;
     width: 100%;
     background-color: white;
+    min-height: 60px;
     
+}
+
+.online_status{
+    width: 15px;
+    height: 15px;
+    
+    position: absolute;
+    border-radius: 50%;
+    top: 5px;
+    right: 5px;
+}
+
+.green{
+    background-color: rgb(64, 233, 64);
+}
+
+.grey{
+    background-color: #aaa;
 }

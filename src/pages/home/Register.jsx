@@ -155,8 +155,12 @@ const Register = () => {
         const invoiceData = {
             desc: 'Subscription Fee',
             name: fname+" "+lname,
-            amount: '$ 150',
+            amount: '150',
             status: 'Not Paid',
+            money: 'out',
+            bene: 'E-HAJJ TANZANIA',
+            bene_tin: '125 555 784',
+            bene_add: 'Iyumwa, Dodoma'
             
 
         }
@@ -295,6 +299,8 @@ const Register = () => {
             name: fname+" "+lname,
             amount: selectedAgent?.cost,
             status: 'Not Paid',
+            money: 'in',
+            bene: coName,
             agentId,
 
         }
@@ -321,14 +327,15 @@ const Register = () => {
                 createdAt: serverTimestamp(),
             }) 
 
-            const agent = agents?.find(a => a.id === agentId)
-            await updateDoc(doc(db, 'agents', `${agentId}`), {
-                pilgrims: [...agent?.pilgrims, `${newUser.user.uid}`],
-            })  
+            // const agent = agents?.find(a => a.id === agentId)
+            // await updateDoc(doc(db, 'agents', `${agentId}`), {
+            //     pilgrims: [...agent?.pilgrims, `${newUser.user.uid}`],
+            // })  
 
           
             setLoading(null)
             navigate('/account/main') 
+            
        
         } catch (error) {
             setErr(error.message)

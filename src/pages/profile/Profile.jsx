@@ -22,16 +22,24 @@ const Profile = () => {
     const { id } = useParams()
     const { user } = useAuth()
     const { pilgrims, agents, mission, users, admins } = useData()
+
     const pilgrim = pilgrims?.find(p => p.id === id)
     const agent = agents?.find(a => a.id === id)
+    const cuUser = users?.find(a => a.id === id)
     const myAgent = agents?.find(a => a.id === pilgrim?.agentId)
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
 
     const agentPils = pilgrims?.filter(p => p.agentId === id)
     const agentUsers = users?.filter(u => u.agentId === id)
     const agentAdmin = users?.find(u => u.id === agent?.createdBy)
+    const userAgent = agents?.find(a => a.id === cuUser?.agentId)
 
-    console.log('agentUsers', agentUsers)
+    const isAgentAdmin = userAgent?.createdBy === user.uid
+
+
+
+    console.log('isAgentAdmin', isAgentAdmin)
+    console.log('userAgent', userAgent)
 
 
 
@@ -44,9 +52,9 @@ const Profile = () => {
     const [loading, setLoading] = useState(false)
     const { perc, url } = useStorage(file)
 
-    const own = pilgrim?.id === user?.uid
+    const own = id === user.uid
 
-    // console.log('own', own)
+    console.log('own', own)
 
     const types = ['image/png', 'image/jpeg']
 
@@ -69,6 +77,7 @@ const Profile = () => {
     const [change, setChange] = useState(null)
 
     const pilgrimRef = doc(db, 'pilgrims', `${pilgrim?.id}`)
+    const userRef = doc(db, 'users', `${cuUser?.id}`)
     const invoiceRef = doc(db, 'invoices', `${pilgrim?.invoiceId}`)
 
     const handlePhoto = async (e) => {
@@ -77,9 +86,16 @@ const Profile = () => {
         setLoading(true)
 
         try {
-            await updateDoc(pilgrimRef, {
-            photo: url
-        })
+            if(pilgrim){
+                await updateDoc(pilgrimRef, {
+                photo: url
+                })   
+            }else if(cuUser){
+                await updateDoc(userRef, {
+                photo: url
+                }) 
+            }
+           
         setFile(null)
 
         } catch (error) {
@@ -353,6 +369,29 @@ const Profile = () => {
                 <NewChat s={agent?.id} name={agent?.name || agent?.coName}/>
             </span>}
             {isMission &&
+            <span className='profile_span '>
+                <ChangeStatus/>
+            </span>}
+        
+        </div>
+        )
+    }else if(cuUser){
+        return (
+            <div className="profile_personal">        
+            
+            <span className='profile_span'>
+                <small>Created</small>
+                <h4>{moment(cuUser?.createdAt?.toDate()).fromNow(true)}</h4>
+            </span>
+            <span className='profile_span'>
+                <small>Email</small>
+                <h4>{cuUser?.email}</h4>
+            </span>
+            {isAdmin &&    
+            <span className='profile_span '>
+                <NewChat s={agent?.id} name={agent?.name || agent?.coName}/>
+            </span>}
+            {isAgentAdmin &&
             <span className='profile_span '>
                 <ChangeStatus/>
             </span>}
@@ -934,6 +973,10 @@ const Profile = () => {
     }
  }
 
+ const agentName = 
+    pilgrim? myAgent?.name || myAgent?.coName : 
+    cuUser? userAgent?.name || userAgent?.coName : null
+
 
     
 
@@ -945,16 +988,20 @@ const Profile = () => {
                     <h3 className='profile_head'><BiArrowBack onClick={() =>navigate(-1)}/>Profile</h3>  
                     <div className="app_status">
                         <small>Applicaion Status</small>
-                        <h2>{pilgrim? pilgrim?.status : agent? agent?.status : null}</h2>
+                        <h2>{pilgrim? pilgrim?.status : agent? agent?.status : cuUser? cuUser?.status : null}</h2>
                     </div>           
                 </div>
                 <div className="profile_header">
                     <div className="profile_logo">
                     { file?                         
                         <img src={URL.createObjectURL(file)} alt="" />                                                 
-                        : pilgrim? pilgrim?.photo? <img src={pilgrim?.photo} alt="" /> 
-                        : <span>{pilgrim?.fname[0]}</span> 
-                        : agent?  <img src={agent?.logo} alt="" />  
+                        : pilgrim? 
+                            pilgrim?.photo? <img src={pilgrim?.photo} alt="" /> :
+                            <span>{pilgrim?.fname[0]}</span> 
+                        : agent?  <img src={agent?.logo} alt="" /> 
+                        : cuUser?  
+                            cuUser.photo? <img src={cuUser?.photo} alt="" />  :
+                            <span>{cuUser?.fname[0]+""+cuUser?.lname[0]}</span>  
                         // cuMission? <h4 className='mission_logo'>{cuMission?.name[0]}</h4> : 
                         // isAdmin? <h4 className='mission_logo'>{isAdmin?.name[0]}</h4>:
                     : null}
@@ -983,6 +1030,7 @@ const Profile = () => {
                     <h2>{
                     agent? agent?.name || agent?.coName : 
                     pilgrim? pilgrim?.fname+" "+pilgrim?.lname :
+                    cuUser? cuUser?.fname+" "+cuUser?.lname :
                     //   cuMission? cuMission?.name : 
                     //   isAdmin? isAdmin?.name : 
                     null}</h2>
@@ -991,18 +1039,41 @@ const Profile = () => {
                 </div>
                 {RenderDash()}
             </div>
-            {pilgrim &&
+            {pilgrim  &&
             <div className="profile_agent">
                 
                 <div className="p_agent_left">
                     <small>Agent Name</small>
                     
                     <div className="profile_agent_name">
-                        <h1>{myAgent?.name || myAgent?.coName}</h1>
+                        <h1>{agentName}</h1>
                         {own &&
-                        <NewChat s={myAgent?.id} name={myAgent?.name || myAgent?.coName}/>}
+                        <NewChat s={id} name={agentName}/>}
                     </div>
-                    <div className='ibada_type'>{pilgrim?.ibada}</div>
+                    {pilgrim && 
+
+                    <div className='ibada_type'>{pilgrim?.ibada}</div>}
+                    
+                </div>
+                {own &&
+                <button className='btn_profile'>Change Agent</button> }
+                
+                
+            </div>}
+            {cuUser  &&
+            <div className="profile_agent">
+                
+                <div className="p_agent_left">
+                    <small>Agent Name</small>
+                    
+                    <div className="profile_agent_name">
+                        <h1>{agentName}</h1>
+                        {own &&
+                        <NewChat s={id} name={agentName}/>}
+                    </div>
+                    {pilgrim && 
+
+                    <div className='ibada_type'>{pilgrim?.ibada}</div>}
                     
                 </div>
                 {own &&

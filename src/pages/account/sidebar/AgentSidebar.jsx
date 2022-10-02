@@ -25,10 +25,15 @@ const AgentSidebar = () => {
     const {  user } = useAuth();
     const { users, pilgrims, agents, admins, mission } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
-    const isPilgrim = pilgrims && pilgrims.find(u => u.id === user.uid)
+    const isPilgrim = pilgrims?.find(u => u.id === user.uid)
     const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const isAdmin = admins && admins.find(u => u.userId === user.uid)
     const isMission = mission && mission.find(u => u?.userId === user.uid)
+
+    const userProfile = cuUser? cuUser?.id : isPilgrim? isPilgrim?.id : isAdmin? isAdmin?.id : isMission? isMission?.id : null
+
+    console.log('userProfile', userProfile)
+    
   return (
     <div className="agent_menu">
       <NavLink exact to='main' className="agent_menu_item">
@@ -41,9 +46,9 @@ const AgentSidebar = () => {
         <small>Users</small>
       </NavLink>}
       {isPilgrim &&
-      <NavLink to='application' className="agent_menu_item">
+      <NavLink to={`/profile/${userProfile}`} className="agent_menu_item">
         <BsStack/>
-        <small>Application</small>
+        <small>My Profile</small>
       </NavLink>}
       {!isPilgrim &&
       <NavLink to='pilgrims' className="agent_menu_item">
