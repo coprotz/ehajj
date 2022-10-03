@@ -14,23 +14,24 @@ import MissionDash from './dashboard/MissionDash';
 const Main = () => {
 
     const {  user } = useAuth();
-    const { users, pilgrims, agents, dashAgents, dashPilgrims, mission, admins } = useData();
+    const { users, pilgrims, agents, mission, admins } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
     const navigate = useNavigate()
-    const ageId = cuUser?.agentId
+    // const ageId = cuUser?.agentId
 
-    const agent = agents && agents.find(p => p.id === ageId)
-    const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
+    const agent = agents && agents.find(p => p.id === cuUser?.agentId)
+    // const pilgrim = pilgrims && pilgrims.find(p => p.userId === user.uid)
+    
     // const agent = agents && agents.find(a => a.id === ageId)
 
     const isPilgrim = pilgrims && pilgrims.find(u => u.id === user.uid)
-    const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+    // const agent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
     const isAdmin = admins && admins.find(u => u.userId === user.uid)
     const isMission = mission && mission.find(u => u.userId === user.uid)
-    const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
-    const activeAgentPilgrims = agentPilgrims && agentPilgrims.filter(a => a?.agentId === ageId)
+    // const agentPilgrims = users && users.filter(a =>a.typeOf === 'pilgrim' )
+    // const activeAgentPilgrims = agentPilgrims && agentPilgrims.filter(a => a?.agentId === ageId)
 
-    const cuMission = mission && mission.find(m => m?.userId === user.uid)
+    // const cuMission = mission && mission.find(m => m?.userId === user.uid)
 
     // console.log('mission', cuMission)
 
@@ -55,7 +56,7 @@ const Main = () => {
         return (
          <PilgrimDash/>
         )
-      }else if(isAgent){
+      }else if(agent){
         return (
          <AgentDash />
         )

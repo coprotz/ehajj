@@ -22,8 +22,7 @@ const MissionDash = () => {
     <div className="main_top_wrapper">
       <div className="acc_main_top">
         <div className="acc_body_card">
-          <small>Assalaam Aleykum</small>
-          {isAdmin && <h2>{isAdmin?.fname+" "+isAdmin?.lname}, {isAdmin?.position}</h2> }
+          <small>Assalaam Aleykum</small>  
           {isMission && <h2>{isMission?.fname+" "+isMission?.lname}, {isMission?.position}</h2> }
         
         </div>

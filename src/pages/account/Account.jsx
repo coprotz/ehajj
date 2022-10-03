@@ -132,7 +132,7 @@ const Account = () => {
                     await updateDoc(adminRef, {
                         isOnline: true
                     }) 
-                }else if(admin){
+                }else if(isMission){
                     await updateDoc(missionRef, {
                         isOnline: true
                     }) 
