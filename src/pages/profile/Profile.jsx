@@ -1043,7 +1043,7 @@ const Profile = () => {
             <div className="profile_agent">
                 
                 <div className="p_agent_left">
-                    <small>Agent Name</small>
+                    <small>Pilgrim - Agent Name</small>
                     
                     <div className="profile_agent_name">
                         <h1>{agentName}</h1>
@@ -1064,7 +1064,7 @@ const Profile = () => {
             <div className="profile_agent">
                 
                 <div className="p_agent_left">
-                    <small>Agent Name</small>
+                    <small> User - Agent Name</small>
                     
                     <div className="profile_agent_name">
                         <h1>{agentName}</h1>
