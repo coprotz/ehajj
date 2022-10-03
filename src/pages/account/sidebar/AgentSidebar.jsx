@@ -26,7 +26,7 @@ const AgentSidebar = () => {
     const { users, pilgrims, agents, admins, mission } = useData();
     const cuUser = users && users.find(u => u.id === user.uid)
     const isPilgrim = pilgrims?.find(u => u.id === user.uid)
-    const isAgent = agents?.find(a => a?.users?.includes(`${user.uid}`)) || agents?.find(a => a?.createdBy === user?.uid)
+    const isAgent = agents?.find(a => a?.id === cuUser?.agentId)
     const isAdmin = admins && admins.find(u => u.userId === user.uid)
     const isMission = mission && mission.find(u => u?.userId === user.uid)
 

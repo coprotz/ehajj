@@ -109,7 +109,7 @@ const Account = () => {
     const pilgrimRef = doc(db, 'pilgrims', `${pilgrim?.id}`)
     const userRef = doc(db, 'users', `${cuUser?.id}`)
     const adminRef = doc(db, 'admins', `${admin?.id}`)
-    const missionRef = doc(db, 'mission', `${mission?.id}`)
+    const missionRef = doc(db, 'mission', `${isMission?.id}`)
 
     useEffect(() => {
 
@@ -138,12 +138,12 @@ const Account = () => {
                     }) 
                 }
                 
-                setTimeout(() => {
-                    setMsg('You are online')  
-                 },4000)
-                setTimeout(() => {
-                   setMsg('')  
-                },7000)
+                // setTimeout(() => {
+                //     setMsg('You are online')  
+                //  },4000)
+                // setTimeout(() => {
+                //    setMsg('')  
+                // },7000)
                
                 
             } catch (error) {
@@ -153,7 +153,7 @@ const Account = () => {
         }
         makeOnline()
         },5000)
-    },[pilgrim?.id, cuUser?.id, admin?.id, mission?.id])
+    },[pilgrim?.id, cuUser?.id, admin?.id, isMission?.id])
 
    
   return (
