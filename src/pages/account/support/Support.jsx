@@ -50,7 +50,7 @@ const Support = () => {
                           
                           <button className='support_chat'>
                           {admin?.userId !== user.uid &&
-                            <NewChat s={admin?.id} name={admin?.name+"-"+admin?.fname+" "+admin?.lname[0]}/>}
+                            <NewChat s={admin?.id} name={admin?.fname+" "+admin?.lname}/>}
                           </button>
                       </div>
                   </div>

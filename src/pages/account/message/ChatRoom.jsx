@@ -37,6 +37,18 @@ const ChatRoom = () => {
     //   pilgrim? currentRoom?.members.find(m => m !== pilgrim?.id) : null 
     // || currentRoom && currentRoom.members.find(m => m !== cuUser?.groupId) : currentRoom && currentRoom.members.find(m => m !== cuUser?.id)
 
+    const Name = () => {
+      if(agents?.find(a => a.id === memberId)){
+        return (
+          <>{member?.coName || member?.name }</>
+        )
+      }else {
+        return (
+          <>{member?.fname+" "+member?.lname}</>
+        )
+      }
+    }
+    
     const member = 
               agents?.find(a => a.id === memberId) ||
               pilgrims?.find(a => a.id === memberId) || 
@@ -44,7 +56,7 @@ const ChatRoom = () => {
               mission?.find(m => m.id === memberId) ||
               admins?.find(a => a.id === memberId)
 
-    const memberName =  member?.name || member?.coName || member?.fname+" "+member?.lname
+    // const memberName =  member?.name || member?.coName || member?.fname+" "+member?.lname
 
     const memberIcon = 
 
@@ -105,7 +117,7 @@ const ChatRoom = () => {
                   <span className="member_icon">
                      {memberIcon}
                   </span>                 
-                  <h4 >{memberName}</h4> 
+                  <h4 onClick={() =>navigate(`/profile/${memberId}`)}>{Name()}</h4> 
                 </div>           
                 <ChatAction/>          
               </div>
@@ -126,7 +138,7 @@ const ChatRoom = () => {
             <span className="profile_icon">
               {memberIcon}
             </span>  
-            <h4 >{memberName}</h4>
+            <h4 >{Name()}</h4>
           </div>
           <div className="chat_r_bottom">
             footer

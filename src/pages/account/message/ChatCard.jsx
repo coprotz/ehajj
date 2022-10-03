@@ -24,16 +24,36 @@ const ChatCard = ({chat}) => {
     const admin = admins?.find(a => a.userId === user.uid)
     const isMission = mission?.find(a => a.userId === user.uid)
 
+    const userChats = chat?.members?.find(m =>m !== cuUser?.id)
+    const pilgrimChats = chat?.members?.find(m =>m !== pilgrim?.id)
+    const adminChats = chat?.members?.find(m =>m !== admin?.id)
+    const missionChats = chat?.members?.find(m =>m !== isMission?.id)
+    const agentChats = chat?.members?.find(m =>m !== agent?.id)
+
+    const allChats = userChats.concat(agentChats)
+
 
 
     const memberId = 
       
-      cuUser? chat?.members?.find(m =>m !== cuUser?.id) :
-      pilgrim? chat?.members?.find(m =>m !== pilgrim?.id) : 
-      isMission? chat?.members?.find(m =>m !== isMission?.id) :   
-      admin? chat?.members?.find(m =>m !== admin?.id) : chat?.members?.find(m =>m !== agent?.id) ||
+      cuUser? allChats  :
+      pilgrim? pilgrimChats : 
+      isMission? missionChats :   
+      admin? adminChats :  null
 
-    console.log('chat', chat)
+    // console.log('chat', chat)
+
+    const Name = () => {
+      if(agents?.find(a => a.id === memberId)){
+        return (
+          <>{member?.coName || member?.name }</>
+        )
+      }else {
+        return (
+          <>{member?.fname+" "+member?.lname}</>
+        )
+      }
+    }
 
     const member = 
               agents?.find(a => a.id === memberId) ||
@@ -42,7 +62,7 @@ const ChatCard = ({chat}) => {
               mission?.find(m => m.id === memberId) ||
               admins?.find(a => a.id === memberId)
 
-    const memberName =   member?.name || member?.coName || member?.fname+" "+member?.lname
+    // const memberName =   member?.fname+" "+member?.lname || member?.coName || member?.name 
     const memberIcon = 
       member?.logo? <img src={member?.logo} alt="" />: 
         <>{member?.name} </>||                          
@@ -58,7 +78,7 @@ const ChatCard = ({chat}) => {
     
 
 
-    console.log('memberId', memberId)
+    // console.log('memberId', memberId)
 
     // const {name, createdAt, text} = lastMsg && lastMsg
 
@@ -73,7 +93,7 @@ const ChatCard = ({chat}) => {
             {memberIcon}
           </span>          
           <div className="card_member_details">          
-            <h4 className='member_name'>{memberName}</h4>
+            <h4 className='member_name'>{Name()}</h4>
             <div className="chat_id">           
               <small className='chat_text'>{lastMsg && lastMsg.text}</small>
             </div>
