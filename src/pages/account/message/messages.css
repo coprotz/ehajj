@@ -999,6 +999,7 @@ button:disabled{
 
 .profile_icon{
     width: 300px;
+    max-height: 300px;
 }
 
 .profile_icon img{
