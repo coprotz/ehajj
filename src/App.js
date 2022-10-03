@@ -42,6 +42,7 @@ import Invoice from './pages/invoice/Invoice';
 import Support from './pages/account/support/Support';
 import Loading from './pages/loading/Loading';
 import PdfInvoice from './pages/account/pdfInvoice/PdfInvoice';
+import Authority from './pages/account/authority/Authority';
 
 
 
@@ -122,7 +123,7 @@ function App() {
               <Route path='reports' element={<Reports/>}></Route>
               <Route path='contacts' element={<ChatContacts/>}></Route>
               <Route path='support' element={<Support/>}></Route>
-              <Route path='authority' element={<ChatContacts/>}></Route>
+              <Route path='authority' element={<Authority/>}></Route>
               
             </Route>
             <Route path='*' element={<Loading/>}></Route>

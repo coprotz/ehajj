@@ -36,7 +36,7 @@ const SendMessage = ({chat}) => {
   const admin = admins?.find(a => a.userId === user.uid)
   const isMission = mission?.find(a => a.userId === user.uid)
 
-  console.log('user', cuUser)
+  // console.log('user', cuUser)
 
   // console.log('user', cuUser)
 
@@ -52,7 +52,7 @@ const SendMessage = ({chat}) => {
     isMission? isMission?.fname+" "+isMission?.lname :
     admin? admin?.fname+" "+admin?.lname :
     pilgrim? pilgrim?.fname+" "+pilgrim?.lname :    
-    agent?.name || agent?.coName 
+    'Guest' 
     
 
 

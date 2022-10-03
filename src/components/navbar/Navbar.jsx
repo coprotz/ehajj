@@ -24,7 +24,7 @@ const Navbar = () => {
   const [err, setErr] = useState('')
   const navigate = useNavigate();
   const { signIn, user, logOut } = useAuth();
-  const { users, pilgrims } = useData();
+  const { users, pilgrims, admins, mission } = useData();
   const { register,  watch, formState: { isValid } } = useForm({mode: 'all'});
   const email = watch('email')
   const password = watch('password')
@@ -32,11 +32,15 @@ const Navbar = () => {
 
   const pilgrim = pilgrims?.find(p => p.id === user?.uid)
   const cuUser = users && users?.find(u => u.id === user?.uid)
+  const admin = admins?.find(p => p.userId === user?.uid)
+  const isMission = mission?.find(u => u.userId === user?.uid)
 
   const [showMenu, setShowMenu] = useState(null)
 
   const userRef = doc(db, 'users', `${cuUser?.id}`)
   const pilRef = doc(db, 'pilgrims', `${pilgrim?.id}`)
+  const adminRef = doc(db, 'admins', `${admin?.id}`)
+  const missionRef = doc(db, 'mission', `${isMission?.id}`)
 
   const handleLogin = async(e) => {
     e.preventDefault()
@@ -52,6 +56,14 @@ const Navbar = () => {
         })
       }else if(pilgrim){
         await updateDoc(pilRef, {
+          isOnline: true
+        })
+      }else if(admin){
+        await updateDoc(adminRef, {
+          isOnline: true
+        })
+      }else if(isMission){
+        await updateDoc(missionRef, {
           isOnline: true
         })
       }
