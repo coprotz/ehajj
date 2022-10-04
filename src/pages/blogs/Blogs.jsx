@@ -22,6 +22,7 @@ const Blogs = ({showMenu, setShowMenu}) => {
 
   return (
     <div className='blogs'>
+      <div className="blogs_container">     
       <Navbar showMenu={showMenu} setShowMenu={setShowMenu}/>
       <motion.div 
           initial={{ opacity: 0}}
@@ -107,6 +108,7 @@ const Blogs = ({showMenu, setShowMenu}) => {
           </motion.div>
         </div>
       </motion.div>
+      </div>
       <Footer/>
      
     </div>
